@@ -1,0 +1,1857 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>
+    SHB Technologies & Medical Systems | Innovation in Healthcare Tech
+  </title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+    rel="stylesheet" />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap"
+    rel="stylesheet" />
+  <style>
+    :root {
+      --deep-navy: #061428;
+      --navy: #0b2b5c;
+      --steel-blue: #1a5f8a;
+      --ocean: #1e6f9f;
+      --teal-accent: #219897;
+      --sky-light: #e8f4f9;
+      --surface-white: #ffffff;
+      --surface-soft: #f7fafc;
+      --gray-100: #f1f5f9;
+      --gray-200: #e2e8f0;
+      --gray-300: #cbd5e1;
+      --gray-500: #64748b;
+      --gray-700: #334155;
+      --gray-900: #0f172a;
+      --text-primary: #0a1e3d;
+      --text-secondary: #475569;
+      --accent-glow: rgba(30, 111, 159, 0.25);
+      --card-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.04), 0 6px 24px rgba(0, 0, 0, 0.06);
+      --card-shadow-hover:
+        0 4px 12px rgba(0, 0, 0, 0.06), 0 20px 40px rgba(0, 0, 0, 0.12);
+      --radius-sm: 12px;
+      --radius-md: 18px;
+      --radius-lg: 24px;
+      --radius-xl: 30px;
+      --transition-smooth: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --transition-bounce: 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    * {
+      font-family:
+        "Inter",
+        system-ui,
+        -apple-system,
+        sans-serif;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      background-color: #fafcfd;
+      color: var(--text-primary);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.65;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+      background:
+        radial-gradient(ellipse at 15% 10%,
+          rgba(30, 111, 159, 0.03) 0%,
+          transparent 60%),
+        radial-gradient(ellipse at 85% 70%,
+          rgba(33, 152, 151, 0.03) 0%,
+          transparent 60%),
+        radial-gradient(ellipse at 50% 40%,
+          rgba(11, 43, 92, 0.02) 0%,
+          transparent 70%);
+      background-size: 100% 100%;
+    }
+
+    .navbar {
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow:
+        0 1px 0 rgba(0, 0, 0, 0.04),
+        0 8px 24px rgba(0, 0, 0, 0.04);
+      padding: 0.8rem 0;
+      transition: all var(--transition-smooth);
+      border-bottom: 1px solid rgba(30, 111, 159, 0.07);
+      z-index: 1030;
+    }
+
+    .navbar.scrolled {
+      padding: 0.5rem 0;
+      box-shadow:
+        0 1px 0 rgba(0, 0, 0, 0.05),
+        0 12px 30px rgba(0, 0, 0, 0.07);
+      background: rgba(255, 255, 255, 0.95);
+    }
+
+
+
+
+    .navbar-brand {
+      font-weight: 800;
+      font-size: 1.55rem;
+      letter-spacing: -0.4px;
+      background: linear-gradient(140deg,
+          #0b2b5c 0%,
+          #1e6f9f 55%,
+          #219897 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      line-height: 1.1;
+      transition: var(--transition-smooth);
+    }
+
+    .navbar-brand small {
+      background: none;
+      color: var(--ocean);
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+
+    .nav-link {
+      font-weight: 500;
+      color: var(--gray-700) !important;
+      padding: 0.55rem 1.1rem !important;
+      border-radius: 30px;
+      transition: all var(--transition-smooth);
+      position: relative;
+      font-size: 0.93rem;
+      letter-spacing: 0.1px;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--ocean) !important;
+      background: rgba(30, 111, 159, 0.06);
+    }
+
+    .btn-nav-cta {
+      background: linear-gradient(135deg, #1e6f9f, #1a5f8a);
+      border: none;
+      padding: 0.6rem 1.7rem;
+      font-weight: 600;
+      border-radius: 40px;
+      transition: all var(--transition-bounce);
+      box-shadow: 0 4px 14px rgba(30, 111, 159, 0.25);
+      color: #fff;
+      font-size: 0.9rem;
+      letter-spacing: 0.2px;
+      white-space: nowrap;
+    }
+
+    .btn-nav-cta:hover {
+      background: linear-gradient(135deg, #1a5f8a, #0e4d6e);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(30, 111, 159, 0.35);
+      color: #fff;
+    }
+
+    .hero-section {
+      position: relative;
+      background: linear-gradient(165deg,
+          #ffffff 0%,
+          #f0f7fb 30%,
+          #e8f2f8 70%,
+          #ffffff 100%);
+      padding: 6rem 0 5rem 0;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(30, 111, 159, 0.06);
+    }
+
+    .hero-section::before {
+      content: "";
+      position: absolute;
+      top: -200px;
+      right: -250px;
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle,
+          rgba(30, 111, 159, 0.06) 0%,
+          transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      animation: heroPulse 12s ease-in-out infinite;
+    }
+
+    .hero-section::after {
+      content: "";
+      position: absolute;
+      bottom: -150px;
+      left: -200px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle,
+          rgba(33, 152, 151, 0.05) 0%,
+          transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      animation: heroPulse 15s ease-in-out infinite 3s;
+    }
+
+    @keyframes heroPulse {
+
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: 0.7;
+      }
+
+      50% {
+        transform: scale(1.18);
+        opacity: 1;
+      }
+    }
+
+    .hero-badge {
+      background: linear-gradient(135deg, #e6f2fb, #dceef8);
+      color: #0b5e7e;
+      border-radius: 40px;
+      padding: 0.4rem 1.2rem;
+      font-size: 0.84rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-bottom: 1.2rem;
+      letter-spacing: 0.2px;
+      border: 1px solid rgba(30, 111, 159, 0.12);
+      animation: fadeInUp 0.7s ease-out;
+    }
+
+    .hero-title {
+      font-weight: 900;
+      font-size: 3.2rem;
+      line-height: 1.15;
+      background: linear-gradient(145deg,
+          #061428 0%,
+          #0b2b5c 30%,
+          #1a5f8a 65%,
+          #1e6f9f 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 1.3rem;
+      letter-spacing: -0.6px;
+      animation: fadeInUp 0.8s ease-out 0.1s both;
+    }
+
+    .hero-subtitle {
+      animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+
+    .hero-buttons {
+      animation: fadeInUp 0.8s ease-out 0.3s both;
+    }
+
+    .hero-contact-row {
+      animation: fadeInUp 0.8s ease-out 0.35s both;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .btn-primary-premium {
+      background: linear-gradient(135deg, #1e6f9f 0%, #1a5f8a 100%);
+      border: none;
+      padding: 0.75rem 2rem;
+      font-weight: 600;
+      border-radius: 44px;
+      transition: all var(--transition-bounce);
+      box-shadow: 0 6px 20px rgba(30, 111, 159, 0.22);
+      color: #fff;
+      letter-spacing: 0.2px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary-premium::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle,
+          rgba(255, 255, 255, 0.2) 0%,
+          transparent 60%);
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+
+    .btn-primary-premium:hover::after {
+      opacity: 1;
+    }
+
+    .btn-primary-premium:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(30, 111, 159, 0.32);
+      color: #fff;
+    }
+
+    .btn-outline-premium {
+      border: 2px solid #1e6f9f;
+      color: #1e6f9f;
+      border-radius: 44px;
+      padding: 0.7rem 1.8rem;
+      font-weight: 600;
+      transition: all var(--transition-bounce);
+      background: transparent;
+      letter-spacing: 0.2px;
+    }
+
+    .btn-outline-premium:hover {
+      background: #1e6f9f;
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 26px rgba(30, 111, 159, 0.2);
+    }
+
+    .hero-illustration-wrapper {
+      position: relative;
+      animation: floatSlow 7s ease-in-out infinite;
+    }
+
+    @keyframes floatSlow {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-16px);
+      }
+    }
+
+    .hero-illustration-inner {
+      background: #ffffff;
+      border-radius: var(--radius-xl);
+      padding: 0.6rem;
+      box-shadow: var(--card-shadow-hover);
+      border: 1px solid rgba(30, 111, 159, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-illustration-inner::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius-xl);
+      padding: 2px;
+      background: linear-gradient(135deg,
+          rgba(30, 111, 159, 0.2),
+          rgba(33, 152, 151, 0.2),
+          rgba(30, 111, 159, 0.05));
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .hero-illustration-inner img {
+      border-radius: 20px;
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 380px;
+      object-fit: cover;
+    }
+
+    .section-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(30, 111, 159, 0.07);
+      color: #1a5f8a;
+      border-radius: 40px;
+      padding: 0.4rem 1.3rem;
+      font-weight: 600;
+      font-size: 0.84rem;
+      letter-spacing: 0.2px;
+      border: 1px solid rgba(30, 111, 159, 0.1);
+      margin-bottom: 0.8rem;
+    }
+
+    .section-heading {
+      font-weight: 800;
+      font-size: 2.4rem;
+      color: var(--deep-navy);
+      position: relative;
+      letter-spacing: -0.4px;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-heading::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60px;
+      height: 3.5px;
+      background: linear-gradient(90deg, #1e6f9f, #8fcbff);
+      border-radius: 4px;
+    }
+
+    .section-heading.text-center::after {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .service-card {
+      background: #fff;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      border-radius: var(--radius-lg);
+      padding: 2rem 1.6rem;
+      transition: all var(--transition-smooth);
+      box-shadow: var(--card-shadow);
+      position: relative;
+      overflow: hidden;
+      height: 100%;
+      cursor: default;
+    }
+
+    .service-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #1e6f9f, #8fcbff);
+      opacity: 0;
+      transition: opacity var(--transition-smooth);
+      border-radius: 0 0 4px 4px;
+    }
+
+    .service-card:hover::before {
+      opacity: 1;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--card-shadow-hover);
+      border-color: rgba(30, 111, 159, 0.12);
+    }
+
+    .service-icon-circle {
+      width: 56px;
+      height: 56px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      background: linear-gradient(135deg, #e8f4f9, #dceef8);
+      color: #1e6f9f;
+      margin-bottom: 1.3rem;
+      transition: all var(--transition-bounce);
+    }
+
+    .service-card:hover .service-icon-circle {
+      background: linear-gradient(135deg, #1e6f9f, #1a5f8a);
+      color: #fff;
+      transform: scale(1.06);
+      box-shadow: 0 8px 22px rgba(30, 111, 159, 0.28);
+    }
+
+    .stats-section {
+      background: linear-gradient(180deg, #ffffff 0%, #f6fafd 100%);
+      border-top: 1px solid rgba(30, 111, 159, 0.06);
+      border-bottom: 1px solid rgba(30, 111, 159, 0.06);
+    }
+
+    .stat-card {
+      text-align: center;
+      padding: 1.8rem 1rem;
+      border-radius: var(--radius-lg);
+      background: #fff;
+      box-shadow: var(--card-shadow);
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      transition: all var(--transition-smooth);
+    }
+
+    .stat-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--card-shadow-hover);
+    }
+
+    .stat-number {
+      font-weight: 900;
+      font-size: 2.8rem;
+      letter-spacing: -1px;
+      background: linear-gradient(135deg, #0b2b5c, #1e6f9f);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      line-height: 1;
+    }
+
+    .stat-icon-dot {
+      font-size: 2rem;
+      color: #1e6f9f;
+      margin-bottom: 0.3rem;
+    }
+
+    .why-us-image-wrapper {
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--card-shadow-hover);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      position: relative;
+    }
+
+    .why-us-image-wrapper img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    .check-list-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
+      margin-bottom: 0.9rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .check-list-item i {
+      color: #1e6f9f;
+      font-size: 1.15rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .contact-premium-card {
+      background: #fff;
+      border-radius: var(--radius-xl);
+      padding: 2rem;
+      box-shadow: var(--card-shadow);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      height: 100%;
+      transition: all var(--transition-smooth);
+    }
+
+    .contact-premium-card:hover {
+      box-shadow: var(--card-shadow-hover);
+    }
+
+    .contact-icon-bullet {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: rgba(30, 111, 159, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #1e6f9f;
+      flex-shrink: 0;
+      font-size: 1.1rem;
+    }
+
+    .form-premium {
+      color: rgb(255, 255, 255);
+    background: rgb(0, 77, 141);
+    padding: 9px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 15px;
+    }
+
+    .form-premium .form-control {
+      border-radius: 12px;
+      border: 1.5px solid #e2e8f0;
+      padding: 0.7rem 1rem;
+      font-size: 0.93rem;
+      transition: all var(--transition-smooth);
+      background: #fafcfd;
+      font-weight: 500;
+    }
+
+    .form-premium .form-control:focus {
+      border-color: #1e6f9f;
+      box-shadow: 0 0 0 4px rgba(30, 111, 159, 0.08);
+      background: #fff;
+    }
+
+    .form-premium .form-label {
+      font-weight: 600;
+      font-size: 0.84rem;
+      color: var(--gray-700);
+      letter-spacing: 0.2px;
+      margin-bottom: 0.3rem;
+    }
+
+    .map-premium-card {
+      background: #fff;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .map-visual {
+      background: linear-gradient(160deg,
+          #e8f2f8 0%,
+          #d6e8f5 30%,
+          #e0ecf5 100%);
+      height: 240px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .map-visual::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 35% 40%,
+          rgba(30, 111, 159, 0.2) 0%,
+          transparent 25%),
+        radial-gradient(circle at 60% 55%,
+          rgba(33, 152, 151, 0.15) 0%,
+          transparent 20%);
+      pointer-events: none;
+    }
+
+    .map-dot-pulse {
+      width: 18px;
+      height: 18px;
+      background: #e74c3c;
+      border-radius: 50%;
+      position: absolute;
+      top: 44%;
+      left: 38%;
+      box-shadow: 0 0 0 8px rgba(231, 76, 60, 0.25);
+      animation: mapPulse 2s ease-in-out infinite;
+      z-index: 2;
+    }
+
+    @keyframes mapPulse {
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 8px rgba(231, 76, 60, 0.25);
+      }
+
+      50% {
+        box-shadow: 0 0 0 22px rgba(231, 76, 60, 0.05);
+      }
+    }
+
+    .map-grid-lines {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(30, 111, 159, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(30, 111, 159, 0.06) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .footer-premium {
+      background: linear-gradient(180deg, #0b1f3d 0%, #061428 100%);
+      color: #c4d9ef;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .footer-premium::before {
+      content: "";
+      position: absolute;
+      top: -100px;
+      right: -150px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle,
+          rgba(30, 111, 159, 0.12) 0%,
+          transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .footer-premium a {
+      color: #b4cfe8;
+      text-decoration: none;
+      transition: all 0.25s;
+    }
+
+    .footer-premium a:hover {
+      color: #fff;
+    }
+
+    .footer-social-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.07);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      transition: all var(--transition-bounce);
+      margin-right: 0.6rem;
+      color: #c4d9ef;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .footer-social-icon:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+      transform: translateY(-3px);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition:
+        opacity 0.7s ease-out,
+        transform 0.7s ease-out;
+    }
+
+    .reveal-on-scroll.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Product Table Styles */
+    .product-table {
+      font-size: 0.9rem;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+      background: #fff;
+    }
+
+    .product-table thead {
+      background: linear-gradient(135deg, #e8f4f9, #dceef8);
+    }
+
+    .product-table th {
+      font-weight: 700;
+      color: var(--deep-navy);
+      border-bottom: 2px solid rgba(30, 111, 159, 0.2);
+      padding: 1rem;
+    }
+
+    .product-table td {
+      padding: 0.9rem 1rem;
+      vertical-align: middle;
+      border-color: rgba(0, 0, 0, 0.03);
+    }
+
+    .product-highlight {
+      color: #1e6f9f;
+      font-weight: 700;
+    }
+
+    .spec-badge {
+      background: rgba(30, 111, 159, 0.05);
+      color: #1a5f8a;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-weight: 500;
+      font-size: 0.8rem;
+    }
+
+    @media (max-width: 992px) {
+      .hero-title {
+        font-size: 2.4rem;
+      }
+
+      .section-heading {
+        font-size: 2rem;
+      }
+
+      .stat-number {
+        font-size: 2.2rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 1.9rem;
+      }
+
+      .hero-section {
+        padding: 4rem 0 3rem 0;
+      }
+
+      .section-heading {
+        font-size: 1.7rem;
+      }
+
+      .service-card {
+        padding: 1.4rem;
+      }
+
+      .navbar-brand {
+        font-size: 1.3rem;
+      }
+
+      .hero-illustration-wrapper {
+        animation: none;
+      }
+
+      .hero-illustration-inner img {
+        max-height: 240px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .hero-title {
+        font-size: 1.6rem;
+      }
+
+      .hero-section {
+        padding: 3rem 0 2rem 0;
+      }
+
+      .btn-primary-premium,
+      .btn-outline-premium {
+        padding: 0.6rem 1.4rem;
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <?php include('header.php'); ?>
+  <section id="home" class="hero-section">
+    <div class="container position-relative" style="z-index: 2">
+      <div class="row align-items-center gy-5">
+        <div class="col-lg-6">
+          <div class="hero-badge">
+            <i class="bi bi-shield-check"></i> Trusted Medical Technology
+            Partner
+          </div>
+          <h1 class="hero-title">
+            Precision Medical Systems & Advanced Tech Solutions
+          </h1>
+          <p
+            class="lead text-secondary mb-4 hero-subtitle"
+            style="font-size: 1.08rem; max-width: 520px">
+            Empowering healthcare with next-generation diagnostic systems,
+            surgical support, and innovative biomedical engineering — bridging
+            modern engineering with patient-centric care.
+          </p>
+          <div class="d-flex flex-wrap gap-3 hero-buttons">
+            <a href="#services" class="btn btn-primary-premium"><i class="bi bi-layout-text-window me-2"></i>Explore
+              solutions</a>
+            <a href="#contact" class="btn btn-outline-premium"><i class="bi bi-envelope-paper me-2"></i>Contact us</a>
+          </div>
+          <div
+            class="mt-4 d-flex align-items-center gap-3 flex-wrap hero-contact-row">
+            <span class="text-muted small fw-medium"><i
+                class="bi bi-telephone-fill me-1"
+                style="color: #1e6f9f"></i>
+              +91 8178037626</span>
+            <span class="text-muted small fw-medium"><i class="bi bi-envelope-fill me-1" style="color: #1e6f9f"></i>
+              technoshb@gmail.com</span>
+          </div>
+        </div>
+        <div class="col-lg-6 text-center">
+          <div class="hero-illustration-wrapper d-inline-block">
+            <div class="hero-illustration-inner">
+              <img
+                src="images/AUToclaveVertical.png"
+                alt="Medical technology illustration"
+                class="img-fluid" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="products" class="py-5 bg-white">
+    <div class="container py-4">
+      <div class="text-center mb-5 reveal-on-scroll">
+        <span class="section-badge">
+          <i class="bi bi-box-seam"></i> Equipment Catalog
+        </span>
+
+        <h2 class="section-heading text-center mb-3">
+          Laboratory & Medical Equipment
+        </h2>
+
+        <p class="text-secondary col-lg-7 mx-auto mt-4">
+          High-precision autoclaves, incubators, and environmental control
+          cabinets designed for reliability and performance.
+        </p>
+      </div>
+
+      <!-- PRODUCT 1 -->
+
+     <?php
+
+
+$product_query = mysqli_query($conn, "
+    SELECT * FROM products 
+    WHERE status = 1 
+    AND is_disabled = 0 
+    ORDER BY id DESC 
+    LIMIT 6
+");
+?>
+
+<div class="row g-4">
+
+    <?php while($row = mysqli_fetch_assoc($product_query)) { 
+
+        // Product Image
+        $product_image = !empty($row['pro_img']) 
+            ? $site . 'admin/assets/img/uploads/' . $row['pro_img']
+            : 'images/no-image.png';
+
+        // Product URL
+        $product_link = $site . 'product/' . $row['slug_url'];
+    ?>
+
+    <div class="col-lg-4 col-md-6">
+
+        <div class="blog-item h-100">
+
+            <!-- Product Image -->
+            <div class="image-wrap">
+
+                <a href="<?php echo $product_link; ?>">
+
+                    <img 
+                        src="<?php echo $product_image; ?>" 
+                        alt="<?php echo htmlspecialchars($row['pro_name']); ?>"
+                    >
+
+                </a>
+
+            </div>
+
+            <!-- Product Content -->
+            <div class="blog-content d-flex flex-column">
+
+                <h3 class="blog-title text-center">
+
+                    <a href="<?php echo $product_link; ?>">
+
+                        <?php echo htmlspecialchars($row['pro_name']); ?>
+
+                    </a>
+
+                </h3>
+
+                <p>
+
+                    <?php
+                    echo !empty($row['short_desc'])
+                        ? substr(strip_tags($row['short_desc']), 0, 120) . '...'
+                        : 'No description available.';
+                    ?>
+
+                </p>
+
+                <div class="blog-button text-center mt-auto">
+
+                    <a href="<?php echo $product_link; ?>" class="theme-btn">
+
+                        Know More 
+                        <i class="fas fa-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <?php } ?>
+
+
+    <!-- View More Button -->
+    <div class="col-md-12 mt-5">
+
+        <div class="blog-button text-center">
+
+            <a href="<?php echo $site; ?>products.php" class="theme-btn">
+
+                View More 
+                <i class="fas fa-arrow-right"></i>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+    </div>
+  </section>
+
+  <style>
+    .product-card {
+      border-radius: 24px;
+      overflow: hidden;
+      transition: 0.4s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-image-box {
+      background: #f8fafc;
+      border-radius: 20px;
+      padding: 20px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .product-img {
+      width: 100%;
+      max-height: 320px;
+      object-fit: contain;
+    }
+
+    .blog-item {
+      text-align: center;
+    background: white;
+    box-shadow: 0px 0px 10px 0px gainsboro;
+    border-radius: 0px;
+    padding: 20px 20px 50px;
+    }
+
+     .blog-content a {
+                 font-size: 20px;
+    margin-bottom: 15px;
+    text-transform: capitalize;
+    margin-top: 15px;
+    text-decoration: none;
+    color: #000000;
+     }
+
+
+    .product-title {
+      color: var(--deep-navy);
+      font-size: 30px;
+    }
+
+    .image-wrap img {
+      width: 100%;
+    }
+
+    .product-table table thead {
+      background: #f4f7fb;
+    }
+
+    .product-table table th {
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .blog-title {
+    font-size: 20px;
+    margin-bottom: 15px;
+    text-transform: capitalize;
+    margin-top: 15px;
+}
+
+.blog-button a {
+    color: rgb(255, 255, 255);
+    background: rgb(0, 77, 141);
+    padding: 9px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 16px !important;
+}
+
+    .product-table table td {
+      vertical-align: middle;
+    }
+
+    .product-highlight {
+      font-weight: 700;
+      color: #0d6efd;
+    }
+
+    .spec-badge {
+      background: #eef4ff;
+      color: #0d3b66;
+      padding: 10px 14px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    @media (max-width: 991px) {
+      .product-title {
+        font-size: 24px;
+      }
+
+      .product-img {
+        max-height: 250px;
+      }
+    }
+
+    .rs-blog .blog-item {
+    box-shadow: rgba(169, 169, 169, 0.28) 0px 6px 25px;
+    margin-top: 15px;
+    transition: 500ms;
+    border-radius: 5px;
+    padding: 15px;
+    background: rgb(255, 255, 255);
+}
+  </style>
+
+  <section class="stats-section py-4">
+    <div class="container">
+      <div class="row g-4 text-center">
+        <div class="col-6 col-md-3">
+          <div class="stat-card reveal-on-scroll">
+            <div class="stat-icon-dot">
+              <i class="bi bi-building-check"></i>
+            </div>
+            <div class="stat-number">120+</div>
+            <p class="text-muted small mb-0 fw-medium">Hospitals Served</p>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat-card reveal-on-scroll">
+            <div class="stat-icon-dot">
+              <i class="bi bi-calendar-check"></i>
+            </div>
+            <div class="stat-number">350+</div>
+            <p class="text-muted small mb-0 fw-medium">Installations</p>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat-card reveal-on-scroll">
+            <div class="stat-icon-dot">
+              <i class="bi bi-gear-wide-connected"></i>
+            </div>
+            <div class="stat-number">24/7</div>
+            <p class="text-muted small mb-0 fw-medium">Field Support</p>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat-card reveal-on-scroll">
+            <div class="stat-icon-dot"><i class="bi bi-award"></i></div>
+            <div class="stat-number">10+</div>
+            <p class="text-muted small mb-0 fw-medium">Years Experience</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="py-5">
+    <div class="container py-4">
+      <div class="text-center mb-5 reveal-on-scroll">
+        <span class="section-badge"><i class="bi bi-cpu"></i> Our Expertise</span>
+        <h2 class="section-heading text-center mb-3">
+          Advanced Medical Systems & Technologies
+        </h2>
+        <p class="text-secondary col-lg-7 mx-auto mt-4">
+          End-to-end solutions for modern healthcare infrastructure — from
+          high-precision imaging to smart monitoring devices.
+        </p>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4 reveal-on-scroll">
+          <div class="service-card">
+            <div class="service-icon-circle">
+              <i class="bi bi-heart-pulse-fill"></i>
+            </div>
+            <h5 class="fw-bold mb-2">Diagnostic Imaging</h5>
+            <p class="text-secondary mb-0">
+              State-of-the-art ultrasound, X-ray, MRI support systems and PACS
+              integration.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 reveal-on-scroll">
+          <div class="service-card">
+            <div class="service-icon-circle">
+              <i class="bi bi-clipboard2-pulse"></i>
+            </div>
+            <h5 class="fw-bold mb-2">Patient Monitoring</h5>
+            <p class="text-secondary mb-0">
+              ICU central stations, wireless telemetry, and remote patient
+              tracking.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 reveal-on-scroll">
+          <div class="service-card">
+            <div class="service-icon-circle">
+              <i class="bi bi-graph-up"></i>
+            </div>
+            <h5 class="fw-bold mb-2">Surgical & Lab Tech</h5>
+            <p class="text-secondary mb-0">
+              Modular OT equipment, ventilators, lab analyzers and calibration
+              services.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 reveal-on-scroll">
+          <div class="service-card">
+            <div class="service-icon-circle">
+              <i class="bi bi-droplet"></i>
+            </div>
+            <h5 class="fw-bold mb-2">Biomedical Engineering</h5>
+            <p class="text-secondary mb-0">
+              Installation, maintenance, and lifecycle management for clinical
+              assets.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 reveal-on-scroll">
+          <div class="service-card">
+            <div class="service-icon-circle">
+              <i class="bi bi-cloud-upload"></i>
+            </div>
+            <h5 class="fw-bold mb-2">Health IT Integration</h5>
+            <p class="text-secondary mb-0">
+              Seamless EHR connectivity, medical device data systems (MDDS)
+              and analytics.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 reveal-on-scroll">
+          <div class="service-card">
+            <div class="service-icon-circle"><i class="bi bi-tools"></i></div>
+            <h5 class="fw-bold mb-2">24/7 Rapid Support</h5>
+            <p class="text-secondary mb-0">
+              Rapid response biomedical engineering support and remote
+              troubleshooting.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="py-5 bg-white">
+    <div class="container py-3">
+      <div class="row align-items-center g-5">
+
+        <!-- Image Section -->
+        <div class="col-lg-6 reveal-on-scroll">
+          <div class="why-us-image-wrapper">
+            <img
+              src="images/B.O.D. Incubators Digital.png"
+              alt="SHB Technologies Medical Gas Pipeline System"
+              class="img-fluid rounded-4 shadow-sm" />
+          </div>
+        </div>
+
+        <!-- Content Section -->
+        <div class="col-lg-6 reveal-on-scroll">
+          <span class="section-badge">
+            <i class="bi bi-star-fill"></i> Why SHB
+          </span>
+
+          <h2
+            class="mt-3 fw-bold"
+            style="color: #0b2b5c; font-size: 2rem; letter-spacing: -0.3px">
+            Leading Experts in Medical Gas Pipeline Systems
+          </h2>
+
+          <p class="text-secondary mt-3">
+            SHB Technologies is one of the leading manufacturers and suppliers of
+            Medical Gas Pipeline Systems (MGPS). We understand that MGPS is a
+            critical life-support infrastructure in healthcare facilities, where
+            precision in design, installation, and maintenance is essential for
+            patient safety and operational reliability.
+          </p>
+
+          <p class="text-secondary">
+            With continuous innovation, advanced technical expertise, and a strong
+            focus on quality standards, we deliver reliable and efficient medical
+            gas solutions for hospitals, diagnostic centers, and healthcare
+            institutions across India and international markets.
+          </p>
+
+          <!-- Features -->
+          <div class="mt-4">
+            <div class="check-list-item">
+              <i class="bi bi-check-circle-fill"></i>
+              Specialized expertise in MGPS design & installation
+            </div>
+
+            <div class="check-list-item">
+              <i class="bi bi-check-circle-fill"></i>
+              Advanced technology with continual innovation & skill development
+            </div>
+
+            <div class="check-list-item">
+              <i class="bi bi-check-circle-fill"></i>
+              Trusted by hospitals and healthcare institutions across India
+            </div>
+
+            <div class="check-list-item">
+              <i class="bi bi-check-circle-fill"></i>
+              Strong presence in Indian & international healthcare markets
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="clients-portfolio" class="py-5 bg-white">
+    <div class="container py-3">
+      <div class="text-center mb-5">
+        <span class="section-badge d-inline-block mb-3 px-3 py-1 bg-danger bg-opacity-10 text-danger rounded-pill fw-semibold small">
+          <i class="bi bi-briefcase-fill me-1"></i> Our Track Record
+        </span>
+        <h2 class="fw-bold" style="color: #0b2b5c; font-size: 2.5rem; letter-spacing: -0.5px;">
+          Clients & <span class="text-danger">Portfolio</span>
+        </h2>
+        <p class="text-secondary mx-auto mt-3" style="max-width: 650px;">
+          Trusted by industry leaders, healthcare institutions, government bodies, and enterprises across India.
+        </p>
+      </div>
+
+      <div class="row g-4">
+        <!-- Column 1 -->
+        <div class="col-lg-4 col-md-6">
+          <div class="client-card p-4 bg-white shadow-sm rounded-4 h-100 border-0 transition-all">
+            <div class="d-flex align-items-start gap-3">
+              <i class="bi bi-building text-danger fs-2"></i>
+              <div>
+                <h5 class="fw-bold mb-2" style="color: #0b2b5c;">Bajaj Auto Ltd Rodrapur</h5>
+                <p class="text-secondary small mb-0">Manufacturing & Industrial</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="client-card p-4 bg-white shadow-sm rounded-4 h-100 border-0">
+            <div class="d-flex align-items-start gap-3">
+              <i class="bi bi-hospital text-danger fs-2"></i>
+              <div>
+                <h5 class="fw-bold mb-2" style="color: #0b2b5c;">Krishna orthopedic Center</h5>
+                <p class="text-secondary small mb-0">Healthcare</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="client-card p-4 bg-white shadow-sm rounded-4 h-100 border-0">
+            <div class="d-flex align-items-start gap-3">
+              <i class="bi bi-heart-pulse text-danger fs-2"></i>
+              <div>
+                <h5 class="fw-bold mb-2" style="color: #0b2b5c;">Sirohi Maternity Clinic</h5>
+                <p class="text-secondary small mb-0">Healthcare</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="client-card p-4 bg-white shadow-sm rounded-4 h-100 border-0">
+            <div class="d-flex align-items-start gap-3">
+              <i class="bi bi-bank text-danger fs-2"></i>
+              <div>
+                <h5 class="fw-bold mb-2" style="color: #0b2b5c;">Moradabad Administration</h5>
+                <p class="text-secondary small mb-0">Government</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="client-card p-4 bg-white shadow-sm rounded-4 h-100 border-0">
+            <div class="d-flex align-items-start gap-3">
+              <i class="bi bi-gear text-danger fs-2"></i>
+              <div>
+                <h5 class="fw-bold mb-2" style="color: #0b2b5c;">Quality Enviro Engineers Pvt Ltd</h5>
+                <p class="text-secondary small mb-0">Engineering & Environment</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="client-card p-4 bg-white shadow-sm rounded-4 h-100 border-0">
+            <div class="d-flex align-items-start gap-3">
+              <i class="bi bi-truck text-danger fs-2"></i>
+              <div>
+                <h5 class="fw-bold mb-2" style="color: #0b2b5c;">CNH Industrial Ltd</h5>
+                <p class="text-secondary small mb-0">Industrial Equipment</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="client-card p-4 bg-white shadow-sm rounded-4 h-100 border-0">
+            <div class="d-flex align-items-start gap-3">
+              <i class="bi bi-camera-video text-danger fs-2"></i>
+              <div>
+                <h5 class="fw-bold mb-2" style="color: #0b2b5c;">Dhampur city surveillance by Dhampur Nagar Palika</h5>
+                <p class="text-secondary small mb-0">Municipal / Smart City</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="client-card p-4 bg-white shadow-sm rounded-4 h-100 border-0">
+            <div class="d-flex align-items-start gap-3">
+              <i class="bi bi-book text-danger fs-2"></i>
+              <div>
+                <h5 class="fw-bold mb-2" style="color: #0b2b5c;">HSB Inter College</h5>
+                <p class="text-secondary small mb-0">Educational Institution</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="client-card p-4 bg-white shadow-sm rounded-4 h-100 border-0">
+            <div class="d-flex align-items-start gap-3">
+              <i class="bi bi-star text-danger fs-2"></i>
+              <div>
+                <h5 class="fw-bold mb-2" style="color: #0b2b5c;">Star Rameshwaram Rajnagar Ghaziabad</h5>
+                <p class="text-secondary small mb-0">Real Estate / Society</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="client-card p-4 bg-white shadow-sm rounded-4 h-100 border-0">
+            <div class="d-flex align-items-start gap-3">
+              <i class="bi bi-shop text-danger fs-2"></i>
+              <div>
+                <h5 class="fw-bold mb-2" style="color: #0b2b5c;">Lata Enterprises Moradabad</h5>
+                <p class="text-secondary small mb-0">Business Enterprise</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="client-card p-4 bg-white shadow-sm rounded-4 h-100 border-0">
+            <div class="d-flex align-items-start gap-3">
+              <i class="bi bi-ev-station text-danger fs-2"></i>
+              <div>
+                <h5 class="fw-bold mb-2" style="color: #0b2b5c;">Anmol Motors Pvt Ltd Noida</h5>
+                <p class="text-secondary small mb-0">Automotive</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="client-card p-4 bg-white shadow-sm rounded-4 h-100 border-0">
+            <div class="d-flex align-items-start gap-3">
+              <i class="bi bi-wifi text-danger fs-2"></i>
+              <div>
+                <h5 class="fw-bold mb-2" style="color: #0b2b5c;">Zicio technology Delhi</h5>
+                <p class="text-secondary small mb-0">Technology</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="client-card p-4 bg-white shadow-sm rounded-4 h-100 border-0">
+            <div class="d-flex align-items-start gap-3">
+              <i class="bi bi-globe text-danger fs-2"></i>
+              <div>
+                <h5 class="fw-bold mb-2" style="color: #0b2b5c;">HM International Moradabad</h5>
+                <p class="text-secondary small mb-0">International Trade</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="client-card p-4 bg-white shadow-sm rounded-4 h-100 border-0">
+            <div class="d-flex align-items-start gap-3">
+              <i class="bi bi-shield-lock text-danger fs-2"></i>
+              <div>
+                <h5 class="fw-bold mb-2" style="color: #0b2b5c;">City Surveillance Moradabad, By Rifle Club Association</h5>
+                <p class="text-secondary small mb-0">Security & Surveillance</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="client-card p-4 bg-white shadow-sm rounded-4 h-100 border-0">
+            <div class="d-flex align-items-start gap-3">
+              <i class="bi bi-diagram-3 text-danger fs-2"></i>
+              <div>
+                <h5 class="fw-bold mb-2" style="color: #0b2b5c;">NIC Moradabad</h5>
+                <p class="text-secondary small mb-0">Government IT</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="client-card p-4 bg-white shadow-sm rounded-4 h-100 border-0">
+            <div class="d-flex align-items-start gap-3">
+              <i class="bi bi-mortarboard text-danger fs-2"></i>
+              <div>
+                <h5 class="fw-bold mb-2" style="color: #0b2b5c;">R N Inter College Moradabad</h5>
+                <p class="text-secondary small mb-0">Education</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="client-card p-4 bg-white shadow-sm rounded-4 h-100 border-0">
+            <div class="d-flex align-items-start gap-3">
+              <i class="bi bi-people text-danger fs-2"></i>
+              <div>
+                <h5 class="fw-bold mb-2" style="color: #0b2b5c;">Bal Karagrah Moradabad</h5>
+                <p class="text-secondary small mb-0">Social / NGO</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="client-card p-4 bg-white shadow-sm rounded-4 h-100 border-0">
+            <div class="d-flex align-items-start gap-3">
+              <i class="bi bi-house-heart text-danger fs-2"></i>
+              <div>
+                <h5 class="fw-bold mb-2" style="color: #0b2b5c;">Civitech Society Noida</h5>
+                <p class="text-secondary small mb-0">Residential Society</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats / Trust Badge -->
+      <div class="row mt-5 pt-3 g-4">
+        <div class="col-md-4 text-center">
+          <div class="p-3">
+            <i class="bi bi-people-fill text-danger fs-1"></i>
+            <h3 class="fw-bold mt-2 mb-0" style="color: #0b2b5c;">18+</h3>
+            <p class="text-secondary">Trusted Clients</p>
+          </div>
+        </div>
+        <div class="col-md-4 text-center">
+          <div class="p-3">
+            <i class="bi bi-building-fill text-danger fs-1"></i>
+            <h3 class="fw-bold mt-2 mb-0" style="color: #0b2b5c;">5+</h3>
+            <p class="text-secondary">Government Projects</p>
+          </div>
+        </div>
+        <div class="col-md-4 text-center">
+          <div class="p-3">
+            <i class="bi bi-geo-alt-fill text-danger fs-1"></i>
+            <h3 class="fw-bold mt-2 mb-0" style="color: #0b2b5c;">10+</h3>
+            <p class="text-secondary">Cities Covered</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Portfolio note -->
+      <div class="text-center mt-5 pt-2">
+        <p class="text-muted small">
+          <i class="bi bi-patch-check-fill text-danger me-1"></i>
+          From city surveillance to healthcare, education to industrial — our portfolio reflects excellence and reliability.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    /* Additional smooth hover effect */
+    .client-card {
+      transition: all 0.3s ease;
+      border: 1px solid rgba(0, 0, 0, 0.03);
+    }
+
+    .client-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.08) !important;
+      border-color: rgba(220, 53, 69, 0.1);
+    }
+
+    .section-badge {
+      background-color: rgba(220, 53, 69, 0.1);
+      color: #dc3545;
+      padding: 6px 16px;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: inline-block;
+    }
+  </style>
+
+  <section id="contact" class="py-5" style="background: #f8fafc">
+    <div class="container py-3">
+      <div class="text-center mb-5 reveal-on-scroll">
+        <span class="section-badge"><i class="bi bi-chat-dots"></i> Get In Touch</span>
+        <h2 class="section-heading text-center mb-3">Contact Our Team</h2>
+        <p class="text-secondary mt-4 col-lg-7 mx-auto">
+          Reach out for inquiries, support, or partnership opportunities.
+        </p>
+      </div>
+      <div class="row g-5">
+        <div class="col-lg-5 reveal-on-scroll">
+          <div class="contact-premium-card">
+            <div class="d-flex align-items-center gap-3 mb-4">
+              <div class="contact-icon-bullet">
+                <i class="bi bi-building"></i>
+              </div>
+              <div>
+                <h5 class="mb-0 fw-bold">SHB Technologies</h5>
+                <p class="text-secondary mb-0 small">
+                  & Medical Systems — Head Office
+                </p>
+              </div>
+            </div>
+            <div class="mb-3 d-flex gap-3">
+              <div class="contact-icon-bullet">
+                <i class="bi bi-geo-alt-fill"></i>
+              </div>
+              <div>
+                <span class="fw-semibold small text-muted">Address</span>
+                <p class="mb-0 fw-medium" style="font-size: 0.93rem">
+                  B-96, 1st Floor G.D. Colony,<br />Mayur Vihar Phase -3,<br />Delhi
+                  - 110096
+                </p>
+              </div>
+            </div>
+            <div class="mb-3 d-flex gap-3 align-items-center">
+              <div class="contact-icon-bullet">
+                <i class="bi bi-telephone-fill"></i>
+              </div>
+              <div>
+                <span class="fw-semibold small text-muted">Mobile</span><br /><a
+                  href="tel:+918178037626"
+                  class="text-decoration-none text-dark fw-medium">+91 8178037626</a>
+              </div>
+            </div>
+            <div class="mb-3 d-flex gap-3 align-items-center">
+              <div class="contact-icon-bullet">
+                <i class="bi bi-envelope-fill"></i>
+              </div>
+              <div>
+                <span class="fw-semibold small text-muted">Email</span><br /><a
+                  href="mailto:technoshb@gmail.com"
+                  class="text-decoration-none text-dark fw-medium">technoshb@gmail.com</a>
+              </div>
+            </div>
+            <hr />
+            <div>
+              <p class="mb-1 small">
+                <i class="bi bi-clock-history me-2" style="color: #1e6f9f"></i><strong>Support hours:</strong> Mon–Sat 9:00 AM – 7:00 PM
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-7 reveal-on-scroll">
+          <div class="form-premium">
+            <h5 class="mb-3 fw-bold">
+              <i class="bi bi-send me-2" style="color: #1e6f9f"></i>Send a
+              Quick Message
+            </h5>
+            <form action="#" method="post">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label">Full name</label><input
+                    type="text"
+                    class="form-control"
+                    placeholder="Dr. / Ms. / Mr." />
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Email address</label><input
+                    type="email"
+                    class="form-control"
+                    placeholder="name@example.com" />
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Phone number</label><input type="tel" class="form-control" placeholder="+91" />
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Message / Inquiry</label><textarea
+                    rows="4"
+                    class="form-control"
+                    placeholder="Tell us about your requirement..."></textarea>
+                </div>
+                <div class="col-12">
+                  <button
+                    type="button"
+                    class="btn btn-primary-premium"
+                    onclick="
+                        alert(
+                          'Thank you for reaching out! SHB team will contact you soon. (demo)',
+                        )
+                      ">
+                    <i class="bi bi-send me-2"></i>Send message
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="location" class="py-5 bg-white">
+    <div class="container py-3">
+      <div class="row g-5">
+        <div class="col-lg-6 reveal-on-scroll">
+          <h3 class="fw-bold" style="color: #0b2b5c">
+            <i class="bi bi-geo-alt-fill me-2" style="color: #1e6f9f"></i>Our
+            Headquarters
+          </h3>
+          <div
+            class="p-4 mt-3 rounded-4"
+            style="background: #f9fbfd; border: 1px solid #e9edf2">
+            <p class="mb-2 fw-semibold">
+              SHB Technologies and Medical Systems
+            </p>
+            <p class="mb-2 text-secondary">
+              B-96, 1st Floor G.D. Colony,<br />Mayur Vihar Phase -3, Delhi<br /><strong>PIN:</strong>
+              110096
+            </p>
+            <div class="d-flex gap-3 flex-wrap">
+              <a
+                href="https://maps.google.com/?q=B-96+G.D.+Colony+Mayur+Vihar+Phase+3+Delhi"
+                target="_blank"
+                class="btn btn-sm btn-outline-premium"><i class="bi bi-map me-1"></i> Open in Google Maps</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 reveal-on-scroll">
+          <div class="map-premium-card">
+            <div class="map-visual">
+              <div class="map-grid-lines"></div>
+              <div class="map-dot-pulse"></div>
+              <div class="text-center position-relative z-3">
+                <i
+                  class="bi bi-geo-alt-fill fs-1 mb-2"
+                  style="color: #1e6f9f; opacity: 0.6"></i>
+                <p class="mb-0 fw-semibold" style="color: #0b2b5c">
+                  📍 B-96, G.D. Colony, Mayur Vihar Phase-3
+                </p>
+                <small class="text-muted">Delhi - 110096</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <?php include('footer.php'); ?>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const navbar = document.getElementById("mainNavbar");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 40) navbar.classList.add("scrolled");
+      else navbar.classList.remove("scrolled");
+    });
+    const revealElements = document.querySelectorAll(".reveal-on-scroll");
+    const observerOptions = {
+      root: null,
+      rootMargin: "0px 0px -40px 0px",
+      threshold: 0.12,
+    };
+    const revealCallback = (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const delay = Array.from(revealElements).indexOf(entry.target) * 40;
+          setTimeout(
+            () => {
+              entry.target.classList.add("revealed");
+            },
+            Math.min(delay, 300),
+          );
+          observer.unobserve(entry.target);
+        }
+      });
+    };
+    const observer = new IntersectionObserver(
+      revealCallback,
+      observerOptions,
+    );
+    revealElements.forEach((el) => observer.observe(el));
+    window.addEventListener("load", () => {
+      revealElements.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0)
+          el.classList.add("revealed");
+      });
+    });
+    const sections = document.querySelectorAll("section[id]");
+    const navLinks = document.querySelectorAll(".nav-link");
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach((section) => {
+        const sectionTop = section.offsetTop - 120;
+        if (window.scrollY >= sectionTop)
+          current = section.getAttribute("id");
+      });
+      navLinks.forEach((link) => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + current)
+          link.classList.add("active");
+      });
+    });
+  </script>
+</body>
+
+</html>
