@@ -1,0 +1,86 @@
+/* =========================
+   NAVBAR BASE - LUXURY MEDICAL THEME
+========================= */
+#mainNavbar {
+    background: #ffffff;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.04);
+    padding: 12px 0;
+    z-index: 999;
+}
+
+.main-logo {
+    height: 65px;
+    /* Thoda sleek look ke liye */
+    width: auto;
+}
+
+.navbar .nav-link {
+    color: #1a1a1a;
+    /* Dark solid grey/black */
+    font-weight: 500;
+    font-size: 15px;
+    padding: 10px 16px !important;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+/* Smooth underline animation on hover */
+.navbar .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: #cc0000;
+    /* Logo Red */
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.navbar .nav-link:hover::after,
+.navbar .nav-link.active::after {
+    width: 80%;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+    color: #cc0000;
+}
+
+/* Premium CTA Button */
+.btn-nav-cta {
+    background: #cc0000;
+    /* Smart use of Red */
+    color: #fff !important;
+    padding: 10px 24px;
+    border-radius: 4px;
+    /* Slightly square for a professional/industrial feel */
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    transition: 0.3s ease;
+    border: 1px solid #cc0000;
+}
+
+.btn-nav-cta:hover {
+    background: #1a1a1a;
+    /* Changes to black on hover */
+    border-color: #1a1a1a;
+    color: #ffffff;
+}
+
+/* Dropdown Styling */
+.navbar .dropdown-item {
+    padding: 10px 18px;
+    font-weight: 500;
+    color: #333333;
+    transition: 0.3s ease;
+}
+
+.navbar .dropdown-item:hover {
+    background: #f9f9f9;
+    color: #cc0000;
+    padding-left: 22px;
+    /* Smooth slide effect on hover */
+}
