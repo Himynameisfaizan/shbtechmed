@@ -4,14 +4,15 @@ error_reporting(E_ALL);
 
 
 // Database Configuration
-$local = false; // Set to false for live server
+$local = true; // Set to false for live server
 
 if ($local) {
     $host = 'localhost';
     $username = 'root';
     $password = '';
-    $dbName = 'u799879276_shbtechmed';
-    $site = "https://shbtechmed.com/";
+    $dbName = 'shbtechmed';
+    $site = "https://localhost/projects/shbtechmed/";
+    // $site = "https://shbtechmed.com/";
 } else {
     $host = 'localhost';
     $username = 'u799879276_shbtechmed';
@@ -29,5 +30,3 @@ if ($conn->connect_error) {
 
 // Optional: Set Character Encoding to UTF-8
 $conn->set_charset("utf8");
-
-?>

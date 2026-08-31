@@ -1,5 +1,5 @@
 <?php
-if(session_status() === PHP_SESSION_NONE){
+if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 if (!isset($_SESSION['admin_logged_in'])) {
@@ -29,8 +29,8 @@ if (!isset($_SESSION['admin_logged_in'])) {
             <span class="input-group-text bg-dark border-secondary text-muted">
                 <i class="fas fa-search"></i>
             </span>
-            <input type="text" id="sidebarSearch" class="form-control bg-dark border-secondary text-white" 
-                   placeholder="Search menu..." style="caret-color: white;">
+            <input type="text" id="sidebarSearch" class="form-control bg-dark border-secondary text-white"
+                placeholder="Search menu..." style="caret-color: white;">
         </div>
     </div>
 
@@ -48,14 +48,14 @@ if (!isset($_SESSION['admin_logged_in'])) {
 
             <!-- Home Content -->
             <li class="nav-item">
-                <a class="nav-link text-white py-3 px-4 d-flex align-items-center" 
-                   data-bs-toggle="collapse" href="#homeContent" role="button">
+                <a class="nav-link text-white py-3 px-4 d-flex align-items-center"
+                    data-bs-toggle="collapse" href="#homeContent" role="button">
                     <i class="fas fa-home fa-fw me-3"></i>
                     <span class="flex-grow-1">Home Content</span>
                     <i class="fas fa-chevron-down ms-auto"></i>
                 </a>
-                <div class="collapse <?php echo in_array(basename($_SERVER['PHP_SELF']), ['home-items.php', 'add-banner.php']) ? 'show' : ''; ?>" 
-                     id="homeContent">
+                <div class="collapse <?php echo in_array(basename($_SERVER['PHP_SELF']), ['home-items.php', 'add-banner.php']) ? 'show' : ''; ?>"
+                    id="homeContent">
                     <ul class="nav flex-column ps-5">
                         <li class="nav-item">
                             <a href="home-items.php" class="nav-link text-muted py-2 d-flex align-items-center 
@@ -86,14 +86,14 @@ if (!isset($_SESSION['admin_logged_in'])) {
 
             <!-- Contact -->
             <li class="nav-item">
-                <a class="nav-link text-white py-3 px-4 d-flex align-items-center" 
-                   data-bs-toggle="collapse" href="#contactMenu" role="button">
+                <a class="nav-link text-white py-3 px-4 d-flex align-items-center"
+                    data-bs-toggle="collapse" href="#contactMenu" role="button">
                     <i class="fas fa-address-book fa-fw me-3"></i>
                     <span class="flex-grow-1">Contact</span>
                     <i class="fas fa-chevron-down ms-auto"></i>
                 </a>
-                <div class="collapse <?php echo in_array(basename($_SERVER['PHP_SELF']), ['add_contact.php', 'new-leads.php']) ? 'show' : ''; ?>" 
-                     id="contactMenu">
+                <div class="collapse <?php echo in_array(basename($_SERVER['PHP_SELF']), ['add_contact.php', 'new-leads.php']) ? 'show' : ''; ?>"
+                    id="contactMenu">
                     <ul class="nav flex-column ps-5">
                         <li class="nav-item">
                             <a href="add_contact.php" class="nav-link text-muted py-2 d-flex align-items-center 
@@ -115,14 +115,14 @@ if (!isset($_SESSION['admin_logged_in'])) {
 
             <!-- Categories -->
             <li class="nav-item">
-                <a class="nav-link text-white py-3 px-4 d-flex align-items-center" 
-                   data-bs-toggle="collapse" href="#categoryMenu" role="button">
+                <a class="nav-link text-white py-3 px-4 d-flex align-items-center"
+                    data-bs-toggle="collapse" href="#categoryMenu" role="button">
                     <i class="fas fa-sitemap fa-fw me-3"></i>
                     <span class="flex-grow-1">Categories</span>
                     <i class="fas fa-chevron-down ms-auto"></i>
                 </a>
-                <div class="collapse <?php echo in_array(basename($_SERVER['PHP_SELF']), ['add-categories.php', 'view-categories.php', 'add-sub-category.php', 'view-sub-categories.php']) ? 'show' : ''; ?>" 
-                     id="categoryMenu">
+                <div class="collapse <?php echo in_array(basename($_SERVER['PHP_SELF']), ['add-categories.php', 'view-categories.php', 'add-sub-category.php', 'view-sub-categories.php']) ? 'show' : ''; ?>"
+                    id="categoryMenu">
                     <ul class="nav flex-column ps-5">
                         <li class="nav-item">
                             <a href="add-categories.php" class="nav-link text-muted py-2 d-flex align-items-center 
@@ -158,14 +158,14 @@ if (!isset($_SESSION['admin_logged_in'])) {
 
             <!-- Products -->
             <li class="nav-item">
-                <a class="nav-link text-white py-3 px-4 d-flex align-items-center" 
-                   data-bs-toggle="collapse" href="#productMenu" role="button">
+                <a class="nav-link text-white py-3 px-4 d-flex align-items-center"
+                    data-bs-toggle="collapse" href="#productMenu" role="button">
                     <i class="fas fa-box fa-fw me-3"></i>
                     <span class="flex-grow-1">Products</span>
                     <i class="fas fa-chevron-down ms-auto"></i>
                 </a>
-                <div class="collapse <?php echo in_array(basename($_SERVER['PHP_SELF']), ['add-products.php', 'show-products.php']) ? 'show' : ''; ?>" 
-                     id="productMenu">
+                <div class="collapse <?php echo in_array(basename($_SERVER['PHP_SELF']), ['add-products.php', 'show-products.php']) ? 'show' : ''; ?>"
+                    id="productMenu">
                     <ul class="nav flex-column ps-5">
                         <li class="nav-item">
                             <a href="add-products.php" class="nav-link text-muted py-2 d-flex align-items-center 
@@ -193,24 +193,24 @@ if (!isset($_SESSION['admin_logged_in'])) {
                     <span>Testimonials</span>
                 </a>
             </li>
-            
-             <li class="nav-item">
+
+            <li class="nav-item">
                 <a href="video.php" class="nav-link text-white py-3 px-4 d-flex align-items-center 
                    <?php echo basename($_SERVER['PHP_SELF']) == 'video.php' ? 'active bg-primary' : ''; ?>">
                     <i class="fas fa-star fa-fw me-3"></i>
                     <span>Video</span>
                 </a>
             </li>
-            
-             <li class="nav-item">
+
+            <li class="nav-item">
                 <a href="blog.php" class="nav-link text-white py-3 px-4 d-flex align-items-center 
                    <?php echo basename($_SERVER['PHP_SELF']) == 'blog.php' ? 'active bg-primary' : ''; ?>">
                     <i class="fas fa-star fa-fw me-3"></i>
                     <span>Blog</span>
                 </a>
             </li>
-            
-            
+
+
 
             <!-- Gallery -->
             <li class="nav-item">
@@ -220,27 +220,27 @@ if (!isset($_SESSION['admin_logged_in'])) {
                     <span>Gallery</span>
                 </a>
             </li>
-            
-             <li class="nav-item">
+
+            <li class="nav-item">
                 <a href="certificate.php" class="nav-link text-white py-3 px-4 d-flex align-items-center 
                    <?php echo basename($_SERVER['PHP_SELF']) == 'certificate.php' ? 'active bg-primary' : ''; ?>">
                     <i class="fas fa-photo-video fa-fw me-3"></i>
                     <span>Certificate</span>
                 </a>
             </li>
-            
-            
+
+
 
             <!-- Users Management -->
             <li class="nav-item">
-                <a class="nav-link text-white py-3 px-4 d-flex align-items-center" 
-                   data-bs-toggle="collapse" href="#userMenu" role="button">
+                <a class="nav-link text-white py-3 px-4 d-flex align-items-center"
+                    data-bs-toggle="collapse" href="#userMenu" role="button">
                     <i class="fas fa-users-cog fa-fw me-3"></i>
                     <span class="flex-grow-1">User Management</span>
                     <i class="fas fa-chevron-down ms-auto"></i>
                 </a>
-                <div class="collapse <?php echo in_array(basename($_SERVER['PHP_SELF']), ['all-admin.php', 'admin-create.php', 'manage-profile.php']) ? 'show' : ''; ?>" 
-                     id="userMenu">
+                <div class="collapse <?php echo in_array(basename($_SERVER['PHP_SELF']), ['all-admin.php', 'admin-create.php', 'manage-profile.php']) ? 'show' : ''; ?>"
+                    id="userMenu">
                     <ul class="nav flex-column ps-5">
                         <li class="nav-item">
                             <a href="create-user.php" class="nav-link text-muted py-2 d-flex align-items-center 
@@ -278,14 +278,14 @@ if (!isset($_SESSION['admin_logged_in'])) {
 
             <!-- Orders & Invoice -->
             <li class="nav-item">
-                <a class="nav-link text-white py-3 px-4 d-flex align-items-center" 
-                   data-bs-toggle="collapse" href="#orderMenu" role="button">
+                <a class="nav-link text-white py-3 px-4 d-flex align-items-center"
+                    data-bs-toggle="collapse" href="#orderMenu" role="button">
                     <i class="fas fa-shopping-cart fa-fw me-3"></i>
                     <span class="flex-grow-1">Orders</span>
                     <i class="fas fa-chevron-down ms-auto"></i>
                 </a>
-                <div class="collapse <?php echo in_array(basename($_SERVER['PHP_SELF']), ['orders.php', 'invoice-generate.php']) ? 'show' : ''; ?>" 
-                     id="orderMenu">
+                <div class="collapse <?php echo in_array(basename($_SERVER['PHP_SELF']), ['orders.php', 'invoice-generate.php']) ? 'show' : ''; ?>"
+                    id="orderMenu">
                     <ul class="nav flex-column ps-5">
                         <li class="nav-item">
                             <a href="orders.php" class="nav-link text-muted py-2 d-flex align-items-center 
@@ -321,114 +321,114 @@ if (!isset($_SESSION['admin_logged_in'])) {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Sidebar Toggle
-    const sidebar = document.querySelector('.sidebar');
-    const sidebarToggle = document.querySelectorAll('.sidebar-toggle');
-    const overlay = document.querySelector('.sidebar-overlay');
-    
-    sidebarToggle.forEach(btn => {
-        btn.addEventListener('click', function() {
-            sidebar.classList.toggle('show');
-            overlay.style.display = sidebar.classList.contains('show') ? 'block' : 'none';
+    document.addEventListener('DOMContentLoaded', function() {
+        // Sidebar Toggle
+        const sidebar = document.querySelector('.sidebar');
+        const sidebarToggle = document.querySelectorAll('.sidebar-toggle');
+        const overlay = document.querySelector('.sidebar-overlay');
+
+        sidebarToggle.forEach(btn => {
+            btn.addEventListener('click', function() {
+                sidebar.classList.toggle('show');
+                overlay.style.display = sidebar.classList.contains('show') ? 'block' : 'none';
+            });
         });
-    });
-    
-    // Close sidebar on overlay click
-    overlay.addEventListener('click', function() {
-        sidebar.classList.remove('show');
-        overlay.style.display = 'none';
-    });
-    
-    // Search functionality
-    const sidebarSearch = document.getElementById('sidebarSearch');
-    const menuItems = document.querySelectorAll('#sidebarMenu .nav-item');
-    
-    sidebarSearch.addEventListener('input', function() {
-        const searchTerm = this.value.toLowerCase().trim();
-        
-        menuItems.forEach(item => {
-            const text = item.textContent.toLowerCase();
-            const isVisible = text.includes(searchTerm);
-            
-            if (isVisible) {
-                item.style.display = '';
-                // Expand parent collapses if child matches
-                const parentCollapse = item.closest('.collapse');
-                if (parentCollapse && !parentCollapse.classList.contains('show')) {
-                    const collapseInstance = bootstrap.Collapse.getInstance(parentCollapse) || 
-                                           new bootstrap.Collapse(parentCollapse);
-                    collapseInstance.show();
+
+        // Close sidebar on overlay click
+        overlay.addEventListener('click', function() {
+            sidebar.classList.remove('show');
+            overlay.style.display = 'none';
+        });
+
+        // Search functionality
+        const sidebarSearch = document.getElementById('sidebarSearch');
+        const menuItems = document.querySelectorAll('#sidebarMenu .nav-item');
+
+        sidebarSearch.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase().trim();
+
+            menuItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                const isVisible = text.includes(searchTerm);
+
+                if (isVisible) {
+                    item.style.display = '';
+                    // Expand parent collapses if child matches
+                    const parentCollapse = item.closest('.collapse');
+                    if (parentCollapse && !parentCollapse.classList.contains('show')) {
+                        const collapseInstance = bootstrap.Collapse.getInstance(parentCollapse) ||
+                            new bootstrap.Collapse(parentCollapse);
+                        collapseInstance.show();
+                    }
+                } else {
+                    item.style.display = 'none';
                 }
-            } else {
-                item.style.display = 'none';
+            });
+        });
+
+        // Highlight active menu
+        const currentPage = '<?php echo basename($_SERVER["PHP_SELF"]); ?>';
+        const activeLinks = document.querySelectorAll(`a[href="${currentPage}"]`);
+
+        activeLinks.forEach(link => {
+            link.classList.add('active', 'bg-primary');
+            // Expand parent collapses
+            const parentCollapse = link.closest('.collapse');
+            if (parentCollapse) {
+                const collapseInstance = bootstrap.Collapse.getInstance(parentCollapse) ||
+                    new bootstrap.Collapse(parentCollapse);
+                collapseInstance.show();
             }
         });
     });
-    
-    // Highlight active menu
-    const currentPage = '<?php echo basename($_SERVER["PHP_SELF"]); ?>';
-    const activeLinks = document.querySelectorAll(`a[href="${currentPage}"]`);
-    
-    activeLinks.forEach(link => {
-        link.classList.add('active', 'bg-primary');
-        // Expand parent collapses
-        const parentCollapse = link.closest('.collapse');
-        if (parentCollapse) {
-            const collapseInstance = bootstrap.Collapse.getInstance(parentCollapse) || 
-                                   new bootstrap.Collapse(parentCollapse);
-            collapseInstance.show();
-        }
-    });
-});
 
-// Style for mobile
-const style = document.createElement('style');
-style.textContent = `
-    @media (max-width: 991.98px) {
-        .sidebar {
-            transform: translateX(-100%);
-            transition: transform 0.3s ease;
+    // Style for mobile
+    const style = document.createElement('style');
+    style.textContent = `
+        @media (max-width: 991.98px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            .sidebar.show {
+                transform: translateX(0);
+            }
+            .sidebar-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.5);
+                z-index: 999;
+            }
+            main {
+                margin-left: 0 !important;
+            }
         }
-        .sidebar.show {
-            transform: translateX(0);
+        @media (min-width: 992px) {
+            main {
+                margin-left: 260px !important;
+            }
         }
-        .sidebar-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 999;
+        .sidebar-menu::-webkit-scrollbar {
+            width: 6px;
         }
-        main {
-            margin-left: 0 !important;
+        .sidebar-menu::-webkit-scrollbar-track {
+            background: #2d3748;
         }
-    }
-    @media (min-width: 992px) {
-        main {
-            margin-left: 260px !important;
+        .sidebar-menu::-webkit-scrollbar-thumb {
+            background: #4a5568;
+            border-radius: 3px;
         }
-    }
-    .sidebar-menu::-webkit-scrollbar {
-        width: 6px;
-    }
-    .sidebar-menu::-webkit-scrollbar-track {
-        background: #2d3748;
-    }
-    .sidebar-menu::-webkit-scrollbar-thumb {
-        background: #4a5568;
-        border-radius: 3px;
-    }
-    .nav-link.active {
-        background-color: #6366f1 !important;
-        border-radius: 8px !important;
-        margin: 2px 8px !important;
-    }
-    .collapse .nav-link {
-        padding-left: 0.5rem !important;
-    }
-`;
-document.head.appendChild(style);
+        .nav-link.active {
+            background-color: #6366f1 !important;
+            border-radius: 8px !important;
+            margin: 2px 8px !important;
+        }
+        .collapse .nav-link {
+            padding-left: 0.5rem !important;
+        }
+    `;
+    document.head.appendChild(style);
 </script>
