@@ -194,6 +194,15 @@ if (!isset($_SESSION['admin_logged_in'])) {
                 </a>
             </li>
 
+            <!-- Client logo -->
+            <li class="nav-item">
+                <a href="brands.php" class="nav-link text-white py-3 px-4 d-flex align-items-center 
+                   <?php echo basename($_SERVER['PHP_SELF']) == 'brands.php' ? 'active bg-primary' : ''; ?>">
+                    <i class="fas fa-star fa-fw me-3"></i>
+                    <span>Client Logo</span>
+                </a>
+            </li>
+
             <li class="nav-item">
                 <a href="video.php" class="nav-link text-white py-3 px-4 d-flex align-items-center 
                    <?php echo basename($_SERVER['PHP_SELF']) == 'video.php' ? 'active bg-primary' : ''; ?>">

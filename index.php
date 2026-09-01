@@ -524,7 +524,7 @@
       <div class="col-lg-6 reveal-on-scroll">
         <div class="shb-about-image-wrapper">
           <div class="shb-image-backdrop"></div>
-          <img src="assets/images/B.O.D. Incubators Digital.png" alt="SHB Technologies MGPS" class="img-fluid shb-main-image" />
+          <img src="assets/images/mgp/air-plant.png" alt="SHB Technologies MGPS" class="img-fluid shb-main-image" />
 
           <!-- Floating Experience Badge -->
           <div class="shb-experience-badge">
@@ -579,67 +579,84 @@
 
 
 <!-- =========================================
-     CLIENTS & PORTFOLIO SECTION
+     CLIENTS & PORTFOLIO (DYNAMIC SLIDER SECTION)
 ========================================= -->
-<section id="clients-portfolio" class="shb-portfolio-section py-5">
+<section id="clients-portfolio" class="shb-portfolio-slider-section py-5">
   <div class="container py-5">
-
-    <!-- Section Header -->
-    <div class="text-center mb-5 reveal-on-scroll">
-      <span class="shb-subtitle justify-content-center">
-        <span class="shb-dot"></span> Our Track Record
-      </span>
-      <h2 class="shb-main-heading mt-2 mb-3">
-        Trusted <span style="color: #cc0000;">Clients</span> & Portfolio
-      </h2>
-      <p class="shb-sub-text col-lg-6 mx-auto">
-        Trusted by industry leaders, healthcare institutions, government bodies, and enterprise sectors across India.
-      </p>
+    
+    <!-- Section Header with Slider Navigation -->
+    <div class="d-flex flex-wrap justify-content-between align-items-end mb-5 reveal-on-scroll">
+      <div class="shb-portfolio-header-text">
+        <span class="shb-subtitle">
+          <span class="shb-dot"></span> Our Track Record
+        </span>
+        <h2 class="shb-main-heading mt-2 mb-0">
+          Trusted <span style="color: #cc0000;">Clients</span> & Portfolio
+        </h2>
+      </div>
+      
+      <div class="shb-slider-nav mt-3 mt-md-0">
+        <button class="shb-nav-btn" id="shb-prev-btn"><i class="fas fa-chevron-left"></i></button>
+        <button class="shb-nav-btn" id="shb-next-btn"><i class="fas fa-chevron-right"></i></button>
+      </div>
     </div>
 
-    <!-- Sleek Client Directory Grid -->
-    <div class="row g-4 mb-5 pb-4">
+    <!-- The Innovative Slider Track -->
+    <div class="shb-slider-container reveal-on-scroll" id="shb-brand-slider">
+      <div class="shb-slider-track">
+        
+        <?php
+          $brand_query = mysqli_query($conn, "SELECT * FROM `brands` WHERE `status` = 1 ORDER BY `id` DESC");
+          
+          if ($brand_query && mysqli_num_rows($brand_query) > 0) {
+              while ($brand = mysqli_fetch_assoc($brand_query)) {
+                  
+                  // Column mapping fixed: changed 'brand_img' to 'logo_path'[cite: 4]
+                  $brand_name = htmlspecialchars($brand['brand_name']);
+                  
+                  // Path logic fixed: images are saved in 'uploads/' by the admin panel[cite: 4]
+                  $brand_image_path = !empty($brand['logo_path']) ? $site . 'admin/' . $brand['logo_path'] : '';
+        ?>
+                  
+                  <!-- Individual Slider Item -->
+                  <div class="shb-slide-item">
+                    <div class="shb-brand-card">
+                      <?php if (!empty($brand_image_path) && !empty($brand['logo_path'])) { ?>
+                        <!-- Show Brand Logo if uploaded -->
+                        <div class="shb-brand-logo-wrap">
+                          <img src="<?php echo $brand_image_path; ?>" alt="<?php echo $brand_name; ?>" class="shb-brand-img">
+                        </div>
+                      <?php } else { ?>
+                        <!-- Fallback: Distinct Green First Letter Icon if no logo uploaded -->
+                        <div class="shb-brand-icon shb-green-fallback">
+                          <?php echo strtoupper(substr($brand_name, 0, 1)); ?>
+                        </div>
+                      <?php } ?>
+                      
+                      <!-- Brand Name -->
+                      <h5 class="shb-brand-name" title="<?php echo $brand_name; ?>">
+                        <?php 
+                          // Trim long names for better UI
+                          echo strlen($brand_name) > 25 ? substr($brand_name, 0, 25) . '...' : $brand_name; 
+                        ?>
+                      </h5>
+                      <div class="shb-brand-line"></div>
+                    </div>
+                  </div>
 
-      <?php
-      // Array of clients to make HTML clean and manageable
-      $clients = [
-        ['icon' => 'bi-building', 'name' => 'Bajaj Auto Ltd Rodrapur', 'sector' => 'Manufacturing & Industrial'],
-        ['icon' => 'bi-hospital', 'name' => 'Krishna Orthopedic Center', 'sector' => 'Healthcare'],
-        ['icon' => 'bi-heart-pulse', 'name' => 'Sirohi Maternity Clinic', 'sector' => 'Healthcare'],
-        ['icon' => 'bi-bank', 'name' => 'Moradabad Administration', 'sector' => 'Government'],
-        ['icon' => 'bi-gear', 'name' => 'Quality Enviro Engineers', 'sector' => 'Engineering & Environment'],
-        ['icon' => 'bi-truck', 'name' => 'CNH Industrial Ltd', 'sector' => 'Industrial Equipment'],
-        ['icon' => 'bi-camera-video', 'name' => 'Dhampur City Surveillance', 'sector' => 'Municipal / Smart City'],
-        ['icon' => 'bi-book', 'name' => 'HSB Inter College', 'sector' => 'Educational Institution'],
-        ['icon' => 'bi-star', 'name' => 'Star Rameshwaram Rajnagar', 'sector' => 'Real Estate / Society'],
-        ['icon' => 'bi-shop', 'name' => 'Lata Enterprises', 'sector' => 'Business Enterprise'],
-        ['icon' => 'bi-ev-station', 'name' => 'Anmol Motors Pvt Ltd', 'sector' => 'Automotive'],
-        ['icon' => 'bi-globe', 'name' => 'HM International', 'sector' => 'International Trade'],
-        ['icon' => 'bi-shield-lock', 'name' => 'City Surveillance Moradabad', 'sector' => 'Security & Surveillance'],
-        ['icon' => 'bi-diagram-3', 'name' => 'NIC Moradabad', 'sector' => 'Government IT'],
-        ['icon' => 'bi-mortarboard', 'name' => 'R N Inter College', 'sector' => 'Education'],
-        ['icon' => 'bi-people', 'name' => 'Bal Karagrah Moradabad', 'sector' => 'Social / NGO'],
-        ['icon' => 'bi-house-heart', 'name' => 'Civitech Society Noida', 'sector' => 'Residential Society']
-      ];
+        <?php 
+              }
+          } else {
+              // Fallback if no brands found
+              echo '<div class="alert alert-light w-100 text-center">No portfolio brands found. Please add them from the admin panel.</div>';
+          }
+        ?>
 
-      foreach ($clients as $client) { ?>
-        <div class="col-lg-4 col-md-6 reveal-on-scroll">
-          <div class="shb-client-item">
-            <div class="shb-client-icon">
-              <i class="bi <?php echo $client['icon']; ?>"></i>
-            </div>
-            <div class="shb-client-info">
-              <h5 class="shb-client-name"><?php echo $client['name']; ?></h5>
-              <p class="shb-client-sector"><?php echo $client['sector']; ?></p>
-            </div>
-          </div>
-        </div>
-      <?php } ?>
-
+      </div>
     </div>
 
     <!-- Minimalist Portfolio Stats Strip -->
-    <div class="shb-portfolio-stats-strip reveal-on-scroll">
+    <div class="shb-portfolio-stats-strip reveal-on-scroll mt-5">
       <div class="row text-center g-0">
         <div class="col-md-4 shb-stat-divider">
           <h3 class="shb-strip-num">18+</h3>
@@ -655,181 +672,177 @@
         </div>
       </div>
     </div>
-
-    <div class="text-center mt-4">
-      <p class="text-muted small">
-        <i class="fas fa-check-circle text-danger me-1"></i>
-        From city surveillance to healthcare, education to industrial — our portfolio reflects excellence and reliability.
-      </p>
-    </div>
-
+    
   </div>
 </section>
 
-<style>
-  /* Additional smooth hover effect */
-  .client-card {
-    transition: all 0.3s ease;
-    border: 1px solid rgba(0, 0, 0, 0.03);
-  }
 
-  .client-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.08) !important;
-    border-color: rgba(220, 53, 69, 0.1);
-  }
-
-  .section-badge {
-    background-color: rgba(220, 53, 69, 0.1);
-    color: #dc3545;
-    padding: 6px 16px;
-    border-radius: 40px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    display: inline-block;
-  }
-</style>
-
-<section id="contact" class="py-5" style="background: #f8fafc">
-  <div class="container py-3">
+<!-- =========================================
+     CONTACT US SECTION (PREMIUM FORM)
+========================================= -->
+<section id="contact" class="shb-contact-section py-5">
+  <div class="container py-5">
+    
+    <!-- Section Header -->
     <div class="text-center mb-5 reveal-on-scroll">
-      <span class="section-badge"><i class="bi bi-chat-dots"></i> Get In Touch</span>
-      <h2 class="section-heading text-center mb-3">Contact Our Team</h2>
-      <p class="text-secondary mt-4 col-lg-7 mx-auto">
-        Reach out for inquiries, support, or partnership opportunities.
+      <span class="shb-subtitle justify-content-center">
+        <span class="shb-dot"></span> Get In Touch
+      </span>
+      <h2 class="shb-main-heading mt-2 mb-3">
+        Contact Our <span style="color: #cc0000;">Team</span>
+      </h2>
+      <p class="shb-sub-text col-lg-6 mx-auto">
+        Reach out for inquiries, technical support, or global partnership opportunities. Our experts are ready to assist you.
       </p>
     </div>
-    <div class="row g-5">
+
+    <div class="row g-5 align-items-center">
+      
+      <!-- Contact Information (Left) -->
       <div class="col-lg-5 reveal-on-scroll">
-        <div class="contact-premium-card">
-          <div class="d-flex align-items-center gap-3 mb-4">
-            <div class="contact-icon-bullet">
+        <div class="shb-contact-info-wrapper">
+          
+          <!-- Company Name -->
+          <div class="d-flex align-items-center gap-3 mb-5">
+            <div class="shb-icon-square">
               <i class="bi bi-building"></i>
             </div>
             <div>
-              <h5 class="mb-0 fw-bold">SHB Technologies</h5>
-              <p class="text-secondary mb-0 small">
-                & Medical Systems — Head Office
+              <h4 class="mb-0 fw-bold" style="color: #1a1a1a;">SHB Technologies</h4>
+              <p class="text-muted mb-0 small text-uppercase letter-spacing-1">Medical Systems — Head Office</p>
+            </div>
+          </div>
+
+          <!-- Address -->
+          <div class="shb-info-row">
+            <div class="shb-icon-circle"><i class="bi bi-geo-alt-fill"></i></div>
+            <div class="shb-info-content">
+              <span class="shb-info-label">Corporate Address</span>
+              <p class="shb-info-text">
+                B-96, 1st Floor G.D. Colony,<br />
+                Mayur Vihar Phase -3,<br />
+                Delhi - 110096
               </p>
             </div>
           </div>
-          <div class="mb-3 d-flex gap-3">
-            <div class="contact-icon-bullet">
-              <i class="bi bi-geo-alt-fill"></i>
-            </div>
-            <div>
-              <span class="fw-semibold small text-muted">Address</span>
-              <p class="mb-0 fw-medium" style="font-size: 0.93rem">
-                B-96, 1st Floor G.D. Colony,<br />Mayur Vihar Phase -3,<br />Delhi
-                - 110096
-              </p>
+
+          <!-- Phone -->
+          <div class="shb-info-row">
+            <div class="shb-icon-circle"><i class="bi bi-telephone-fill"></i></div>
+            <div class="shb-info-content">
+              <span class="shb-info-label">Direct Line</span>
+              <a href="tel:+918178037626" class="shb-info-link">+91 8178037626</a>
             </div>
           </div>
-          <div class="mb-3 d-flex gap-3 align-items-center">
-            <div class="contact-icon-bullet">
-              <i class="bi bi-telephone-fill"></i>
-            </div>
-            <div>
-              <span class="fw-semibold small text-muted">Mobile</span><br /><a href="tel:+918178037626"
-                class="text-decoration-none text-dark fw-medium">+91 8178037626</a>
-            </div>
-          </div>
-          <div class="mb-3 d-flex gap-3 align-items-center">
-            <div class="contact-icon-bullet">
-              <i class="bi bi-envelope-fill"></i>
-            </div>
-            <div>
-              <span class="fw-semibold small text-muted">Email</span><br /><a href="mailto:technoshb@gmail.com"
-                class="text-decoration-none text-dark fw-medium">technoshb@gmail.com</a>
+
+          <!-- Email -->
+          <div class="shb-info-row">
+            <div class="shb-icon-circle"><i class="bi bi-envelope-fill"></i></div>
+            <div class="shb-info-content">
+              <span class="shb-info-label">Email Support</span>
+              <a href="mailto:technoshb@gmail.com" class="shb-info-link">technoshb@gmail.com</a>
             </div>
           </div>
-          <hr />
-          <div>
-            <p class="mb-1 small">
-              <i class="bi bi-clock-history me-2" style="color: #1e6f9f"></i><strong>Support hours:</strong> Mon–Sat
-              9:00 AM – 7:00 PM
-            </p>
+
+          <div class="shb-divider"></div>
+          
+          <!-- Support Hours -->
+          <div class="shb-support-hours">
+            <i class="bi bi-clock-history"></i>
+            <span><strong>Support Hours:</strong> Mon–Sat, 9:00 AM – 7:00 PM</span>
           </div>
+
         </div>
       </div>
+
+      <!-- Modern Contact Form (Right) -->
       <div class="col-lg-7 reveal-on-scroll">
-        <div class="form-premium">
-          <h5 class="mb-3 fw-bold">
-            <i class="bi bi-send me-2" style="color: #1e6f9f"></i>Send a
-            Quick Message
-          </h5>
+        <div class="shb-form-card">
+          <h4 class="fw-bold mb-4" style="color: #1a1a1a;">Send a Quick Message</h4>
           <form action="#" method="post">
-            <div class="row g-3">
+            <div class="row g-4">
               <div class="col-md-6">
-                <label class="form-label">Full name</label><input type="text" class="form-control"
-                  placeholder="Dr. / Ms. / Mr." />
+                <label class="shb-form-label">Full Name</label>
+                <input type="text" class="shb-input-premium" placeholder="Dr. / Ms. / Mr." required />
               </div>
               <div class="col-md-6">
-                <label class="form-label">Email address</label><input type="email" class="form-control"
-                  placeholder="name@example.com" />
+                <label class="shb-form-label">Email Address</label>
+                <input type="email" class="shb-input-premium" placeholder="name@hospital.com" required />
               </div>
               <div class="col-12">
-                <label class="form-label">Phone number</label><input type="tel" class="form-control"
-                  placeholder="+91" />
+                <label class="shb-form-label">Phone Number</label>
+                <input type="tel" class="shb-input-premium" placeholder="+91" required />
               </div>
               <div class="col-12">
-                <label class="form-label">Message / Inquiry</label><textarea rows="4" class="form-control"
-                  placeholder="Tell us about your requirement..."></textarea>
+                <label class="shb-form-label">Message / Inquiry</label>
+                <textarea rows="4" class="shb-input-premium" placeholder="Tell us about your requirement..." required></textarea>
               </div>
-              <div class="col-12">
-                <button type="button" class="btn btn-primary-premium" onclick="
-                        alert(
-                          'Thank you for reaching out! SHB team will contact you soon. (demo)',
-                        )
-                      ">
-                  <i class="bi bi-send me-2"></i>Send message
+              <div class="col-12 pt-2">
+                <button type="button" class="shb-btn-primary w-100 py-3" onclick="alert('Thank you for reaching out! SHB team will contact you soon.')">
+                  Send Message <i class="bi bi-arrow-right ms-2"></i>
                 </button>
               </div>
             </div>
           </form>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
-<section id="location" class="py-5 bg-white">
-  <div class="container py-3">
-    <div class="row g-5">
-      <div class="col-lg-6 reveal-on-scroll">
-        <h3 class="fw-bold" style="color: #0b2b5c">
-          <i class="bi bi-geo-alt-fill me-2" style="color: #1e6f9f"></i>Our
-          Headquarters
+<!-- =========================================
+     HEADQUARTERS / LOCATION SECTION
+========================================= -->
+<section id="location" class="shb-location-section py-5">
+  <div class="container py-5">
+    <div class="row g-5 align-items-center">
+      
+      <!-- Text & Map Button (Left) -->
+      <div class="col-lg-5 reveal-on-scroll">
+        <span class="shb-subtitle">
+          <span class="shb-dot"></span> Global Reach
+        </span>
+        <h3 class="shb-main-heading mt-2 mb-4" style="font-size: 2.2rem;">
+          Our <span style="color: #cc0000;">Headquarters</span>
         </h3>
-        <div class="p-4 mt-3 rounded-4" style="background: #f9fbfd; border: 1px solid #e9edf2">
-          <p class="mb-2 fw-semibold">
-            SHB Technologies and Medical Systems
+        
+        <div class="shb-location-card mt-4">
+          <h5 class="fw-bold mb-3" style="color: #1a1a1a;">SHB Technologies and Medical Systems</h5>
+          <p class="text-secondary mb-4" style="font-size: 1.05rem; line-height: 1.6;">
+            B-96, 1st Floor G.D. Colony,<br />
+            Mayur Vihar Phase -3, Delhi<br />
+            <strong>PIN:</strong> 110096
           </p>
-          <p class="mb-2 text-secondary">
-            B-96, 1st Floor G.D. Colony,<br />Mayur Vihar Phase -3, Delhi<br /><strong>PIN:</strong>
-            110096
-          </p>
-          <div class="d-flex gap-3 flex-wrap">
-            <a href="https://maps.google.com/?q=B-96+G.D.+Colony+Mayur+Vihar+Phase+3+Delhi" target="_blank"
-              class="btn btn-sm btn-outline-premium"><i class="bi bi-map me-1"></i> Open in Google Maps</a>
-          </div>
+          <a href="https://maps.google.com/?q=B-96+G.D.+Colony+Mayur+Vihar+Phase+3+Delhi" target="_blank" class="shb-btn-outline">
+            <i class="bi bi-map me-2"></i> Open in Google Maps
+          </a>
         </div>
       </div>
-      <div class="col-lg-6 reveal-on-scroll">
-        <div class="map-premium-card">
-          <div class="map-visual">
-            <div class="map-grid-lines"></div>
-            <div class="map-dot-pulse"></div>
-            <div class="text-center position-relative z-3">
-              <i class="bi bi-geo-alt-fill fs-1 mb-2" style="color: #1e6f9f; opacity: 0.6"></i>
-              <p class="mb-0 fw-semibold" style="color: #0b2b5c">
-                📍 B-96, G.D. Colony, Mayur Vihar Phase-3
-              </p>
-              <small class="text-muted">Delhi - 110096</small>
+
+      <!-- Animated Radar / Pulse Map (Right) -->
+      <div class="col-lg-7 reveal-on-scroll">
+        <div class="shb-animated-map-wrapper">
+          <div class="shb-radar-container">
+            <!-- Pulsing Rings -->
+            <div class="shb-ring shb-ring-1"></div>
+            <div class="shb-ring shb-ring-2"></div>
+            <div class="shb-ring shb-ring-3"></div>
+            
+            <!-- Central Pin -->
+            <div class="shb-location-pin">
+              <i class="bi bi-geo-alt-fill"></i>
+            </div>
+            
+            <!-- Floating Text -->
+            <div class="shb-map-floating-text">
+              <strong>Delhi HQ</strong><br>
+              <small>Operating 24/7</small>
             </div>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -890,6 +903,57 @@
         link.classList.add("active");
     });
   });
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const sliderContainer = document.getElementById('shb-brand-slider');
+    const nextBtn = document.getElementById('shb-next-btn');
+    const prevBtn = document.getElementById('shb-prev-btn');
+    
+    if(!sliderContainer) return;
+
+    // Calculate dynamic scroll amount based on one item width
+    function getScrollAmount() {
+        const item = sliderContainer.querySelector('.shb-slide-item');
+        return item ? item.offsetWidth + 24 : 300; // 24 is the gap
+    }
+
+    // Next Button Click
+    nextBtn.addEventListener('click', () => {
+        sliderContainer.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+    });
+
+    // Prev Button Click
+    prevBtn.addEventListener('click', () => {
+        sliderContainer.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+    });
+
+    // Optional: Auto Play Feature (Uncomment if you want it to scroll automatically)
+    
+    let autoPlayInterval;
+    
+    function startAutoPlay() {
+        autoPlayInterval = setInterval(() => {
+            // If scrolled to the end, jump back to start smoothly, else scroll right
+            if (sliderContainer.scrollLeft + sliderContainer.clientWidth >= sliderContainer.scrollWidth - 10) {
+                sliderContainer.scrollTo({ left: 0, behavior: 'smooth' });
+            } else {
+                sliderContainer.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+            }
+        }, 4000); // 4 seconds delay
+    }
+
+    function stopAutoPlay() {
+        clearInterval(autoPlayInterval);
+    }
+
+    // Start auto-play and pause on hover
+    startAutoPlay();
+    sliderContainer.addEventListener('mouseenter', stopAutoPlay);
+    sliderContainer.addEventListener('mouseleave', startAutoPlay);
+    
+});
 </script>
 </body>
 
