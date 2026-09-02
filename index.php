@@ -850,6 +850,7 @@
 <?php include('footer.php'); ?>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
 <script>
   const navbar = document.getElementById("mainNavbar");
   window.addEventListener("scroll", () => {
@@ -906,7 +907,7 @@
 </script>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function() {
     const sliderContainer = document.getElementById('shb-brand-slider');
     const nextBtn = document.getElementById('shb-next-btn');
     const prevBtn = document.getElementById('shb-prev-btn');
@@ -955,6 +956,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
 });
 </script>
+
 </body>
 
 </html>

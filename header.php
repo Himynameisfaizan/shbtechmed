@@ -12,9 +12,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
-  <link rel="stylesheet" href="assets/css/include.css">
-  <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="assets/css/index.css">
+  <link rel="stylesheet" href="assets/css/include.css?v=<?php echo time()?>">
+  <link rel="stylesheet" href="assets/css/style.css?v=<?php echo time()?>">
+  <link rel="stylesheet" href="assets/css/index.css?v=<?php echo time()?>">
 
 </head>
 
