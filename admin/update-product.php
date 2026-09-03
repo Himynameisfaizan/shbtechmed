@@ -4,7 +4,8 @@ ini_set('display_errors', 1);
 
 include "db-conn.php";
 
-if (isset($_POST['update-product'])) {
+// FIX: Form POST method aur Product ID check karo (Button name fail ho sakta hai)
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['pro_id'])) {
     
     // Get all form data
     $pro_id         = intval($_POST['pro_id']);
@@ -31,7 +32,7 @@ if (isset($_POST['update-product'])) {
     $slug_url = strtolower(str_replace(" ", "-", $pro_name));
 
     // ==========================================
-    // SINGLE IMAGE UPLOAD (FIXED)
+    // IMAGE UPLOAD LOGIC
     // ==========================================
     
     $target_dir = "assets/img/uploads/";
@@ -41,30 +42,26 @@ if (isset($_POST['update-product'])) {
         mkdir($target_dir, 0755, true);
     }
 
-    // Check if new image is uploaded (SINGLE FILE, not array)
+    $img_updated = false; // Flag to track if image was updated
+
+    // Check if new image is uploaded
     if (isset($_FILES['pro_img']) && $_FILES['pro_img']['error'] === UPLOAD_ERR_OK && !empty($_FILES['pro_img']['name'])) {
         
         $filename = $_FILES['pro_img']['name'];
         $tempname = $_FILES['pro_img']['tmp_name'];
-        $filesize = $_FILES['pro_img']['size'];
         
-        // Get file extension
         $file_extension = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
-        
-        // Allowed extensions
         $allowed_extensions = array('jpg', 'jpeg', 'png', 'gif', 'webp');
         
         if (in_array($file_extension, $allowed_extensions)) {
-            
-            // Create unique filename
             $uniqueFilename = time() . "_" . rand(1000, 9999) . "." . $file_extension;
             $target_file = $target_dir . $uniqueFilename;
 
-            // Upload file
             if (move_uploaded_file($tempname, $target_file)) {
-                $pro_img = $uniqueFilename; // New image name
+                $pro_img = $uniqueFilename; 
+                $img_updated = true;
                 
-                // Optional: Delete old image if exists
+                // Delete old image if exists
                 $old_img_query = "SELECT pro_img FROM products WHERE pro_id = '$pro_id'";
                 $old_result = mysqli_query($conn, $old_img_query);
                 if ($old_result && mysqli_num_rows($old_result) > 0) {
@@ -73,11 +70,10 @@ if (isset($_POST['update-product'])) {
                     if (!empty($old_image)) {
                         $old_image_path = $target_dir . $old_image;
                         if (file_exists($old_image_path)) {
-                            unlink($old_image_path); // Delete old image
+                            unlink($old_image_path);
                         }
                     }
                 }
-                
             } else {
                 echo "<script>alert('Failed to upload image.');</script>";
             }
@@ -90,8 +86,7 @@ if (isset($_POST['update-product'])) {
     // BUILD UPDATE QUERY
     // ==========================================
     
-    if (isset($pro_img) && !empty($pro_img)) {
-        // New image uploaded - update image field
+    if ($img_updated) {
         $query = "UPDATE `products` SET 
             `pro_name` = '$pro_name',
             `brand_name` = '$brand_name',
@@ -115,7 +110,6 @@ if (isset($_POST['update-product'])) {
             `added_on` = '$added_on'
             WHERE `pro_id` = '$pro_id'";
     } else {
-        // No new image - don't update image field
         $query = "UPDATE `products` SET 
             `pro_name` = '$pro_name',
             `brand_name` = '$brand_name',
@@ -145,15 +139,27 @@ if (isset($_POST['update-product'])) {
     
     if (mysqli_query($conn, $query)) {
         echo "<script type='text/javascript'>
-                alert('Product updated successfully!');
+                alert('Product successfully updated!');
                 window.location.href = 'show-products.php';
               </script>";
         exit;
     } else {
-        echo "Error updating product: " . mysqli_error($conn);
-        echo "<br>Query: " . $query;
+        echo "<div style='padding: 20px; font-family: sans-serif;'>";
+        echo "<h3 style='color: red;'>Error updating product!</h3>";
+        echo "<p>" . mysqli_error($conn) . "</p>";
+        echo "<p><strong>Query:</strong> " . $query . "</p>";
+        echo "<a href='show-products.php'>Go Back</a>";
+        echo "</div>";
     }
 
     mysqli_close($conn);
+
+} else {
+    // Agar koi is page ko directly URL daal kar open kare, toh waapas bhej do
+    echo "<script>
+            alert('Invalid Request! Direct access not allowed.');
+            window.location.href = 'show-products.php';
+          </script>";
+    exit;
 }
 ?>

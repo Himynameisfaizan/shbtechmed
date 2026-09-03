@@ -126,9 +126,8 @@
     box-shadow: 0 10px 20px rgba(204, 0, 0, 0.2);
 }
 
-/* Custom Indicators - Positioned at the bottom left to align with text */
 .custom-indicators {
-    margin-bottom: 80px;
+    margin-bottom: 40px;
     justify-content: flex-start;
     margin-left: 5%;
 }
@@ -1189,6 +1188,22 @@
         margin-top: 15px; 
     }
 }
+
+
+/* Scroll Reveal Animation Base */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(40px); /* Content thoda neeche se aayega */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    will-change: opacity, transform;
+}
+
+/* Jab JS ye class add karega tab content dikhega */
+.reveal-on-scroll.is-visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
 
 /* =========================================
    CONTACT SECTION (LUXURY FORM)

@@ -1,4 +1,10 @@
-<?php include('header.php'); ?>
+<?php 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+include('header.php'); 
+include ('config/connect.php');
+?>
 <!-- HERO SLIDER SECTION -->
 
 <!-- HERO SLIDER SECTION -->
@@ -127,7 +133,7 @@
   <div class="container py-5">
 
     <!-- Section Heading -->
-    <div class="text-center mb-5 reveal-on-scroll">
+    <div class="text-center mb-5  ">
       <span class="shb-subtitle">
         <span class="shb-dot"></span> Equipment Catalog
       </span>
@@ -221,7 +227,7 @@
 
       <!-- Stat 1 -->
       <div class="col-6 col-md-3">
-        <div class="shb-stat-box reveal-on-scroll">
+        <div class="shb-stat-box">
           <div class="shb-stat-num">120<span class="shb-text-red">+</span></div>
           <p class="shb-stat-text">Hospitals Served</p>
         </div>
@@ -229,7 +235,7 @@
 
       <!-- Stat 2 -->
       <div class="col-6 col-md-3">
-        <div class="shb-stat-box reveal-on-scroll">
+        <div class="shb-stat-box">
           <div class="shb-stat-num">350<span class="shb-text-red">+</span></div>
           <p class="shb-stat-text">Installations</p>
         </div>
@@ -237,7 +243,7 @@
 
       <!-- Stat 3 -->
       <div class="col-6 col-md-3">
-        <div class="shb-stat-box reveal-on-scroll">
+        <div class="shb-stat-box">
           <div class="shb-stat-num">24<span class="shb-text-red">/</span>7</div>
           <p class="shb-stat-text">Field Support</p>
         </div>
@@ -245,7 +251,7 @@
 
       <!-- Stat 4 -->
       <div class="col-6 col-md-3">
-        <div class="shb-stat-box reveal-on-scroll">
+        <div class="shb-stat-box">
           <div class="shb-stat-num">10<span class="shb-text-red">+</span></div>
           <p class="shb-stat-text">Years Experience</p>
         </div>
@@ -262,7 +268,7 @@
   <div class="container py-5">
 
     <!-- Section Header (Matched with Products Section) -->
-    <div class="text-center mb-5 reveal-on-scroll">
+    <div class="text-center mb-5  ">
       <span class="shb-subtitle">
         <span class="shb-dot"></span> Our Expertise
       </span>
@@ -279,7 +285,7 @@
     <div class="row g-5 mt-2">
 
       <!-- Service 1 -->
-      <div class="col-md-6 col-lg-4 reveal-on-scroll">
+      <div class="col-md-6 col-lg-4  ">
         <div class="shb-service-card">
           <div class="shb-service-icon">
             <i class="bi bi-heart-pulse"></i>
@@ -293,7 +299,7 @@
       </div>
 
       <!-- Service 2 -->
-      <div class="col-md-6 col-lg-4 reveal-on-scroll">
+      <div class="col-md-6 col-lg-4  ">
         <div class="shb-service-card">
           <div class="shb-service-icon">
             <i class="bi bi-clipboard2-pulse"></i>
@@ -307,7 +313,7 @@
       </div>
 
       <!-- Service 3 -->
-      <div class="col-md-6 col-lg-4 reveal-on-scroll">
+      <div class="col-md-6 col-lg-4  ">
         <div class="shb-service-card">
           <div class="shb-service-icon">
             <i class="bi bi-activity"></i> <!-- Changed icon to look more modern -->
@@ -321,7 +327,7 @@
       </div>
 
       <!-- Service 4 -->
-      <div class="col-md-6 col-lg-4 reveal-on-scroll">
+      <div class="col-md-6 col-lg-4  ">
         <div class="shb-service-card">
           <div class="shb-service-icon">
             <i class="bi bi-shield-check"></i> <!-- Changed icon -->
@@ -335,7 +341,7 @@
       </div>
 
       <!-- Service 5 -->
-      <div class="col-md-6 col-lg-4 reveal-on-scroll">
+      <div class="col-md-6 col-lg-4  ">
         <div class="shb-service-card">
           <div class="shb-service-icon">
             <i class="bi bi-cloud-arrow-up"></i> <!-- Changed icon -->
@@ -349,7 +355,7 @@
       </div>
 
       <!-- Service 6 -->
-      <div class="col-md-6 col-lg-4 reveal-on-scroll">
+      <div class="col-md-6 col-lg-4  ">
         <div class="shb-service-card">
           <div class="shb-service-icon">
             <i class="bi bi-headset"></i> <!-- Changed icon to headset for support -->
@@ -375,7 +381,7 @@
     <div class="row align-items-center g-5">
 
       <!-- Text Content (Left) -->
-      <div class="col-lg-6 reveal-on-scroll">
+      <div class="col-lg-6  ">
         <span class="shb-subtitle">
           <span class="shb-dot"></span> Digital Transformation
         </span>
@@ -417,7 +423,7 @@
       </div>
 
       <!-- Tech Image/Graphic (Right) -->
-      <div class="col-lg-6 reveal-on-scroll">
+      <div class="col-lg-6  ">
         <div class="shb-it-image-wrapper">
           <!-- Add a modern server/networking/dashboard image here -->
           <img src="assets/images/cctv-fire/cctv.png" alt="Healthcare IT Solutions" class="img-fluid shb-it-main-img">
@@ -445,7 +451,7 @@
 <section class="shb-it-products-section py-5 bg-white">
   <div class="container py-4">
 
-    <div class="d-flex justify-content-between align-items-end mb-5 reveal-on-scroll">
+    <div class="d-flex justify-content-between align-items-end mb-5  ">
       <div>
         <h3 class="shb-sub-heading mb-0">Our Tech Portfolio</h3>
       </div>
@@ -521,7 +527,7 @@
     <div class="row align-items-center g-5">
 
       <!-- Premium Image Section -->
-      <div class="col-lg-6 reveal-on-scroll">
+      <div class="col-lg-6  ">
         <div class="shb-about-image-wrapper">
           <div class="shb-image-backdrop"></div>
           <img src="assets/images/mgp/air-plant.png" alt="SHB Technologies MGPS" class="img-fluid shb-main-image" />
@@ -535,7 +541,7 @@
       </div>
 
       <!-- Content Section -->
-      <div class="col-lg-6 reveal-on-scroll">
+      <div class="col-lg-6  ">
         <span class="shb-subtitle">
           <span class="shb-dot"></span> Why Choose SHB
         </span>
@@ -577,7 +583,6 @@
   </div>
 </section>
 
-
 <!-- =========================================
      CLIENTS & PORTFOLIO (DYNAMIC SLIDER SECTION)
 ========================================= -->
@@ -585,7 +590,7 @@
   <div class="container py-5">
     
     <!-- Section Header with Slider Navigation -->
-    <div class="d-flex flex-wrap justify-content-between align-items-end mb-5 reveal-on-scroll">
+    <div class="d-flex flex-wrap justify-content-between align-items-end mb-5">
       <div class="shb-portfolio-header-text">
         <span class="shb-subtitle">
           <span class="shb-dot"></span> Our Track Record
@@ -595,6 +600,7 @@
         </h2>
       </div>
       
+      <!-- Innovative Slider Nav Buttons -->
       <div class="shb-slider-nav mt-3 mt-md-0">
         <button class="shb-nav-btn" id="shb-prev-btn"><i class="fas fa-chevron-left"></i></button>
         <button class="shb-nav-btn" id="shb-next-btn"><i class="fas fa-chevron-right"></i></button>
@@ -602,19 +608,19 @@
     </div>
 
     <!-- The Innovative Slider Track -->
-    <div class="shb-slider-container reveal-on-scroll" id="shb-brand-slider">
+    <div class="shb-slider-container" id="shb-brand-slider">
       <div class="shb-slider-track">
         
         <?php
-          $brand_query = mysqli_query($conn, "SELECT * FROM `brands` WHERE `status` = 1 ORDER BY `id` DESC");
+          // FIX: Removed 'WHERE status = 1' because 'status' column does not exist in your new database schema
+          $brand_query = mysqli_query($conn, "SELECT * FROM `brands` ORDER BY `id` DESC");
           
           if ($brand_query && mysqli_num_rows($brand_query) > 0) {
               while ($brand = mysqli_fetch_assoc($brand_query)) {
                   
-                  // Column mapping fixed: changed 'brand_img' to 'logo_path'[cite: 4]
                   $brand_name = htmlspecialchars($brand['brand_name']);
                   
-                  // Path logic fixed: images are saved in 'uploads/' by the admin panel[cite: 4]
+                  // Image path logic (Will output: http://localhost/.../admin/uploads/image.jpg)
                   $brand_image_path = !empty($brand['logo_path']) ? $site . 'admin/' . $brand['logo_path'] : '';
         ?>
                   
@@ -656,7 +662,7 @@
     </div>
 
     <!-- Minimalist Portfolio Stats Strip -->
-    <div class="shb-portfolio-stats-strip reveal-on-scroll mt-5">
+    <div class="shb-portfolio-stats-strip mt-5">
       <div class="row text-center g-0">
         <div class="col-md-4 shb-stat-divider">
           <h3 class="shb-strip-num">18+</h3>
@@ -676,7 +682,6 @@
   </div>
 </section>
 
-
 <!-- =========================================
      CONTACT US SECTION (PREMIUM FORM)
 ========================================= -->
@@ -684,7 +689,7 @@
   <div class="container py-5">
     
     <!-- Section Header -->
-    <div class="text-center mb-5 reveal-on-scroll">
+    <div class="text-center mb-5  ">
       <span class="shb-subtitle justify-content-center">
         <span class="shb-dot"></span> Get In Touch
       </span>
@@ -699,7 +704,7 @@
     <div class="row g-5 align-items-center">
       
       <!-- Contact Information (Left) -->
-      <div class="col-lg-5 reveal-on-scroll">
+      <div class="col-lg-5  ">
         <div class="shb-contact-info-wrapper">
           
           <!-- Company Name -->
@@ -756,7 +761,7 @@
       </div>
 
       <!-- Modern Contact Form (Right) -->
-      <div class="col-lg-7 reveal-on-scroll">
+      <div class="col-lg-7  ">
         <div class="shb-form-card">
           <h4 class="fw-bold mb-4" style="color: #1a1a1a;">Send a Quick Message</h4>
           <form action="#" method="post">
@@ -799,7 +804,7 @@
     <div class="row g-5 align-items-center">
       
       <!-- Text & Map Button (Left) -->
-      <div class="col-lg-5 reveal-on-scroll">
+      <div class="col-lg-5  ">
         <span class="shb-subtitle">
           <span class="shb-dot"></span> Global Reach
         </span>
@@ -821,7 +826,7 @@
       </div>
 
       <!-- Animated Radar / Pulse Map (Right) -->
-      <div class="col-lg-7 reveal-on-scroll">
+      <div class="col-lg-7  ">
         <div class="shb-animated-map-wrapper">
           <div class="shb-radar-container">
             <!-- Pulsing Rings -->
@@ -846,117 +851,108 @@
     </div>
   </div>
 </section>
-
 <?php include('footer.php'); ?>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-
+<!-- SHB Unified Javascript -->
 <script>
-  const navbar = document.getElementById("mainNavbar");
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 40) navbar.classList.add("scrolled");
-    else navbar.classList.remove("scrolled");
-  });
-  const revealElements = document.querySelectorAll(".reveal-on-scroll");
-  const observerOptions = {
-    root: null,
-    rootMargin: "0px 0px -40px 0px",
-    threshold: 0.12,
-  };
-  const revealCallback = (entries, observer) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const delay = Array.from(revealElements).indexOf(entry.target) * 40;
-        setTimeout(
-          () => {
-            entry.target.classList.add("revealed");
-          },
-          Math.min(delay, 300),
-        );
-        observer.unobserve(entry.target);
-      }
-    });
-  };
-  const observer = new IntersectionObserver(
-    revealCallback,
-    observerOptions,
-  );
-  revealElements.forEach((el) => observer.observe(el));
-  window.addEventListener("load", () => {
-    revealElements.forEach((el) => {
-      const rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight && rect.bottom > 0)
-        el.classList.add("revealed");
-    });
-  });
-  const sections = document.querySelectorAll("section[id]");
-  const navLinks = document.querySelectorAll(".nav-link");
-  window.addEventListener("scroll", () => {
-    let current = "";
-    sections.forEach((section) => {
-      const sectionTop = section.offsetTop - 120;
-      if (window.scrollY >= sectionTop)
-        current = section.getAttribute("id");
-    });
-    navLinks.forEach((link) => {
-      link.classList.remove("active");
-      if (link.getAttribute("href") === "#" + current)
-        link.classList.add("active");
-    });
-  });
-</script>
+  document.addEventListener("DOMContentLoaded", function() {
+    
+    // 1. NAVBAR SCROLL EFFECT
+    const navbar = document.getElementById("mainNavbar");
+    if(navbar) {
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 40) navbar.classList.add("scrolled");
+            else navbar.classList.remove("scrolled");
+        });
+    }
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
+    // 2. ACTIVE NAV LINK HIGHLIGHTER
+    const sections = document.querySelectorAll("section[id]");
+    const navLinks = document.querySelectorAll(".nav-link");
+    if(sections.length > 0 && navLinks.length > 0) {
+        window.addEventListener("scroll", () => {
+            let current = "";
+            sections.forEach((section) => {
+                const sectionTop = section.offsetTop - 120;
+                if (window.scrollY >= sectionTop) current = section.getAttribute("id");
+            });
+            navLinks.forEach((link) => {
+                link.classList.remove("active");
+                if (link.getAttribute("href") === "#" + current) link.classList.add("active");
+            });
+        });
+    }
+
+    // 3. INNOVATIVE BRAND SLIDER LOGIC
     const sliderContainer = document.getElementById('shb-brand-slider');
     const nextBtn = document.getElementById('shb-next-btn');
     const prevBtn = document.getElementById('shb-prev-btn');
     
-    if(!sliderContainer) return;
-
-    // Calculate dynamic scroll amount based on one item width
-    function getScrollAmount() {
-        const item = sliderContainer.querySelector('.shb-slide-item');
-        return item ? item.offsetWidth + 24 : 300; // 24 is the gap
-    }
-
-    // Next Button Click
-    nextBtn.addEventListener('click', () => {
-        sliderContainer.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
-    });
-
-    // Prev Button Click
-    prevBtn.addEventListener('click', () => {
-        sliderContainer.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
-    });
-
-    // Optional: Auto Play Feature (Uncomment if you want it to scroll automatically)
-    
-    let autoPlayInterval;
-    
-    function startAutoPlay() {
-        autoPlayInterval = setInterval(() => {
-            // If scrolled to the end, jump back to start smoothly, else scroll right
+    if(sliderContainer && nextBtn && prevBtn) {
+        function getScrollAmount() {
+            const item = sliderContainer.querySelector('.shb-slide-item');
+            return item ? item.offsetWidth + 24 : 300; 
+        }
+        nextBtn.addEventListener('click', () => {
+            sliderContainer.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+        });
+        prevBtn.addEventListener('click', () => {
+            sliderContainer.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+        });
+        
+        // Auto Play Slider
+        let autoPlayInterval = setInterval(() => {
             if (sliderContainer.scrollLeft + sliderContainer.clientWidth >= sliderContainer.scrollWidth - 10) {
                 sliderContainer.scrollTo({ left: 0, behavior: 'smooth' });
             } else {
                 sliderContainer.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
             }
-        }, 4000); // 4 seconds delay
+        }, 3500);
+
+        sliderContainer.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
+        sliderContainer.addEventListener('mouseleave', () => {
+            autoPlayInterval = setInterval(() => {
+                if (sliderContainer.scrollLeft + sliderContainer.clientWidth >= sliderContainer.scrollWidth - 10) {
+                    sliderContainer.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    sliderContainer.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+                }
+            }, 3500);
+        });
     }
 
-    function stopAutoPlay() {
-        clearInterval(autoPlayInterval);
+    // 4. SMOOTH REVEAL ANIMATION (FIXED CONFLICTS & MOBILE SIZES)
+    const revealElements = document.querySelectorAll('. ');
+    if(revealElements.length > 0) {
+        // Threshold 0.05 rakha hai taaki mobile ke lambe sections bhi aaram se trigger ho jayein
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px 0px -20px 0px',
+            threshold: 0.05 
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Adding both classes to be 100% safe
+                    entry.target.classList.add('is-visible', 'revealed');
+                    observer.unobserve(entry.target); 
+                }
+            });
+        }, observerOptions);
+
+        revealElements.forEach(el => observer.observe(el));
+        
+        // Fallback: Agar page beech mein load ho, toh jo screen par hai usko turant dikhao
+        setTimeout(() => {
+            revealElements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    el.classList.add('is-visible', 'revealed');
+                }
+            });
+        }, 150);
     }
 
-    // Start auto-play and pause on hover
-    startAutoPlay();
-    sliderContainer.addEventListener('mouseenter', stopAutoPlay);
-    sliderContainer.addEventListener('mouseleave', startAutoPlay);
-    
-});
+  });
 </script>
-
-</body>
-
-</html>

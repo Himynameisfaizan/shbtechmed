@@ -1,88 +1,88 @@
-  <footer class="footer-premium pt-5 pb-4 mt-2">
-      <div class="container position-relative" style="z-index: 2">
-        <div class="row gy-4">
-          <div class="col-md-5">
-            <h5 class="text-white fw-bold mb-2">
-              SHB Technologies & Medical Systems
-            </h5>
-            <p class="small opacity-75 mb-3" style="max-width: 320px">
-              Innovative medical technology solutions empowering healthcare
-              providers with reliable, advanced systems.
-            </p>
-            <div>
-              <a href="#" class="footer-social-icon"
-                ><i class="bi bi-linkedin"></i></a
-              ><a href="#" class="footer-social-icon"
-                ><i class="bi bi-twitter-x"></i></a
-              ><a href="mailto:technoshb@gmail.com" class="footer-social-icon"
-                ><i class="bi bi-envelope"></i
-              ></a>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <h6 class="text-white fw-semibold mb-3">Quick Links</h6>
-            <ul class="list-unstyled small">
-              <li class="mb-2">
-                <a href="#home"
-                  ><i
-                    class="bi bi-chevron-right me-1"
-                    style="font-size: 0.7rem"
-                  ></i
-                  >Home</a
-                >
-              </li>
-              <li class="mb-2">
-                <a href="#services"
-                  ><i
-                    class="bi bi-chevron-right me-1"
-                    style="font-size: 0.7rem"
-                  ></i
-                  >Solutions</a
-                >
-              </li>
-              <li class="mb-2">
-                <a href="#products"
-                  ><i
-                    class="bi bi-chevron-right me-1"
-                    style="font-size: 0.7rem"
-                  ></i
-                  >Products</a
-                >
-              </li>
-              <li class="mb-2">
-                <a href="#contact"
-                  ><i
-                    class="bi bi-chevron-right me-1"
-                    style="font-size: 0.7rem"
-                  ></i
-                  >Contact</a
-                >
-              </li>
-            </ul>
-          </div>
-          <div class="col-md-4">
-            <h6 class="text-white fw-semibold mb-3">Get in Touch</h6>
-            <p class="small mb-2">
-              <i class="bi bi-telephone-fill me-2 opacity-75"></i> +91
-              8178037626
-            </p>
-            <p class="small mb-2">
-              <i class="bi bi-envelope-fill me-2 opacity-75"></i>
-              technoshb@gmail.com
-            </p>
-            <p class="small mb-0">
-              <i class="bi bi-building me-2 opacity-75"></i> B-96, G.D. Colony,
-              Mayur Vihar Phase-3, Delhi - 110096
-            </p>
-          </div>
-        </div>
-        <hr
-          class="mt-4 opacity-15"
-          style="border-color: rgba(255, 255, 255, 0.15)"
-        />
-        <div class="text-center small opacity-60">
-          © 2025 SHB Technologies and Medical Systems — All rights reserved. |
-          Innovating for healthier tomorrows.
+<footer class="shb-premium-footer pt-5 pb-4">
+  <!-- Subtle top accent line -->
+  <div class="shb-footer-accent-line"></div>
+  
+  <div class="container position-relative z-2">
+    <div class="row gy-5 mb-5">
+      
+      <!-- Column 1: Brand & About -->
+      <div class="col-lg-4 col-md-6 pe-lg-5">
+        <h4 class="shb-footer-brand mb-3">
+          SHB <span class="shb-footer-highlight">Technologies</span>
+        </h4>
+        <p class="shb-footer-desc mb-4">
+          Innovative medical technology solutions empowering healthcare providers with reliable, advanced systems. We engineer for life.
+        </p>
+        <div class="shb-footer-social">
+          <a href="#" class="shb-social-link"><i class="bi bi-linkedin"></i></a>
+          <a href="#" class="shb-social-link"><i class="bi bi-twitter-x"></i></a>
+          <a href="#" class="shb-social-link"><i class="bi bi-facebook"></i></a>
+          <a href="mailto:technoshb@gmail.com" class="shb-social-link"><i class="bi bi-envelope-fill"></i></a>
         </div>
       </div>
-    </footer>
+
+      <!-- Column 2: Quick Links -->
+      <div class="col-lg-2 col-md-6">
+        <h6 class="shb-footer-heading mb-4">Explore</h6>
+        <ul class="shb-footer-links list-unstyled">
+          <li><a href="<?php echo $site; ?>index.php">Home</a></li>
+          <li><a href="<?php echo $site; ?>about.php">About Us</a></li>
+          <li><a href="<?php echo $site; ?>solution.php">Our Solutions</a></li>
+          <li><a href="<?php echo $site; ?>products.php">Equipment Catalog</a></li>
+          <li><a href="<?php echo $site; ?>contact.php">Contact Support</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: IT & Expertise -->
+      <div class="col-lg-2 col-md-6">
+        <h6 class="shb-footer-heading mb-4">Expertise</h6>
+        <ul class="shb-footer-links list-unstyled">
+          <li><a href="#">Medical Gas Systems</a></li>
+          <li><a href="#">Modular OTs</a></li>
+          <li><a href="#">Hospital Furniture</a></li>
+          <li><a href="<?php echo $site; ?>It-services.php">Healthcare IT</a></li>
+          <li><a href="#">Security & Surveillance</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 4: Contact Info -->
+      <div class="col-lg-4 col-md-6">
+        <h6 class="shb-footer-heading mb-4">Headquarters</h6>
+        <div class="shb-footer-contact-item mb-3">
+          <div class="icon-box"><i class="bi bi-geo-alt-fill"></i></div>
+          <div>
+            <span>B-96, 1st Floor G.D. Colony,<br>Mayur Vihar Phase-3, Delhi - 110096</span>
+          </div>
+        </div>
+        <div class="shb-footer-contact-item mb-3">
+          <div class="icon-box"><i class="bi bi-telephone-fill"></i></div>
+          <div>
+            <a href="tel:+918178037626">+91 8178037626</a>
+          </div>
+        </div>
+        <div class="shb-footer-contact-item">
+          <div class="icon-box"><i class="bi bi-envelope-fill"></i></div>
+          <div>
+            <a href="mailto:technoshb@gmail.com">technoshb@gmail.com</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Copyright Bar -->
+    <div class="shb-footer-bottom">
+      <div class="row align-items-center">
+        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+          <p class="mb-0">
+            &copy; <?php echo date('Y'); ?> SHB Technologies & Medical Systems. All rights reserved.
+          </p>
+        </div>
+        <div class="col-md-6 text-center text-md-end">
+          <span class="shb-footer-tagline">Innovating for healthier tomorrows.</span>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</footer>

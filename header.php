@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
   <link rel="stylesheet" href="assets/css/include.css?v=<?php echo time()?>">
-  <link rel="stylesheet" href="assets/css/style.css?v=<?php echo time()?>">
+  <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/index.css?v=<?php echo time()?>">
 
 </head>
@@ -132,6 +132,8 @@
     </div>
   </nav>
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       if (window.innerWidth >= 992) {
@@ -155,3 +157,5 @@
       }
     });
   </script>
+</body>
+</html>
