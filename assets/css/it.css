@@ -1,0 +1,178 @@
+/* =========================================
+   IT SERVICES PAGE STYLES (TECH THEME)
+========================================= */
+
+/* Tech Service Grid Cards */
+.shb-tech-service-card {
+    background: #ffffff;
+    border: 1px solid #eeeeee;
+    padding: 35px 25px;
+    border-radius: 12px;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.shb-tech-service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: #cc0000;
+    transform: scaleY(0);
+    transition: transform 0.4s ease;
+    transform-origin: bottom;
+    z-index: -1;
+}
+
+.shb-tech-service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+    border-color: #ffffff;
+}
+
+.shb-tech-service-card:hover::before {
+    transform: scaleY(1);
+}
+
+.shb-tech-icon {
+    width: 60px;
+    height: 60px;
+    background: #f4f5f7;
+    color: #1a1a1a;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    transition: all 0.4s ease;
+}
+
+.shb-tech-service-card:hover .shb-tech-icon {
+    background: #1a1a1a;
+    color: #ffffff;
+}
+
+.shb-tech-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 12px;
+}
+
+.shb-tech-desc {
+    font-size: 0.95rem;
+    color: #666666;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+/* Enterprise Infrastructure Section */
+.shb-enterprise-section {
+    background-color: #f8f9fa; /* Light grey backdrop */
+    border-top: 1px solid #eeeeee;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.shb-enterprise-card {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.02);
+    border: 1px solid #f0f0f0;
+}
+
+.shb-enterprise-icon {
+    font-size: 5rem;
+    color: #cc0000;
+    opacity: 0.9;
+}
+
+.shb-enterprise-icon-small {
+    font-size: 3rem;
+    color: #cc0000;
+    display: block;
+}
+
+.shb-enterprise-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin-bottom: 15px;
+    letter-spacing: -0.5px;
+}
+
+.shb-enterprise-desc {
+    font-size: 1.05rem;
+    color: #555555;
+    line-height: 1.7;
+}
+
+.shb-quote-box {
+    background: rgba(204, 0, 0, 0.05);
+    border-left: 3px solid #cc0000;
+    padding: 15px 20px;
+    font-weight: 600;
+    color: #cc0000;
+    font-style: italic;
+    border-radius: 0 8px 8px 0;
+}
+
+/* GPS & Tech Features */
+.shb-tech-feature-desc {
+    font-size: 1.05rem;
+    color: #555555;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+/* Dark Consultancy Card */
+.shb-why-consult-card {
+    background-color: #0a0a0a; /* Dark tech aesthetic */
+    padding: 50px 40px;
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+}
+
+/* Tech circuit board background effect */
+.shb-why-consult-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, rgba(204,0,0,0.15) 0%, transparent 70%);
+}
+
+.shb-tech-checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 18px;
+    color: #e0e0e0;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.shb-tech-checklist li i {
+    color: #cc0000;
+    font-size: 1.2rem;
+    margin-top: 3px;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+    .shb-enterprise-card { padding: 30px; }
+    .shb-why-consult-card { padding: 40px 25px; }
+}
+
+@media (max-width: 768px) {
+    .shb-tech-feature-wrapper { margin-bottom: 20px; }
+}

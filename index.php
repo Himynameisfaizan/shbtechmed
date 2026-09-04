@@ -2,7 +2,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-include('header.php'); 
+include('inc/header.php'); 
 include ('config/connect.php');
 ?>
 <!-- HERO SLIDER SECTION -->
@@ -851,7 +851,8 @@ include ('config/connect.php');
     </div>
   </div>
 </section>
-<?php include('footer.php'); ?>
+
+<?php include('inc/footer.php'); ?>
 
 <!-- SHB Unified Javascript -->
 <script>

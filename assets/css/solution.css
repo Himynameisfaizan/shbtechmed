@@ -1,0 +1,133 @@
+/* =========================================
+   SOLUTIONS PAGE STYLES (LUXURY THEME)
+========================================= */
+
+.shb-solutions-section {
+    background-color: #ffffff;
+}
+
+/* Solution Card Design (Borderless & Sleek) */
+.shb-solution-card {
+    background: transparent;
+    transition: all 0.4s ease;
+    height: 100%;
+    cursor: default;
+    display: flex;
+    flex-direction: column;
+}
+
+.shb-solution-card:hover {
+    transform: translateY(-8px);
+}
+
+/* Icon Box Staging Area */
+.shb-solution-icon-box {
+    height: 200px;
+    background-color: #f4f5f7; /* Very light grey */
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    border: 1px solid #f0f0f0;
+}
+
+.shb-solution-icon-box i {
+    font-size: 4.5rem;
+    color: #1a1a1a;
+    transition: all 0.4s ease;
+}
+
+/* Hover effects on Icon Box */
+.shb-solution-card:hover .shb-solution-icon-box {
+    background-color: rgba(204, 0, 0, 0.04);
+    border-color: rgba(204, 0, 0, 0.1);
+}
+
+.shb-solution-card:hover .shb-solution-icon-box i {
+    transform: scale(1.15);
+    color: #cc0000;
+}
+
+/* Content Area */
+.shb-solution-content {
+    position: relative;
+    padding-bottom: 15px;
+    flex-grow: 1;
+}
+
+.shb-solution-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+}
+
+.shb-solution-desc {
+    font-size: 0.95rem;
+    color: #666666;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+/* Animated Bottom Line */
+.shb-solution-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background-color: #cc0000;
+    transition: width 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    border-radius: 5px;
+}
+
+.shb-solution-card:hover .shb-solution-line {
+    width: 60px; /* Extends a smart red line on hover */
+}
+
+/* Bottom Information Box */
+.shb-solution-info-box {
+    background-color: #fafafa;
+    border-radius: 12px;
+    padding: 50px;
+    border: 1px solid #eeeeee;
+}
+
+.shb-solution-info-heading {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    line-height: 1.3;
+    letter-spacing: -0.5px;
+}
+
+.shb-solution-info-text {
+    font-size: 1.05rem;
+    color: #555555;
+    line-height: 1.7;
+}
+
+/* Responsive Utilities */
+@media (min-width: 992px) {
+    .border-start-lg {
+        border-left: 1px solid #dee2e6 !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .shb-solution-info-box {
+        padding: 30px 20px;
+    }
+    .shb-solution-info-heading {
+        font-size: 1.5rem;
+    }
+    .shb-solution-icon-box {
+        height: 160px;
+    }
+    .shb-solution-icon-box i {
+        font-size: 3.5rem;
+    }
+}

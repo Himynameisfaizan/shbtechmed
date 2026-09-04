@@ -12,9 +12,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
-  <link rel="stylesheet" href="assets/css/include.css?v=<?php echo time()?>">
   <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="assets/css/index.css?v=<?php echo time()?>">
+  <link rel="stylesheet" href="assets/css/include.css?v=<?php echo time() ?>">
+  <link rel="stylesheet" href="assets/css/index.css?v=<?php echo time() ?>">
+  <link rel="stylesheet" href="assets/css/about.css?v=<?php echo time() ?>">
+  <link rel="stylesheet" href="assets/css/solution.css?v=<?php echo time() ?>">
+  <link rel="stylesheet" href="assets/css/it.css?v=<?php echo time() ?>">
+  <link rel="stylesheet" href="assets/css/product.css?v=<?php echo time() ?>">
+  <link rel="stylesheet" href="assets/css/contact.css?v=<?php echo time() ?>">
 
 </head>
 
@@ -80,7 +85,8 @@
                     // Category with sub-menu items (Flyout Products List)
               ?>
                     <li class="dropdown-submenu-left">
-                      <a class="dropdown-item dropdown-toggle" href="<?php echo $site; ?>category/<?php echo $cat_slug; ?>">
+                      <!-- FIX 1: Category Link Updated -->
+                      <a class="dropdown-item dropdown-toggle" href="<?php echo $site; ?>category.php?slug=<?php echo $cat_slug; ?>">
                         <?php echo strtoupper($cat_name); ?>
                       </a>
                       <ul class="dropdown-menu child-left-menu shadow border-0">
@@ -90,7 +96,8 @@
                           $pro_slug = $pro_row['slug_url'];
                         ?>
                           <li>
-                            <a class="dropdown-item" href="<?php echo $site; ?>product/<?php echo $pro_slug; ?>">
+                            <!-- FIX 2: Product Detail Link Updated -->
+                            <a class="dropdown-item" href="<?php echo $site; ?>product-detail.php?slug=<?php echo $pro_slug; ?>">
                               <?php echo $pro_name; ?>
                             </a>
                           </li>
@@ -104,7 +111,8 @@
                     // Category without sub-menu items (Standalone fallback link)
                   ?>
                     <li>
-                      <a class="dropdown-item" href="<?php echo $site; ?>category/<?php echo $cat_slug; ?>">
+                      <!-- FIX 3: Standalone Category Link Updated -->
+                      <a class="dropdown-item" href="<?php echo $site; ?>category.php?slug=<?php echo $cat_slug; ?>">
                         <?php echo strtoupper($cat_name); ?>
                       </a>
                     </li>
@@ -133,7 +141,7 @@
   </nav>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-  
+
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       if (window.innerWidth >= 992) {
@@ -155,7 +163,39 @@
           });
         });
       }
+
+      let currentPath = window.location.pathname;
+      let currentPage = currentPath.split("/").pop(); // Gets 'about.php', 'contact.php', etc.
+
+      if (currentPage === "") {
+        currentPage = "index.php";
+      }
+
+      const navLinks = document.querySelectorAll('.navbar-nav .nav-link:not(.dropdown-toggle)');
+      const productsDropdownToggle = document.getElementById('productsDropdown');
+
+      navLinks.forEach(link => link.classList.remove('active'));
+      if (productsDropdownToggle) productsDropdownToggle.classList.remove('active');
+
+      let isActiveSet = false;
+
+      navLinks.forEach(link => {
+        let linkHref = link.getAttribute('href');
+        if (linkHref && linkHref.endsWith(currentPage)) {
+          link.classList.add('active');
+          isActiveSet = true;
+        }
+      });
+
+      if (currentPath.includes("products.php") || currentPath.includes("/category/") || currentPath.includes("/product/")) {
+        if (productsDropdownToggle) {
+          productsDropdownToggle.classList.add('active');
+          isActiveSet = true;
+        }
+      }
+
     });
   </script>
 </body>
+
 </html>

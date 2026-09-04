@@ -33,19 +33,19 @@
         </ul>
       </div>
 
-      <!-- Column 3: IT & Expertise -->
+      <!-- Column 3: IT & Expertise (FIXED LINKS) -->
       <div class="col-lg-2 col-md-6">
         <h6 class="shb-footer-heading mb-4">Expertise</h6>
         <ul class="shb-footer-links list-unstyled">
-          <li><a href="#">Medical Gas Systems</a></li>
-          <li><a href="#">Modular OTs</a></li>
-          <li><a href="#">Hospital Furniture</a></li>
+          <li><a href="<?php echo $site; ?>products.php">Medical Gas Systems</a></li>
+          <li><a href="<?php echo $site; ?>products.php">Modular OTs</a></li>
+          <li><a href="<?php echo $site; ?>products.php">Hospital Furniture</a></li>
           <li><a href="<?php echo $site; ?>It-services.php">Healthcare IT</a></li>
-          <li><a href="#">Security & Surveillance</a></li>
+          <li><a href="<?php echo $site; ?>solution.php">Security & Surveillance</a></li>
         </ul>
       </div>
 
-      <!-- Column 4: Contact Info -->
+      <!-- Column 4: Contact Info (ADDED NEW NUMBER) -->
       <div class="col-lg-4 col-md-6">
         <h6 class="shb-footer-heading mb-4">Headquarters</h6>
         <div class="shb-footer-contact-item mb-3">
@@ -57,7 +57,9 @@
         <div class="shb-footer-contact-item mb-3">
           <div class="icon-box"><i class="bi bi-telephone-fill"></i></div>
           <div>
-            <a href="tel:+918178037626">+91 8178037626</a>
+            <!-- Both numbers added with clickable tel links -->
+            <a href="tel:+918178037626" class="d-block mb-1">+91 8178037626</a>
+            <a href="tel:+918800815013" class="d-block">+91 8800815013</a>
           </div>
         </div>
         <div class="shb-footer-contact-item">
@@ -79,7 +81,7 @@
           </p>
         </div>
         <div class="col-md-6 text-center text-md-end">
-          <span class="shb-footer-tagline">Innovating for healthier tomorrows.</span>
+          <span class="shb-footer-tagline">Design by  <a href="https://www.digitalwebtrackers.com/" target="_blank" style="color: #CC0000; text-decoration: none;">Digital Web Trackers</a></span>
         </div>
       </div>
     </div>

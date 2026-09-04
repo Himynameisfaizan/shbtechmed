@@ -1,0 +1,163 @@
+/* =========================================
+   ABOUT US PAGE STYLES
+========================================= */
+
+/* Hero Header */
+.shb-about-page-header {
+    background-color: #fafafa;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.shb-about-lead-text {
+    font-size: 1.25rem;
+    color: #4a4a4a;
+    line-height: 1.7;
+    font-weight: 500;
+}
+
+/* Intro Box */
+.shb-about-intro-box {
+    background: #ffffff;
+    border-left: 4px solid #cc0000;
+    padding: 30px 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    font-size: 1.1rem;
+    color: #555555;
+    line-height: 1.8;
+}
+
+/* Value Cards (Vision, Mission, etc) */
+.shb-value-card {
+    background: #ffffff;
+    padding: 35px 25px;
+    border-radius: 8px;
+    border: 1px solid #f0f0f0;
+    height: 100%;
+    position: relative;
+    transition: all 0.4s ease;
+}
+
+.shb-value-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+    border-color: #ffffff;
+}
+
+.shb-value-icon {
+    font-size: 2.2rem;
+    color: #cc0000;
+    margin-bottom: 20px;
+    display: inline-block;
+    padding: 15px;
+    background: rgba(204, 0, 0, 0.05);
+    border-radius: 12px;
+    transition: all 0.4s ease;
+}
+
+.shb-value-card:hover .shb-value-icon {
+    background: #cc0000;
+    color: #ffffff;
+}
+
+.shb-value-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 15px;
+}
+
+.shb-value-desc {
+    font-size: 0.95rem;
+    color: #666666;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+.shb-value-line {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 3px;
+    background-color: #cc0000;
+    transition: width 0.4s ease;
+    border-radius: 5px 5px 0 0;
+}
+
+.shb-value-card:hover .shb-value-line {
+    width: 50px;
+}
+
+/* Process Section (Why Us & How We Work) */
+.shb-about-process-section {
+    background-color: #ffffff;
+}
+
+.shb-process-wrapper {
+    background: #f8f9fa;
+    padding: 50px 40px;
+    border-radius: 16px;
+    height: 100%;
+}
+
+.shb-process-wrapper.dark-wrapper {
+    background: #1a1a1a;
+}
+
+.shb-process-heading {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    letter-spacing: -0.5px;
+}
+
+/* Premium Lists */
+.shb-premium-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.shb-premium-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 18px;
+    font-size: 1.05rem;
+    color: #4a4a4a;
+    line-height: 1.5;
+}
+
+.shb-premium-list li i {
+    color: #cc0000;
+    font-size: 1.3rem;
+    margin-top: 2px;
+}
+
+/* Dark Wrapper List Styles */
+.shb-premium-list.list-light li {
+    color: #cccccc;
+    align-items: center;
+}
+
+.shb-premium-list.list-light li .step-num {
+    background: rgba(204, 0, 0, 0.15);
+    color: #cc0000;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 5px 10px;
+    border-radius: 6px;
+    letter-spacing: 1px;
+}
+
+/* --- Responsive --- */
+@media (max-width: 991px) {
+    .shb-about-intro-box { padding: 20px 25px; }
+    .shb-process-wrapper { padding: 35px 25px; }
+}
+@media (max-width: 768px) {
+    .shb-main-heading { font-size: 2.2rem !important; }
+    .shb-about-lead-text { font-size: 1.05rem; }
+    .shb-value-card { padding: 25px 20px; }
+}

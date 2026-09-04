@@ -1,337 +1,233 @@
 <?php
-// 1. Database Connection file ko include karein
+// 1. Database Connection file
 include('config/connect.php');
 
-// 2. Checking if slug parameter exists in URL string 
+// 2. Fetch Product Data based on URL Slug
 if (isset($_GET['slug'])) {
-    // SQL Injection se bachne ke liye string sanitize karein
     $slug = mysqli_real_escape_string($conn, $_GET['slug']);
     
-    // Product details fetch karne ke liye query chalaein
     $product_query = "SELECT * FROM `products` WHERE `slug_url` = '$slug' AND `status` = 1 LIMIT 1";
     $product_result = mysqli_query($conn, $product_query);
     
     if ($product_result && mysqli_num_rows($product_result) > 0) {
         $product = mysqli_fetch_assoc($product_result);
         
-        // Data variables asign karein database columns ke mutabik
-        $pro_name     = $product['pro_name'];
-        $brand_name   = $product['brand_name'];
-        $short_desc   = $product['short_desc'];
-        $description  = $product['description']; // Isme HTML content ho sakta hai (<p>, etc.)
-        $pro_img      = $product['pro_img'];
+        $current_pro_id       = $product['id']; 
+        $current_pro_cate     = $product['pro_cate']; 
+        // FIX: Variable renamed to prevent clash with header.php loop
+        $current_pro_name     = $product['pro_name'];
+        $current_brand_name   = $product['brand_name'];
+        $current_short_desc   = $product['short_desc'];
+        $current_description  = $product['description']; 
+        $current_pro_img      = $product['pro_img'];
+        $current_stock        = $product['stock'];
         
-        // SEO Meta data parameters fallbacks ke sath
-        $meta_title   = !empty($product['meta_title']) ? $product['meta_title'] : $pro_name . " - SHB Technologies";
-        $meta_desc    = !empty($product['meta_desc']) ? $product['meta_desc'] : $short_desc;
+        $meta_title   = !empty($product['meta_title']) ? $product['meta_title'] : $current_pro_name . " - SHB Technologies";
+        $meta_desc    = !empty($product['meta_desc']) ? $product['meta_desc'] : $current_short_desc;
         $meta_key     = $product['meta_key'];
     } else {
-        // Agar slug match nahi karta to index page par redirect karein ya 404 handler setup karein
-        header("Location: " . $base_url . "index.php");
+        header("Location: " . $site . "products.php");
         exit();
     }
 } else {
-    // Agar direct entry ho bina slug ke
-    header("Location: " . $base_url . "index.php");
+    header("Location: " . $site . "products.php");
     exit();
 }
 ?>
+
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><?php echo htmlspecialchars($meta_title); ?></title>
     <meta name="description" content="<?php echo htmlspecialchars($meta_desc); ?>">
     <meta name="keywords" content="<?php echo htmlspecialchars($meta_key); ?>">
+    <base href="<?php echo $site; ?>">
+    <!-- Standard CSS includes will come via header.php -->
+</head>
+<body>
     
-    <base href="<?php echo $base_url; ?>">
+    <?php include('inc/header.php'); ?>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet" />
-    
-    <style>
-      :root {
-        --deep-navy: #061428;
-        --navy: #0b2b5c;
-        --steel-blue: #1a5f8a;
-        --ocean: #1e6f9f;
-        --teal-accent: #219897;
-        --sky-light: #e8f4f9;
-        --surface-white: #ffffff;
-        --surface-soft: #f7fafc;
-        --gray-100: #f1f5f9;
-        --gray-200: #e2e8f0;
-        --gray-300: #cbd5e1;
-        --gray-500: #64748b;
-        --gray-700: #334155;
-        --gray-900: #0f172a;
-        --text-primary: #0a1e3d;
-        --text-secondary: #475569;
-        --accent-glow: rgba(30, 111, 159, 0.25);
-        --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 6px 24px rgba(0, 0, 0, 0.06);
-        --card-shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.06), 0 20px 40px rgba(0, 0, 0, 0.12);
-        --radius-sm: 12px;
-        --radius-md: 18px;
-        --radius-lg: 24px;
-        --radius-xl: 30px;
-        --transition-smooth: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        --transition-bounce: 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
-      }
+    <!-- DYNAMIC BREADCRUMB -->
+    <?php 
+    $pageTitle = $current_pro_name; 
+    $parentPage = "Products";
+    $parentLink = $site . "products.php";
+    include('inc/breadcrumb.php'); 
+    ?>
 
-      * {
-        font-family: "Inter", system-ui, -apple-system, sans-serif;
-        box-sizing: border-box;
-      }
-
-      html {
-        scroll-behavior: smooth;
-        scroll-padding-top: 90px;
-      }
-
-      body {
-        background-color: #fafcfd;
-        color: var(--text-primary);
-        overflow-x: hidden;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        line-height: 1.65;
-      }
-
-      body::before {
-        content: "";
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: -1;
-        background:
-          radial-gradient(ellipse at 15% 10%, rgba(30, 111, 159, 0.03) 0%, transparent 60%),
-          radial-gradient(ellipse at 85% 70%, rgba(33, 152, 151, 0.03) 0%, transparent 60%),
-          radial-gradient(ellipse at 50% 40%, rgba(11, 43, 92, 0.02) 0%, transparent 70%);
-        background-size: 100% 100%;
-      }
-
-      .navbar {
-        background: rgba(255, 255, 255, 0.88);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.04);
-        padding: 0.8rem 0;
-        transition: all var(--transition-smooth);
-        border-bottom: 1px solid rgba(30, 111, 159, 0.07);
-        z-index: 1030;
-      }
-
-      .btn-nav-cta {
-        background: linear-gradient(135deg, #1e6f9f, #1a5f8a);
-        border: none;
-        padding: 0.6rem 1.7rem;
-        font-weight: 600;
-        border-radius: 40px;
-        transition: all var(--transition-bounce);
-        box-shadow: 0 4px 14px rgba(30, 111, 159, 0.25);
-        color: #fff;
-        font-size: 0.9rem;
-        letter-spacing: 0.2px;
-        white-space: nowrap;
-        text-decoration: none;
-        display: inline-block;
-      }
-
-      .btn-nav-cta:hover {
-        background: linear-gradient(135deg, #1a5f8a, #0e4d6e);
-        transform: translateY(-2px);
-        box-shadow: 0 8px 24px rgba(30, 111, 159, 0.35);
-        color: #fff;
-      }
-
-      .service-icon-circle {
-        width: 56px;
-        height: 56px;
-        border-radius: 18px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.6rem;
-        background: linear-gradient(135deg, #e8f4f9, #dceef8);
-        color: #1e6f9f;
-        margin-bottom: 1.3rem;
-        transition: all var(--transition-bounce);
-      }
-
-      .reveal-on-scroll {
-        opacity: 0;
-        transform: translateY(30px);
-        transition: opacity 0.7s ease-out, transform 0.7s ease-out;
-      }
-
-      .reveal-on-scroll.revealed {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      /* Product Custom Layout Styles */
-      .product-card {
-        border-radius: 24px;
-        overflow: hidden;
-        transition: 0.4s ease;
-      }
-
-      .product-card:hover {
-        transform: translateY(-5px);
-      }
-
-      .product-image-box {
-        background: #f8fafc;
-        border-radius: 20px;
-        padding: 20px;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: 1px solid rgba(0,0,0,0.02);
-      }
-
-      .product-img {
-        width: 100%;
-        max-height: 380px;
-        object-fit: contain;
-      }
-
-      .product-title {
-        color: var(--deep-navy);
-        font-size: 36px;
-      }
-
-      .product-brand-badge {
-        font-size: 0.85rem;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        color: var(--teal-accent);
-        font-weight: 700;
-        margin-bottom: 0.5rem;
-        display: block;
-      }
-
-      @media (max-width: 991px) {
-        .product-title {
-          font-size: 28px;
-        }
-        .product-img {
-          max-height: 280px;
-        }
-      }
-      @media (max-width: 768px) {
-        .product-title {
-          font-size: 24px;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    
-    <?php include('header.php'); ?>
-
-    <section id="products" class="py-5 bg-white">
-      <div class="container py-4">
-        
-        <div class="card border-0 shadow-sm mb-5 reveal-on-scroll product-card">
-          <div class="card-body p-4 p-lg-5">
-            <div class="row align-items-center g-5">
-              
-              <div class="col-lg-5">
-                <div class="product-image-box">
-                  <?php if(!empty($pro_img)): ?>
-                    <img src="<?php echo $site; ?>admin/assets/img/uploads/<?php echo htmlspecialchars($pro_img); ?>" alt="<?php echo htmlspecialchars($pro_name); ?>" class="img-fluid product-img" />
-                  <?php else: ?>
-                    <img src="images/default-product.jpg" alt="No image available" class="img-fluid product-img" />
-                  <?php endif; ?>
-                </div>
-              </div>
-
-              <div class="col-lg-7">
+    <!-- =========================================
+         PRODUCT DETAIL SECTION
+    ========================================= -->
+    <section class="shb-product-detail-section py-5 bg-white">
+        <div class="container py-4">
+            
+            <div class="row g-5 align-items-center mb-5 pb-4">
                 
-                <?php if(!empty($brand_name)): ?>
-                  <span class="product-brand-badge"><?php echo htmlspecialchars($brand_name); ?></span>
-                <?php endif; ?>
-
-                <div class="service-icon-circle mb-3">
-                  <i class="bi bi-box-seam-fill"></i>
+                <!-- Product Image Gallery (Left) -->
+                <div class="col-lg-5">
+                    <div class="shb-detail-image-box">
+                        <?php 
+                        $final_img = !empty($current_pro_img) 
+                            ? $site . 'admin/assets/img/uploads/' . htmlspecialchars($current_pro_img) 
+                            : $site . 'assets/images/no-image.png'; 
+                        ?>
+                        <img src="<?php echo $final_img; ?>" alt="<?php echo htmlspecialchars($current_pro_name); ?>" class="img-fluid shb-detail-main-img" />
+                        
+                        <!-- Custom Tag (e.g. In Stock / Medical Grade) -->
+                        <div class="shb-detail-tags">
+                            <?php if($current_stock > 0) { ?>
+                                <span class="badge bg-success"><i class="bi bi-check2-circle me-1"></i> Available</span>
+                            <?php } ?>
+                            <span class="badge" style="background-color: #1a1a1a;"><i class="bi bi-shield-check me-1"></i> Medical Grade</span>
+                        </div>
+                    </div>
                 </div>
 
-                <h1 class="fw-bold mb-3 product-title">
-                  <?php echo htmlspecialchars($pro_name); ?>
-                </h1>
+                <!-- Product Info & Actions (Right) -->
+                <div class="col-lg-7">
+                    <div class="shb-detail-info-wrapper ps-lg-4">
+                        
+                        <!-- Brand/Category -->
+                        <?php if(!empty($current_brand_name)): ?>
+                            <p class="shb-detail-brand text-muted text-uppercase fw-bold letter-spacing-1 mb-2">
+                                <i class="bi bi-building me-1"></i> <?php echo htmlspecialchars($current_brand_name); ?>
+                            </p>
+                        <?php endif; ?>
 
-                <div class="text-secondary product-description-area mb-4">
-                  <?php if(!empty($short_desc)): ?>
-                <?php echo $short_desc; ?>
-                  <?php endif; ?>
-                  
-                  <?php echo $description; ?>
+                        <!-- Title -->
+                        <h1 class="shb-detail-title mb-4">
+                            <?php echo htmlspecialchars($current_pro_name); ?>
+                        </h1>
+
+                        <!-- Action Buttons (No Price shown) -->
+                        <div class="shb-detail-action-box mb-4 p-4 rounded-3" style="background-color: #f8f9fa; border-left: 4px solid #cc0000;">
+                            <p class="mb-3 text-secondary fw-medium">
+                                For detailed technical specifications, bulk pricing, or installation queries, please contact our engineering team.
+                            </p>
+                            <div class="d-flex flex-wrap gap-3">
+                                <!-- Call Now Button -->
+                                <a href="tel:+918178037626" class="btn shb-btn-call">
+                                    <i class="bi bi-telephone-outbound me-2"></i> Request a Call
+                                </a>
+                                <!-- Inquiry Button -->
+                                <a href="<?php echo $site; ?>contact.php" class="btn shb-btn-inquiry">
+                                    <i class="bi bi-envelope-paper me-2"></i> Send Inquiry
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Short Description -->
+                        <div class="shb-detail-short-desc mb-4">
+                            <?php if(!empty($current_short_desc)): ?>
+                                <?php echo $current_short_desc; ?>
+                            <?php endif; ?>
+                        </div>
+
+                    </div>
                 </div>
-
-                <a href="<?php echo $site; ?>contact.php" class="btn btn-nav-cta mt-2">
-                  Get in Touch
-                </a>
-                
-              </div>
-
             </div>
-          </div>
-        </div>
 
-      </div>
+            <!-- =========================================
+                 TABS FOR FULL DESCRIPTION
+            ========================================= -->
+            <div class="row">
+                <div class="col-12">
+                    <ul class="nav nav-tabs shb-custom-tabs mb-4" id="productTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="desc-tab" data-bs-toggle="tab" data-bs-target="#desc" type="button" role="tab">Detailed Description</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="shipping-tab" data-bs-toggle="tab" data-bs-target="#shipping" type="button" role="tab">Installation & Support</button>
+                        </li>
+                    </ul>
+                    
+                    <div class="tab-content shb-tab-content p-4 border rounded-bottom rounded-end" id="productTabContent">
+                        <!-- Description Tab -->
+                        <div class="tab-pane fade show active" id="desc" role="tabpanel">
+                            <?php 
+                            if(!empty($current_description)) {
+                                echo $current_description; 
+                            } else {
+                                echo "<p class='text-muted'>Detailed technical specifications will be provided upon inquiry.</p>";
+                            }
+                            ?>
+                        </div>
+                        <!-- Support Tab -->
+                        <div class="tab-pane fade" id="shipping" role="tabpanel">
+                            <ul class="list-unstyled shb-support-list">
+                                <li class="mb-3"><i class="bi bi-check-circle-fill text-danger me-2"></i> <strong>Professional Installation:</strong> Pan-India deployment by certified biomedical engineers.</li>
+                                <li class="mb-3"><i class="bi bi-check-circle-fill text-danger me-2"></i> <strong>Maintenance:</strong> 24/7 technical support and Annual Maintenance Contracts (AMC) available.</li>
+                                <li><i class="bi bi-check-circle-fill text-danger me-2"></i> <strong>Quality Assurance:</strong> All equipment complies with rigorous medical industry standards.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </section>
 
-    <?php include('footer.php'); ?>
+    <!-- =========================================
+         RELATED PRODUCTS SECTION (DYNAMIC)
+    ========================================= -->
+    <?php
+    // Fetch 3 related products from the same category, excluding the current product
+    $related_query = mysqli_query($conn, "
+        SELECT * FROM products 
+        WHERE pro_cate = '$current_pro_cate' 
+        AND id != '$current_pro_id' 
+        AND status = 1 
+        AND is_disabled = 0 
+        ORDER BY RAND() 
+        LIMIT 3
+    ");
 
+    if ($related_query && mysqli_num_rows($related_query) > 0) {
+    ?>
+    <section class="shb-related-products py-5 bg-light border-top">
+        <div class="container py-3">
+            <h3 class="fw-bold mb-4" style="color: #1a1a1a;">
+                Related <span style="color: #cc0000;">Equipment</span>
+            </h3>
+            
+            <div class="row g-4">
+                <?php while($rel = mysqli_fetch_assoc($related_query)) { 
+                    $rel_img = !empty($rel['pro_img']) ? $site . 'admin/assets/img/uploads/' . $rel['pro_img'] : $site . 'assets/images/no-image.png';
+                    
+                    // FIX: Direct PHP file link with GET parameter for related products too
+                    $rel_link = $site . 'product-detail.php?slug=' . $rel['slug_url'];
+                ?>
+                <div class="col-lg-4 col-md-6">
+                    <div class="shb-pro-card-modern d-flex flex-column h-100">
+                        <div class="shb-pro-img-wrapper" style="height: 200px;">
+                            <a href="<?php echo $rel_link; ?>">
+                                <img src="<?php echo $rel_img; ?>" alt="<?php echo htmlspecialchars($rel['pro_name']); ?>">
+                            </a>
+                        </div>
+                        <div class="shb-pro-content-wrapper p-3">
+                            <h5 class="fw-bold mb-2">
+                                <a href="<?php echo $rel_link; ?>" class="text-dark text-decoration-none hover-danger">
+                                    <?php echo htmlspecialchars($rel['pro_name']); ?>
+                                </a>
+                            </h5>
+                            <a href="<?php echo $rel_link; ?>" class="shb-minimal-link small">
+                                View Details <i class="fas fa-arrow-right ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <?php } ?>
+            </div>
+        </div>
+    </section>
+    <?php } ?>
+
+    <?php include('inc/footer.php'); ?>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-      // Scroll functionality logic for navbar
-      const navbar = document.getElementById("mainNavbar");
-      if(navbar) {
-        window.addEventListener("scroll", () => {
-          if (window.scrollY > 40) navbar.classList.add("scrolled");
-          else navbar.classList.remove("scrolled");
-        });
-      }
-
-      // Scroll Reveal triggers
-      const revealElements = document.querySelectorAll(".reveal-on-scroll");
-      const observerOptions = {
-        root: null,
-        rootMargin: "0px 0px -40px 0px",
-        threshold: 0.12,
-      };
-      
-      const revealCallback = (entries, observer) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const delay = Array.from(revealElements).indexOf(entry.target) * 40;
-            setTimeout(() => {
-              entry.target.classList.add("revealed");
-            }, Math.min(delay, 300));
-            observer.unobserve(entry.target);
-          }
-        });
-      };
-      
-      const observer = new IntersectionObserver(revealCallback, observerOptions);
-      revealElements.forEach((el) => observer.observe(el));
-      
-      window.addEventListener("load", () => {
-        revealElements.forEach((el) => {
-          const rect = el.getBoundingClientRect();
-          if (rect.top < window.innerHeight && rect.bottom > 0)
-            el.classList.add("revealed");
-        });
-      });
-    </script>
-  </body>
+    
+</body>
 </html>
