@@ -1,18 +1,18 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    // session_start();
+}
 error_reporting(E_ALL);
-// session_start();
+ini_set('display_errors', 1);
 
-
-// Database Configuration
-$local = true; // Set to false for live server
+$local = true; 
 
 if ($local) {
     $host = 'localhost';
     $username = 'root';
     $password = '';
     $dbName = 'shbtechmed';
-    $site = "https://localhost/projects/shbtechmed/";
-    // $site = "https://shbtechmed.com/";
+    $site = "http://localhost/office_php_project/shbtechmed/";
 } else {
     $host = 'localhost';
     $username = 'u799879276_shbtechmed';
@@ -20,13 +20,15 @@ if ($local) {
     $dbName = 'u799879276_shbtechmed';
     $site = 'https://shbtechmed.com/';
 }
-// Create Database Connection
+
+global $site;
+
 $conn = new mysqli($host, $username, $password, $dbName);
 
-// Check Connection
 if ($conn->connect_error) {
     die("Database Connection Failed: " . $conn->connect_error);
 }
 
-// Optional: Set Character Encoding to UTF-8
 $conn->set_charset("utf8");
+
+?>
