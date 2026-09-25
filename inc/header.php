@@ -14,6 +14,7 @@
 
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/include.css?v=<?php echo time() ?>">
+  <link rel="stylesheet" href="assets/css/blog.css?v=<?php echo time() ?>">
   <link rel="stylesheet" href="assets/css/index.css?v=<?php echo time() ?>">
   <link rel="stylesheet" href="assets/css/about.css?v=<?php echo time() ?>">
   <link rel="stylesheet" href="assets/css/solution.css?v=<?php echo time() ?>">
@@ -27,175 +28,148 @@
 
   <?php include('config/connect.php'); ?>
 
-  <nav class="navbar navbar-expand-lg sticky-top" id="mainNavbar">
-    <div class="container">
+ <nav class="navbar navbar-expand-lg sticky-top shb-premium-navbar" id="mainNavbar">
+  <div class="container">
 
-      <a class="navbar-brand d-flex align-items-center gap-2" href="<?php echo $site; ?>index.php">
-        <img src="<?php echo $site; ?>assets/images/logo.jpg" alt="SHB Technologies Logo" class="main-logo" />
+    <a class="navbar-brand d-flex align-items-center gap-2" href="<?php echo $site; ?>index.php">
+      <img src="<?php echo $site; ?>assets/images/logo.jpg" alt="SHB Technologies Logo" class="main-logo" />
+    </a>
+
+    <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse"
+      data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarMain">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center gap-1">
+
+        <li class="nav-item">
+          <a class="nav-link" href="<?php echo $site; ?>index.php">Home</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="<?php echo $site; ?>about.php">About Us</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="<?php echo $site; ?>solution.php">Solution</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="<?php echo $site; ?>It-services.php">IT services</a>
+        </li>
+
+        <!-- MAIN DROPDOWN: Hover par menu open hoga, Click par products.php open hoga -->
+        <li class="nav-item dropdown shb-hover-dropdown">
+          <a class="nav-link dropdown-toggle" href="<?php echo $site; ?>products.php" id="productsDropdown">
+            Products
+          </a>
+
+          <ul class="dropdown-menu shadow-lg border-0 p-2 main-scroll-menu">
+            <?php
+            // 1. Fetch all active categories
+            $cat_query = "SELECT * FROM `categories` WHERE `status` = 1 ORDER BY `categories` ASC";
+            $cat_result = mysqli_query($conn,$cat_query);
+
+            if ($cat_result && mysqli_num_rows($cat_result) > 0) {
+              while ($cat_row = mysqli_fetch_assoc($cat_result)) {
+                $cate_id =$cat_row['cate_id'];
+                $cat_name =$cat_row['categories'];
+                $cat_slug =$cat_row['slug_url'];
+
+                // 2. Fetch active products matching category
+                $pro_query = "SELECT * FROM `products` WHERE `pro_cate` = '$cate_id' AND `status` = 1 AND `is_disabled` = 0 ORDER BY `pro_name` ASC";
+                $pro_result = mysqli_query($conn,$pro_query);
+                $has_products = mysqli_num_rows($pro_result);
+
+                if ($has_products > 0) {
+                  // Category with sub-menu
+            ?>
+                  <li class="dropdown-submenu-left shb-hover-dropdown">
+                    <a class="dropdown-item dropdown-toggle" href="<?php echo $site; ?>category.php?slug=<?php echo $cat_slug; ?>">
+                      <?php echo strtoupper($cat_name); ?>
+                    </a>
+                    <ul class="dropdown-menu child-left-menu shadow border-0">
+                      <?php
+                      while ($pro_row = mysqli_fetch_assoc($pro_result)) {
+                        $pro_name =$pro_row['pro_name'];
+                        $pro_slug =$pro_row['slug_url'];
+                      ?>
+                        <li>
+                          <a class="dropdown-item" href="<?php echo $site; ?>product-detail.php?slug=<?php echo $pro_slug; ?>">
+                            <?php echo $pro_name; ?>
+                          </a>
+                        </li>
+                      <?php
+                      }
+                      ?>
+                    </ul>
+                  </li>
+                <?php
+                } else {
+                  // Category without sub-menu
+                ?>
+                  <li>
+                    <a class="dropdown-item" href="<?php echo $site; ?>category.php?slug=<?php echo $cat_slug; ?>">
+                      <?php echo strtoupper($cat_name); ?>
+                    </a>
+                  </li>
+            <?php
+                }
+              }
+            } else {
+              echo '<li><a class="dropdown-item" href="#">No Categories Found</a></li>';
+            }
+            ?>
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="<?php echo $site; ?>contact.php">Contact</a>
+        </li>
+
+      </ul>
+
+      <a href="<?php echo $site; ?>contact.php" class="btn btn-nav-cta ms-lg-3 mt-2 mt-lg-0">
+        Get in Touch
       </a>
 
-      <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse"
-        data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarMain">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center gap-1">
-
-          <li class="nav-item">
-            <a class="nav-link active" href="<?php echo $site; ?>index.php">Home</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="<?php echo $site; ?>about.php">About Us</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="<?php echo $site; ?>solution.php">Solution</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="<?php echo $site; ?>It-services.php">IT services</a>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="<?php echo $site; ?>products.php" id="productsDropdown"
-              role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Products
-            </a>
-
-            <ul class="dropdown-menu shadow-lg border-0 p-2 main-scroll-menu">
-              <?php
-              // 1. Fetch all active categories from your database
-              $cat_query = "SELECT * FROM `categories` WHERE `status` = 1 ORDER BY `categories` ASC";
-              $cat_result = mysqli_query($conn, $cat_query);
-
-              if ($cat_result && mysqli_num_rows($cat_result) > 0) {
-                while ($cat_row = mysqli_fetch_assoc($cat_result)) {
-                  $cate_id = $cat_row['cate_id'];
-                  $cat_name = $cat_row['categories'];
-                  $cat_slug = $cat_row['slug_url'];
-
-                  // 2. Fetch active products matching categories.cate_id = products.pro_cate
-                  $pro_query = "SELECT * FROM `products` WHERE `pro_cate` = '$cate_id' AND `status` = 1 AND `is_disabled` = 0 ORDER BY `pro_name` ASC";
-                  $pro_result = mysqli_query($conn, $pro_query);
-                  $has_products = mysqli_num_rows($pro_result);
-
-                  if ($has_products > 0) {
-                    // Category with sub-menu items (Flyout Products List)
-              ?>
-                    <li class="dropdown-submenu-left">
-                      <!-- FIX 1: Category Link Updated -->
-                      <a class="dropdown-item dropdown-toggle" href="<?php echo $site; ?>category.php?slug=<?php echo $cat_slug; ?>">
-                        <?php echo strtoupper($cat_name); ?>
-                      </a>
-                      <ul class="dropdown-menu child-left-menu shadow border-0">
-                        <?php
-                        while ($pro_row = mysqli_fetch_assoc($pro_result)) {
-                          $pro_name = $pro_row['pro_name'];
-                          $pro_slug = $pro_row['slug_url'];
-                        ?>
-                          <li>
-                            <!-- FIX 2: Product Detail Link Updated -->
-                            <a class="dropdown-item" href="<?php echo $site; ?>product-detail.php?slug=<?php echo $pro_slug; ?>">
-                              <?php echo $pro_name; ?>
-                            </a>
-                          </li>
-                        <?php
-                        }
-                        ?>
-                      </ul>
-                    </li>
-                  <?php
-                  } else {
-                    // Category without sub-menu items (Standalone fallback link)
-                  ?>
-                    <li>
-                      <!-- FIX 3: Standalone Category Link Updated -->
-                      <a class="dropdown-item" href="<?php echo $site; ?>category.php?slug=<?php echo $cat_slug; ?>">
-                        <?php echo strtoupper($cat_name); ?>
-                      </a>
-                    </li>
-              <?php
-                  }
-                }
-              } else {
-                echo '<li><a class="dropdown-item" href="#">No Categories Found</a></li>';
-              }
-              ?>
-            </ul>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="<?php echo $site; ?>contact.php">Contact</a>
-          </li>
-
-        </ul>
-
-        <a href="<?php echo $site; ?>contact.php" class="btn btn-nav-cta ms-lg-3 mt-2 mt-lg-0">
-          Get in Touch
-        </a>
-
-      </div>
     </div>
-  </nav>
+  </div>
+</nav>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      if (window.innerWidth >= 992) {
-        const submenus = document.querySelectorAll('.dropdown-submenu-left');
+<!-- CLEAN & SIMPLE JS FOR ACTIVE LINKS ONLY -->
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    let currentPath = window.location.pathname;
+    let currentPage = currentPath.split("/").pop(); 
 
-        submenus.forEach(submenu => {
-          const toggle = submenu.querySelector('.dropdown-toggle');
-          const menu = submenu.querySelector('.child-left-menu');
+    if (currentPage === "") {
+      currentPage = "index.php";
+    }
 
-          submenu.addEventListener('mouseenter', function() {
-            menu.style.display = 'block';
-            const rect = toggle.getBoundingClientRect();
-            menu.style.top = rect.top + 'px';
-            menu.style.left = (rect.left - menu.offsetWidth - 10) + 'px';
-          });
+    const navLinks = document.querySelectorAll('.navbar-nav .nav-link:not(.dropdown-toggle)');
+    const productsDropdownToggle = document.getElementById('productsDropdown');
 
-          submenu.addEventListener('mouseleave', function() {
-            menu.style.display = 'none';
-          });
-        });
+    navLinks.forEach(link => link.classList.remove('active'));
+    if (productsDropdownToggle) productsDropdownToggle.classList.remove('active');
+
+    navLinks.forEach(link => {
+      let linkHref = link.getAttribute('href');
+      if (linkHref && linkHref.endsWith(currentPage)) {
+        link.classList.add('active');
       }
-
-      let currentPath = window.location.pathname;
-      let currentPage = currentPath.split("/").pop(); // Gets 'about.php', 'contact.php', etc.
-
-      if (currentPage === "") {
-        currentPage = "index.php";
-      }
-
-      const navLinks = document.querySelectorAll('.navbar-nav .nav-link:not(.dropdown-toggle)');
-      const productsDropdownToggle = document.getElementById('productsDropdown');
-
-      navLinks.forEach(link => link.classList.remove('active'));
-      if (productsDropdownToggle) productsDropdownToggle.classList.remove('active');
-
-      let isActiveSet = false;
-
-      navLinks.forEach(link => {
-        let linkHref = link.getAttribute('href');
-        if (linkHref && linkHref.endsWith(currentPage)) {
-          link.classList.add('active');
-          isActiveSet = true;
-        }
-      });
-
-      if (currentPath.includes("products.php") || currentPath.includes("/category/") || currentPath.includes("/product/")) {
-        if (productsDropdownToggle) {
-          productsDropdownToggle.classList.add('active');
-          isActiveSet = true;
-        }
-      }
-
     });
-  </script>
+
+    if (currentPath.includes("products.php") || currentPath.includes("category.php") || currentPath.includes("product-detail.php")) {
+      if (productsDropdownToggle) {
+        productsDropdownToggle.classList.add('active');
+      }
+    }
+  });
+</script>
 </body>
 
 </html>

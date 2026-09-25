@@ -1,90 +1,125 @@
 /* =========================
    NAVBAR BASE - LUXURY MEDICAL THEME
 ========================= */
-#mainNavbar {
-    background: #ffffff;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.04);
-    padding: 12px 0;
+.shb-premium-navbar {
+    background: #ffffff !important;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.04) !important;
+    padding: 12px 0 !important;
     z-index: 999;
 }
 
 .main-logo {
     height: 65px;
-    /* Thoda sleek look ke liye */
     width: auto;
 }
 
-.navbar .nav-link {
-    color: #1a1a1a;
-    /* Dark solid grey/black */
-    font-weight: 500;
-    font-size: 15px;
+/* Nav Links - Force Remove Blue Pill */
+.shb-premium-navbar .nav-link {
+    color: #1a1a1a !important;
+    font-weight: 600 !important;
+    font-size: 15px !important;
     padding: 10px 16px !important;
+    background-color: transparent !important; /* KILLS THE BLUE PILL */
+    border-radius: 0 !important; /* KILLS THE PILL SHAPE */
     transition: all 0.3s ease;
     position: relative;
 }
 
-/* Smooth underline animation on hover */
-.navbar .nav-link::after {
+/* Smooth Red Underline (Active/Hover) */
+.shb-premium-navbar .nav-link::after {
     content: '';
     position: absolute;
     width: 0;
     height: 2px;
     bottom: 0;
     left: 50%;
-    background-color: #cc0000;
-    /* Logo Red */
+    background-color: #cc0000 !important;
     transition: all 0.3s ease;
     transform: translateX(-50%);
 }
 
-.navbar .nav-link:hover::after,
-.navbar .nav-link.active::after {
+.shb-premium-navbar .nav-link:hover::after,
+.shb-premium-navbar .nav-link.active::after,
+.shb-premium-navbar .nav-item.dropdown:hover .nav-link::after {
     width: 80%;
 }
 
-.navbar .nav-link:hover,
-.navbar .nav-link.active {
-    color: #cc0000;
+.shb-premium-navbar .nav-link:hover,
+.shb-premium-navbar .nav-link.active,
+.shb-premium-navbar .nav-item.dropdown:hover .nav-link {
+    color: #cc0000 !important;
 }
 
-/* Premium CTA Button */
+/* Premium CTA Button - Force Remove Blue */
 .btn-nav-cta {
-    background: #cc0000;
-    /* Smart use of Red */
-    color: #fff !important;
-    padding: 10px 24px;
-    border-radius: 4px;
-    /* Slightly square for a professional/industrial feel */
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    text-decoration: none;
-    transition: 0.3s ease;
-    border: 1px solid #cc0000;
+    background-color: #cc0000 !important;
+    color: #ffffff !important;
+    padding: 10px 24px !important;
+    border-radius: 4px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.5px !important;
+    border: 1px solid #cc0000 !important;
+    transition: 0.3s ease !important;
 }
 
 .btn-nav-cta:hover {
-    background: #1a1a1a;
-    /* Changes to black on hover */
-    border-color: #1a1a1a;
-    color: #ffffff;
+    background-color: #1a1a1a !important;
+    border-color: #1a1a1a !important;
+    color: #ffffff !important;
 }
 
-/* Dropdown Styling */
-.navbar .dropdown-item {
-    padding: 10px 18px;
+/* =========================
+   PURE CSS HOVER DROPDOWN (No JS needed)
+========================= */
+@media (min-width: 992px) {
+    /* Main Dropdown Hover */
+    .shb-hover-dropdown:hover > .dropdown-menu {
+        display: block;
+        margin-top: 0;
+        animation: fadeIn 0.2s ease-in-out;
+    }
+    
+    /* Submenu Positioning */
+    .dropdown-submenu-left {
+        position: relative;
+    }
+    
+    /* Open Submenu to the LEFT side so it doesn't go off screen */
+    .dropdown-submenu-left:hover > .child-left-menu {
+        display: block;
+        top: 0;
+        right: 100%;
+        left: auto;
+        margin-top: -8px;
+        margin-right: 2px;
+        animation: fadeIn 0.2s ease-in-out;
+    }
+}
+
+/* Dropdown Item Styling */
+.shb-premium-navbar .dropdown-menu {
+    border-radius: 8px;
+    padding: 10px 0;
+}
+
+.shb-premium-navbar .dropdown-item {
+    padding: 10px 20px;
     font-weight: 500;
     color: #333333;
+    font-size: 0.95rem;
     transition: 0.3s ease;
 }
 
-.navbar .dropdown-item:hover {
-    background: #f9f9f9;
+.shb-premium-navbar .dropdown-item:hover {
+    background-color: #fcfcfc;
     color: #cc0000;
-    padding-left: 22px;
-    /* Smooth slide effect on hover */
+    padding-left: 25px; /* Slide effect */
 }
 
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 /* =========================================
    PREMIUM LUXURY FOOTER
 ========================================= */

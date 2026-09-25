@@ -683,6 +683,107 @@ include ('config/connect.php');
 </section>
 
 <!-- =========================================
+     HOME PAGE - LATEST BLOGS SECTION
+========================================= -->
+<section class="shb-home-blog-section py-5 bg-light">
+    <div class="container py-5">
+        
+        <!-- Section Header -->
+        <div class="row mb-5 align-items-end">
+            <div class="col-lg-8 mb-4 mb-lg-0 text-center text-lg-start">
+                <span class="shb-subtitle justify-content-center justify-content-lg-start">
+                    <span class="shb-dot"></span> Knowledge Base
+                </span>
+                <h2 class="shb-main-heading mt-2 mb-0">
+                    Latest <span style="color: #cc0000;">Insights</span> & News
+                </h2>
+            </div>
+            <div class="col-lg-4 text-center text-lg-end">
+                <a href="<?php echo $site; ?>blog.php" class="btn btn-outline-dark px-4 py-2 fw-bold">
+                    View All Articles <i class="bi bi-arrow-right ms-2"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Blog Grid -->
+        <div class="row g-4">
+            <?php
+            // Fetch Latest 3 Blogs
+            $home_blog_query = mysqli_query($conn, "SELECT * FROM `blogs` WHERE `status` = 1 ORDER BY `blog_id` DESC LIMIT 3");
+
+            if ($home_blog_query && mysqli_num_rows($home_blog_query) > 0) {
+                while ($h_blog = mysqli_fetch_assoc($home_blog_query)) {
+                    
+                    // Image Path
+                    $h_blog_img = !empty($h_blog['image']) 
+                        ? $site . 'admin/assets/img/uploads/blogs/' . htmlspecialchars($h_blog['image']) 
+                        : $site . 'assets/images/no-image.png';
+
+                    // Link
+                    $h_blog_link = $site . 'blog-detail.php?slug=' . htmlspecialchars($h_blog['slug']);
+                    
+                    // Date Format
+                    $h_blog_date = !empty($h_blog['created_at']) ? date("M j, Y", strtotime($h_blog['created_at'])) : date("M j, Y");
+            ?>
+            
+            <div class="col-lg-4 col-md-6">
+                <article class="shb-blog-card h-100 d-flex flex-column bg-white">
+                    
+                    <!-- Image -->
+                    <div class="shb-blog-img-box" style="height: 220px;">
+                        <a href="<?php echo $h_blog_link; ?>">
+                            <img src="<?php echo $h_blog_img; ?>" alt="<?php echo htmlspecialchars($h_blog['title']); ?>" class="img-fluid w-100 h-100" style="object-fit: cover;">
+                        </a>
+                        <div class="shb-blog-date">
+                            <i class="bi bi-calendar3 me-1"></i> <?php echo $h_blog_date; ?>
+                        </div>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="shb-blog-content flex-grow-1 d-flex flex-column p-4">
+                        <div class="shb-blog-meta mb-2">
+                            <span class="text-uppercase fw-bold letter-spacing-1" style="color: #cc0000; font-size: 0.8rem;">
+                                <i class="bi bi-person me-1"></i> <?php echo htmlspecialchars($h_blog['author']); ?>
+                            </span>
+                        </div>
+                        
+                        <h4 class="shb-blog-title mb-3 fs-5 fw-bold">
+                            <a href="<?php echo $h_blog_link; ?>" class="text-dark text-decoration-none hover-danger">
+                                <?php echo htmlspecialchars($h_blog['title']); ?>
+                            </a>
+                        </h4>
+                        
+                        <p class="shb-blog-excerpt flex-grow-1 text-muted small mb-4">
+                            <?php 
+                            $desc_clean = strip_tags($h_blog['description']);
+                            echo strlen($desc_clean) > 100 ? substr($desc_clean, 0, 100) . '...' :$desc_clean;
+                            ?>
+                        </p>
+                        
+                        <div class="mt-auto border-top pt-3">
+                            <a href="<?php echo $h_blog_link; ?>" class="shb-minimal-link text-decoration-none fw-bold" style="color: #1a1a1a; font-size: 0.9rem;">
+                                Read Article <i class="fas fa-arrow-right ms-1 text-danger"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                </article>
+            </div>
+
+            <?php 
+                } // End while
+            } else { 
+            ?>
+                <div class="col-12 text-center py-4">
+                    <p class="text-muted">New insights coming soon.</p>
+                </div>
+            <?php } ?>
+            
+        </div>
+    </div>
+</section>
+
+<!-- =========================================
      CONTACT US SECTION (PREMIUM FORM)
 ========================================= -->
 <section id="contact" class="shb-contact-section py-5">
