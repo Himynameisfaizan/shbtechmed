@@ -1,3 +1,13 @@
+# robots.txt for SHB Technologies & Medical Systems
 User-agent: *
+
+# Disallow indexing for secure/backend folders
+Disallow: /admin/
+Disallow: /config/
+Disallow: /inc/
+
+# Allow everything else
 Allow: /
-Sitemap:https://shbtechmed.com/sitemap.xml
+
+# Dynamic Sitemap link
+Sitemap: https://shbtechmed.com/sitemap.php
