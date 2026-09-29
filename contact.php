@@ -1,19 +1,9 @@
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, user-scalable=yes"
-    />
-    <title>
-      SHB Technologies & Medical Systems | Innovation in Healthcare Tech
-    </title>
-  </head>
-  <body>
-    
 <?php 
+include('config/connect.php');
+
 $pageTitle = "Contact Us";
 include('inc/header.php');
-include ('inc/breadcrumb.php');
+include('inc/breadcrumb.php');
 ?>
    
 <!-- =========================================
@@ -41,7 +31,6 @@ include ('inc/breadcrumb.php');
             <div class="col-lg-5">
                 <div class="shb-contact-info-wrapper h-100">
                     
-                    <!-- Main Company Heading -->
                     <div class="d-flex align-items-center gap-3 mb-5">
                         <div class="shb-icon-square">
                             <i class="bi bi-buildings"></i>
@@ -52,7 +41,6 @@ include ('inc/breadcrumb.php');
                         </div>
                     </div>
 
-                    <!-- Info Rows -->
                     <div class="shb-info-row">
                         <div class="shb-icon-circle"><i class="bi bi-geo-alt-fill"></i></div>
                         <div class="shb-info-content">
@@ -130,7 +118,4 @@ include ('inc/breadcrumb.php');
     </div>
 </section>
 
-  <?php include('inc/footer.php');?>
-
-  </body>
-</html>
+<?php include('inc/footer.php'); ?>

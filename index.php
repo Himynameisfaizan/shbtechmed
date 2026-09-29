@@ -5,7 +5,6 @@ ini_set('display_errors', 1);
 include('inc/header.php'); 
 include ('config/connect.php');
 ?>
-<!-- HERO SLIDER SECTION -->
 
 <!-- HERO SLIDER SECTION -->
 <div id="medicalHeroSlider" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-pause="false">

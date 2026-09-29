@@ -1,17 +1,6 @@
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, user-scalable=yes"
-    />
-    <title>
-      SHB Technologies & Medical Systems | Innovation in Healthcare Tech
-    </title>
-
-  </head>
-  <body>
-    
 <?php 
+include('config/connect.php');
+
 $pageTitle = "About Us";
 include('inc/header.php');
 include('inc/breadcrumb.php');
@@ -61,8 +50,7 @@ include('inc/breadcrumb.php');
         <!-- Vision, Objective, Strengths Grid -->  
         <div class="row g-4 mt-2">
             
-            <!-- Objective -->
-            <div class="col-md-6 col-lg-3  ">
+            <div class="col-md-6 col-lg-3">
                 <div class="shb-value-card">
                     <div class="shb-value-icon"><i class="bi bi-bullseye"></i></div>
                     <h4 class="shb-value-title">The Objective</h4>
@@ -73,8 +61,7 @@ include('inc/breadcrumb.php');
                 </div>
             </div>
 
-            <!-- Vision -->
-            <div class="col-md-6 col-lg-3  ">
+            <div class="col-md-6 col-lg-3">
                 <div class="shb-value-card">
                     <div class="shb-value-icon"><i class="bi bi-eye"></i></div>
                     <h4 class="shb-value-title">The Vision</h4>
@@ -85,8 +72,7 @@ include('inc/breadcrumb.php');
                 </div>
             </div>
 
-            <!-- Strengths -->
-            <div class="col-md-6 col-lg-3  ">
+            <div class="col-md-6 col-lg-3">
                 <div class="shb-value-card">
                     <div class="shb-value-icon"><i class="bi bi-lightning-charge"></i></div>
                     <h4 class="shb-value-title">Our Strengths</h4>
@@ -97,8 +83,7 @@ include('inc/breadcrumb.php');
                 </div>
             </div>
 
-            <!-- Expertise -->
-            <div class="col-md-6 col-lg-3  ">
+            <div class="col-md-6 col-lg-3">
                 <div class="shb-value-card">
                     <div class="shb-value-icon"><i class="bi bi-award"></i></div>
                     <h4 class="shb-value-title">Our Expertise</h4>
@@ -140,7 +125,7 @@ include('inc/breadcrumb.php');
             </div>
 
             <!-- How We Work -->
-            <div class="col-lg-6  ">
+            <div class="col-lg-6">
                 <div class="shb-process-wrapper dark-wrapper">
                     <h3 class="shb-process-heading text-white mb-4">
                         How We <span style="color: #cc0000;">Work</span>
@@ -160,4 +145,4 @@ include('inc/breadcrumb.php');
     </div>
 </section>
 
-<?php include('inc/footer.php');?>
+<?php include('inc/footer.php'); ?>
