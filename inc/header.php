@@ -1,6 +1,5 @@
-<?php
-// 1. Connection (require_once isliye taaki dobara include na ho)
-require_once('config/connect.php');
+<?php 
+require_once('config/connect.php'); 
 
 // 2. Get Current Page Name (e.g., 'index.php', 'about.php')
 $current_page = basename($_SERVER['PHP_SELF']);
@@ -13,42 +12,50 @@ $schema_markup = "";
 
 // 4. Fetch Meta details from DB
 $meta_query = mysqli_query($conn, "SELECT * FROM `meta` WHERE `page_url` = '$current_page' LIMIT 1");
-if ($meta_query && mysqli_num_rows($meta_query) > 0) {
-  $meta_row = mysqli_fetch_assoc($meta_query);
-  $db_meta_title = $meta_row['meta_title'];
-  $db_meta_desc  = $meta_row['meta_desc'];
-  $db_meta_key   = $meta_row['meta_key'];
+if($meta_query && mysqli_num_rows($meta_query) > 0) {
+    $meta_row = mysqli_fetch_assoc($meta_query);
+    $db_meta_title =$meta_row['meta_title'];
+    $db_meta_desc  =$meta_row['meta_desc'];
+    $db_meta_key   =$meta_row['meta_key'];
 }
 
 // 5. Fetch Schema from DB
 $schema_query = mysqli_query($conn, "SELECT * FROM `page_schemas` WHERE `page_url` = '$current_page' LIMIT 1");
-if ($schema_query && mysqli_num_rows($schema_query) > 0) {
-  $schema_row = mysqli_fetch_assoc($schema_query);
-  $schema_markup = $schema_row['schema_markup'];
+if($schema_query && mysqli_num_rows($schema_query) > 0) {
+    $schema_row = mysqli_fetch_assoc($schema_query);
+    $schema_markup =$schema_row['schema_markup'];
 }
 
-// 6. SMART SEO LOGIC (Page Variable > Database Variable > Default Variable)
-$final_title = isset($meta_title) && !empty($meta_title) ? $meta_title : (!empty($db_meta_title) ? $db_meta_title : "SHB Technologies & Medical Systems");
-$final_desc  = isset($meta_desc) && !empty($meta_desc)   ? $meta_desc  : (!empty($db_meta_desc) ? $db_meta_desc : "Innovative medical technology solutions and MGPS systems.");
-$final_key   = isset($meta_key) && !empty($meta_key)     ? $meta_key   : (!empty($db_meta_key) ? $db_meta_key : "healthcare, medical systems, MGPS");
+// 6. SMART SEO LOGIC
+$final_title = isset($meta_title) && !empty($meta_title) ?$meta_title : (!empty($db_meta_title) ?$db_meta_title : "SHB Technologies & Medical Systems");
+$final_desc  = isset($meta_desc) && !empty($meta_desc)   ?$meta_desc  : (!empty($db_meta_desc) ?$db_meta_desc : "Innovative medical technology solutions and MGPS systems.");
+$final_key   = isset($meta_key) && !empty($meta_key)     ?$meta_key   : (!empty($db_meta_key) ?$db_meta_key : "healthcare, medical systems, MGPS");
+
+// ==========================================
+// 7. DYNAMIC CANONICAL URL GENERATOR (NEW)
+// ==========================================
+
+$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+$domain_name =$_SERVER['HTTP_HOST'];
+$request_uri =$_SERVER['REQUEST_URI'];
+$canonical_url =$protocol . $domain_name .$request_uri;
 ?>
 <!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-
+  
   <!-- DYNAMIC SEO META TAGS -->
   <title><?php echo htmlspecialchars($final_title); ?></title>
   <meta name="description" content="<?php echo htmlspecialchars($final_desc); ?>">
   <meta name="keywords" content="<?php echo htmlspecialchars($final_key); ?>">
+  
+  <link rel="canonical" href="<?php echo htmlspecialchars($canonical_url); ?>" />
+  
+  <?php if(!empty($schema_markup)) { echo$schema_markup; } ?>
 
-  <!-- SCHEMA MARKUP FROM DATABASE -->
-  <?php if (!empty($schema_markup)) {
-    echo $schema_markup;
-  } ?>
-
+  <!-- ALL CSS LINKS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet" />

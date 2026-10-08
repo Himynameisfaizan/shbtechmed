@@ -164,7 +164,7 @@ include ('config/connect.php');
           : 'images/no-image.png';
 
         // Product Link
-        $product_link = $site . 'product/' . $row['slug_url'];
+        $product_link = $site . 'product-detail.php?slug=' . $row['slug_url'];
       ?>
 
         <div class="col-lg-4 col-md-6 mb-4">
@@ -482,7 +482,7 @@ include ('config/connect.php');
           $it_image = !empty($it_row['pro_img'])
             ? $site . 'admin/assets/img/uploads/' . $it_row['pro_img']
             : 'images/no-image.png';
-          $it_link = $site . 'product/' . $it_row['slug_url'];
+          $it_link = $site . 'product-detail.php?slug=' . $it_row['slug_url'];
         ?>
           <!-- IT Product Card -->
           <div class="col-lg-4 col-md-6">

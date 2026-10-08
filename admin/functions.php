@@ -49,16 +49,18 @@ if (isset($_POST["add-categories"])) {
         }
     }
 
-    $cate_id = mt_rand(11111, 99999);
-    $cate_name = mysqli_real_escape_string($conn, $_POST["cate_name"]);
-    $meta_title = mysqli_real_escape_string($conn, $_POST["meta_title"]);
-    $meta_key = mysqli_real_escape_string($conn, $_POST["meta_key"]);
-    $meta_desc = mysqli_real_escape_string($conn, $_POST["meta_desc"]);
-    $slug_url = strtolower(str_replace(" ", "-", $cate_name)); // Temp fix for SlugUrl()
+    $cate_id = mt_rand(11111, 99999);$cate_name = mysqli_real_escape_string($conn,$_POST["cate_name"]);
+    $meta_title = mysqli_real_escape_string($conn,$_POST["meta_title"]);
+    $meta_key = mysqli_real_escape_string($conn,$_POST["meta_key"]);
+    $meta_desc = mysqli_real_escape_string($conn,$_POST["meta_desc"]);
+    
+    // --> Naya Schema variable yahan add karein <--
+    $schema_markup = mysqli_real_escape_string($conn, trim($_POST['schema_markup'] ?? ''));
+    
+    $slug_url = strtolower(str_replace(" ", "-", $cate_name)); 
 
-    $sql = "INSERT INTO `categories` (`cate_id`, `categories`, `meta_title`, `meta_desc`, `meta_key`, `image`, `slug_url`, `status`, `added_on`) 
-            VALUES ('$cate_id', '$cate_name', '$meta_title', '$meta_desc', '$meta_key', '$fileName', '$slug_url', 1, NOW())";
-
+    $sql = "INSERT INTO `categories` (`cate_id`, `categories`, `meta_title`, `meta_desc`, `meta_key`, `schema_markup`, `image`, `slug_url`, `status`, `added_on`) 
+            VALUES ('$cate_id', '$cate_name', '$meta_title', '$meta_desc', '$meta_key', '$schema_markup', '$fileName', '$slug_url', 1, NOW())";
     $check = mysqli_query($conn, $sql);
 
     if (!$check) {
@@ -122,18 +124,19 @@ if (isset($_POST["add-sub-categories"])) {
         // or empty string if you wish
     }
 
-    $cate_id    = mt_rand(11111, 99999);
-    $cate_name  = mysqli_real_escape_string($conn, $_POST["cate_name"]);
-    $meta_title = mysqli_real_escape_string($conn, $_POST["meta_title"]);
-    $meta_key   = mysqli_real_escape_string($conn, $_POST["meta_key"]);
-    $meta_desc  = mysqli_real_escape_string($conn, $_POST["meta_desc"]);
-    $added_on   = date('M d, Y');
-    $parent_id  = mysqli_real_escape_string($conn, $_POST['parent_id']);
+$cate_id    = mt_rand(11111, 99999);$cate_name  = mysqli_real_escape_string($conn,$_POST["cate_name"]);
+    $meta_title = mysqli_real_escape_string($conn,$_POST["meta_title"]);
+    $meta_key   = mysqli_real_escape_string($conn,$_POST["meta_key"]);
+    $meta_desc  = mysqli_real_escape_string($conn,$_POST["meta_desc"]);
+    
+    // --> Naya Schema variable yahan add karein <--
+    $schema_markup = mysqli_real_escape_string($conn, trim($_POST['schema_markup'] ?? ''));
+    
+    $added_on   = date('M d, Y');$parent_id  = mysqli_real_escape_string($conn,$_POST['parent_id']);
     $slug_url   = strtolower(str_replace(" ", "-", $cate_name));
 
-    $sql = "INSERT INTO `sub_categories`( `parent_id`,`cate_id`, `categories`, `meta_title`, `meta_desc`, `meta_key`, `sub_cat_img`, `slug_url`, `status`, `added_on`) 
-            VALUES ('$parent_id','$cate_id','$cate_name','$meta_title','$meta_desc','$meta_key', '$uploadedImage', '$slug_url', 1, '$added_on')";
-
+    $sql = "INSERT INTO `sub_categories`( `parent_id`,`cate_id`, `categories`, `meta_title`, `meta_desc`, `meta_key`, `schema_markup`, `sub_cat_img`, `slug_url`, `status`, `added_on`) 
+            VALUES ('$parent_id','$cate_id','$cate_name','$meta_title','$meta_desc','$meta_key', '$schema_markup', '$uploadedImage', '$slug_url', 1, '$added_on')";
     $check = mysqli_query($conn, $sql);
     if ($check) {
 ?>
@@ -332,4 +335,90 @@ function get_sub_category_by_id($cat_id)
     return mysqli_fetch_assoc($result);
 }
 
+
+// =========================================================================
+// TESTIMONIAL AJAX LOGIC (Add & Update)
+// =========================================================================
+if (isset($_POST['action']) && ($_POST['action'] === 'add-testimonial' || $_POST['action'] === 'update-testimonial')) {
+    
+    // JSON response setup
+    header('Content-Type: application/json');
+    $response = ['status' => 'error', 'message' => 'Something went wrong.'];
+
+    // Capture Data
+    $client_name = mysqli_real_escape_string($conn, trim($_POST['client_name']));
+    $client_title = mysqli_real_escape_string($conn, trim($_POST['client_title']));
+    $client_company = mysqli_real_escape_string($conn, trim($_POST['client_company'] ?? ''));
+    $project_name = mysqli_real_escape_string($conn, trim($_POST['project_name'] ?? ''));
+    $project_date = mysqli_real_escape_string($conn, trim($_POST['project_date'] ?? ''));
+    $rating = intval($_POST['rating']);
+    $testimonial_text = mysqli_real_escape_string($conn, trim($_POST['testimonial_text']));
+    $featured = isset($_POST['featured']) && $_POST['featured'] == 'on' ? 1 : 0;
+    $display_order = intval($_POST['display_order'] ?? 0);
+    $status = 1; // Default Active
+    
+    $imageName = "";
+
+    // Image Upload Logic
+    if (isset($_FILES['client_photo']) && $_FILES['client_photo']['error'] === UPLOAD_ERR_OK) {
+        $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+        $fileExtension = strtolower(pathinfo($_FILES['client_photo']['name'], PATHINFO_EXTENSION));
+        
+        if (in_array($fileExtension, $allowedExtensions)) {
+            $imageName = time() . '_' . rand(1000, 9999) . '.' . $fileExtension;
+            $uploadDir = 'assets/img/uploads/';
+            
+            if (!is_dir($uploadDir)) {
+                mkdir($uploadDir, 0777, true);
+            }
+            
+            move_uploaded_file($_FILES['client_photo']['tmp_name'], $uploadDir . $imageName);
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Invalid image format.']);
+            exit;
+        }
+    }
+
+    if ($_POST['action'] === 'add-testimonial') {
+        // INSERT QUERY
+        $sql = "INSERT INTO testimonials (name, designation, client_company, image, message, rating, project_name, project_date, featured, display_order, status, created_at) 
+                VALUES ('$client_name', '$client_title', '$client_company', " . ($imageName ? "'$imageName'" : "NULL") . ", '$testimonial_text', '$rating', '$project_name', " . ($project_date ? "'$project_date'" : "NULL") . ", '$featured', '$display_order', '$status', NOW())";
+        
+        if (mysqli_query($conn, $sql)) {
+            $response = ['status' => 'success', 'message' => 'Testimonial added successfully!'];
+        } else {
+            $response = ['status' => 'error', 'message' => 'Database Error: ' . mysqli_error($conn)];
+        }
+
+    } elseif ($_POST['action'] === 'update-testimonial') {
+        // UPDATE QUERY
+        $test_id = intval($_POST['testimonial_id']);
+        
+        // Agar nayi image upload hui hai toh query me update karo, warna purani rehne do
+        $imageUpdateStr = $imageName ? "image = '$imageName'," : "";
+
+        $sql = "UPDATE testimonials SET 
+                name = '$client_name', 
+                designation = '$client_title', 
+                client_company = '$client_company', 
+                $imageUpdateStr
+                message = '$testimonial_text', 
+                rating = '$rating', 
+                project_name = '$project_name', 
+                project_date = " . ($project_date ? "'$project_date'" : "NULL") . ", 
+                featured = '$featured', 
+                display_order = '$display_order' 
+                WHERE test_id = '$test_id'";
+
+        if (mysqli_query($conn, $sql)) {
+            $response = ['status' => 'success', 'message' => 'Testimonial updated successfully!'];
+        } else {
+            $response = ['status' => 'error', 'message' => 'Database Error: ' . mysqli_error($conn)];
+        }
+    }
+
+    // Return the JSON response and stop further execution
+    echo json_encode($response);
+    exit;
+}
 ?>
