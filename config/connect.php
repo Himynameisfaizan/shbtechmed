@@ -12,7 +12,7 @@ if ($local) {
     $username = 'root';
     $password = '';
     $dbName = 'shbtechmed';
-    $site = "http://localhost/office_php_project/shbtechmed/";
+    $site = "http://localhost/projects/shbtechmed/";
 } else {
     $host = 'localhost';
     $username = 'u799879276_shbtechmed';
