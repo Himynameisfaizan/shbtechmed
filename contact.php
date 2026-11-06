@@ -4,6 +4,13 @@ include('config/connect.php');
 $pageTitle = "Contact Us";
 include('inc/header.php');
 include('inc/breadcrumb.php');
+
+// Fetch Contact Data from Database
+$contactQuery = mysqli_query($conn, "SELECT phone, email, address FROM contacts LIMIT 1");
+$contactInfo = $contactQuery ? mysqli_fetch_assoc($contactQuery) : [];
+$d_phone = !empty($contactInfo['phone']) ? $contactInfo['phone'] : '+91-8178037626';
+$d_email = !empty($contactInfo['email']) ? $contactInfo['email'] : 'technoshb@gmail.com';
+$d_address = !empty($contactInfo['address']) ? $contactInfo['address'] : 'B-96, 1st Floor G.D. Colony, Mayur Vihar Phase-3, Delhi - 110096';
 ?>
    
 <!-- =========================================
@@ -46,9 +53,7 @@ include('inc/breadcrumb.php');
                         <div class="shb-info-content">
                             <span class="shb-info-label">Corporate Address</span>
                             <p class="shb-info-text">
-                                B-96, 1st Floor G.D. Colony,<br />
-                                Mayur Vihar Phase-3,<br />
-                                Delhi - 110096
+                                <?= nl2br(htmlspecialchars($d_address)); ?>
                             </p>
                         </div>
                     </div>
@@ -57,7 +62,7 @@ include('inc/breadcrumb.php');
                         <div class="shb-icon-circle"><i class="bi bi-telephone-fill"></i></div>
                         <div class="shb-info-content">
                             <span class="shb-info-label">Direct Line</span>
-                            <a href="tel:+918178037626" class="shb-info-link">+91 8178037626</a>
+                            <a href="tel:<?= preg_replace('/[^0-9+]/', '', $d_phone); ?>" class="shb-info-link"><?= htmlspecialchars($d_phone); ?></a>
                         </div>
                     </div>
 
@@ -65,7 +70,7 @@ include('inc/breadcrumb.php');
                         <div class="shb-icon-circle"><i class="bi bi-envelope-fill"></i></div>
                         <div class="shb-info-content">
                             <span class="shb-info-label">Email Support</span>
-                            <a href="mailto:technoshb@gmail.com" class="shb-info-link">technoshb@gmail.com</a>
+                            <a href="mailto:<?= htmlspecialchars($d_email); ?>" class="shb-info-link"><?= htmlspecialchars($d_email); ?></a>
                         </div>
                     </div>
 

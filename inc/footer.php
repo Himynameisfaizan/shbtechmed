@@ -121,9 +121,9 @@ $f_address   = !empty($contactInfo['address']) ? $contactInfo['address'] : 'B-96
         <div class="col-12">
             <div class="shb-footer-policy-links text-center border-top pt-4 pb-3" style="border-color: rgba(255,255,255,0.1) !important;">
                 <a href="<?php echo $site ?? ''; ?>privacy-policy" class="text-decoration-none text-light opacity-75 mx-2 small hover-opacity-100">Privacy Policy</a> | 
-                <a href="<?php echo $site ?? ''; ?>terms-conditions" class="text-decoration-none text-light opacity-75 mx-2 small hover-opacity-100">Terms & Conditions</a> | 
-                <a href="<?php echo $site ?? ''; ?>refund-cancellation" class="text-decoration-none text-light opacity-75 mx-2 small hover-opacity-100">Refund Policy</a> | 
-                <a href="<?php echo $site ?? ''; ?>shipping-delivery" class="text-decoration-none text-light opacity-75 mx-2 small hover-opacity-100">Shipping Policy</a>
+                <a href="<?php echo $site ?? ''; ?>terms-condition" class="text-decoration-none text-light opacity-75 mx-2 small hover-opacity-100">Terms & Conditions</a> | 
+                <a href="<?php echo $site ?? ''; ?>refund-policy" class="text-decoration-none text-light opacity-75 mx-2 small hover-opacity-100">Refund Policy</a> | 
+                <a href="<?php echo $site ?? ''; ?>shipping-return" class="text-decoration-none text-light opacity-75 mx-2 small hover-opacity-100">Shipping Policy</a>
             </div>
         </div>
     </div>

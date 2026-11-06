@@ -6,15 +6,27 @@ $pageTitle = "Privacy Policy | SHB Technologies & Medical Systems";
 $meta_description = "Read the Privacy Policy of SHB Technologies regarding personal data protection for our Medical Gas Pipeline Systems (MGPS), Modular OTs, and Healthcare IT products.";
 $meta_key = "privacy policy, SHB Technologies, medical equipment, MGPS, hospital infrastructure, modular OT";
 
-if (file_exists('includes/header.php')) { include 'includes/header.php'; } else { include 'inc/header.php'; }
-if (file_exists('includes/breadcrumb.php')) { include 'includes/breadcrumb.php'; }
+$contactQuery = mysqli_query($conn, "SELECT phone, email, address FROM contacts LIMIT 1");
+$contactInfo = $contactQuery ? mysqli_fetch_assoc($contactQuery) : [];
+$d_phone = !empty($contactInfo['phone']) ? $contactInfo['phone'] : '+91-8178037626';
+$d_email = !empty($contactInfo['email']) ? $contactInfo['email'] : 'technoshb@gmail.com';
+$d_address = !empty($contactInfo['address']) ? $contactInfo['address'] : 'B-96, 1st Floor G.D. Colony, Mayur Vihar Phase -3, Delhi - 110096';
+
+if (file_exists('includes/header.php')) {
+    include 'includes/header.php';
+} else {
+    include 'inc/header.php';
+}
+if (file_exists('includes/breadcrumb.php')) {
+    include 'includes/breadcrumb.php';
+}
 ?>
 
 <!-- Main Policy Section -->
 <section class="py-5" style="background-color: #f8fafc;">
     <div class="container">
         <div class="row g-5">
-            
+
             <!-- LEFT COLUMN: Policy Content -->
             <div class="col-lg-8">
                 <div class="bg-white p-4 p-md-5 rounded-4 shadow-sm border" style="border-color: #e2e8f0 !important;">
@@ -60,10 +72,9 @@ if (file_exists('includes/breadcrumb.php')) { include 'includes/breadcrumb.php';
                     <p>If you have any questions or concerns regarding this Privacy Policy, please feel free to contact us:</p>
                     <div class="p-4 mt-3 rounded-3" style="background-color: #f1f5f9; border-left: 4px solid #e30613;">
                         <p class="mb-2"><strong>SHB Technologies & Medical Systems</strong></p>
-                        <p class="mb-2"><strong>Specialization:</strong> Turnkey Hospital Projects, MGPS, Modular OTs & Healthcare IT</p>
-                        <p class="mb-2"><strong>Address:</strong> B-96, 1st Floor G.D. Colony, Mayur Vihar Phase -3, Delhi - 110096</p>
-                        <p class="mb-2"><strong>Phone:</strong> +91-8178037626</p>
-                        <p class="mb-0"><strong>Email:</strong> technoshb@gmail.com</p>
+                        <p class="mb-2"><strong>Address:</strong> <?= htmlspecialchars($d_address); ?></p>
+                        <p class="mb-2"><strong>Email:</strong> <?= htmlspecialchars($d_email); ?></p>
+                        <p class="mb-0"><strong>Phone:</strong> <?= htmlspecialchars($d_phone); ?></p>
                     </div>
                 </div>
             </div>
@@ -71,7 +82,7 @@ if (file_exists('includes/breadcrumb.php')) { include 'includes/breadcrumb.php';
             <!-- RIGHT COLUMN: Sidebar Widgets -->
             <div class="col-lg-4">
                 <div class="sidebar-widgets position-sticky" style="top: 25px;">
-                    
+
                     <!-- Search Widget -->
                     <div class="widget-box bg-white p-4 rounded-4 shadow-sm border mb-4">
                         <h5 class="fw-bold mb-3 border-bottom pb-3" style="color: #0f172a;">Search Equipment</h5>
@@ -88,14 +99,14 @@ if (file_exists('includes/breadcrumb.php')) { include 'includes/breadcrumb.php';
                             <?php
                             $catQuery = mysqli_query($conn, "SELECT * FROM categories WHERE status = 1");
                             if ($catQuery && mysqli_num_rows($catQuery) > 0) {
-                                while($catRow = mysqli_fetch_assoc($catQuery)) {
+                                while ($catRow = mysqli_fetch_assoc($catQuery)) {
                             ?>
-                            <li class="mb-2 pb-2 border-bottom">
-                                <a href="category/<?= urlencode(trim($catRow['slug_url'])) ?>" class="text-decoration-none d-flex justify-content-between align-items-center text-secondary" style="font-size: 0.95rem; transition: 0.3s;">
-                                    <span><i class="fa-solid fa-angle-right me-2 text-danger" style="font-size: 0.75rem;"></i> <?= htmlspecialchars($catRow['categories']) ?></span>
-                                </a>
-                            </li>
-                            <?php 
+                                    <li class="mb-2 pb-2 border-bottom">
+                                        <a href="category/<?= urlencode(trim($catRow['slug_url'])) ?>" class="text-decoration-none d-flex justify-content-between align-items-center text-secondary" style="font-size: 0.95rem; transition: 0.3s;">
+                                            <span><i class="fa-solid fa-angle-right me-2 text-danger" style="font-size: 0.75rem;"></i> <?= htmlspecialchars($catRow['categories']) ?></span>
+                                        </a>
+                                    </li>
+                            <?php
                                 }
                             }
                             ?>
@@ -108,7 +119,9 @@ if (file_exists('includes/breadcrumb.php')) { include 'includes/breadcrumb.php';
                         <h4 class="fw-bold mb-2 text-white">Planning a Hospital Project?</h4>
                         <p class="small mb-4 opacity-75 text-light">Get custom BOQs and pricing for Modular OTs and Medical Gas Pipeline Systems.</p>
                         <a href="contact" class="btn w-100 fw-bold shadow-sm mb-3" style="background: #e30613; color: #fff;">Request Consultation</a>
-                        <a href="tel:+918178037626" class="text-white text-decoration-none small fw-bold"><i class="fa-solid fa-phone me-1 text-danger"></i> +91-8178037626</a>
+                        <a href="tel:<?= preg_replace('/[^0-9+]/', '', $d_phone); ?>" class="text-white text-decoration-none small fw-bold">
+                            <i class="fa-solid fa-phone me-1 text-danger"></i> <?= htmlspecialchars($d_phone); ?>
+                        </a>
                     </div>
 
                 </div>
@@ -118,7 +131,13 @@ if (file_exists('includes/breadcrumb.php')) { include 'includes/breadcrumb.php';
     </div>
 </section>
 
-<?php 
-if (file_exists('includes/inquiry-form.php')) { include 'includes/inquiry-form.php'; }
-if (file_exists('includes/footer.php')) { include 'includes/footer.php'; } else { include 'inc/footer.php'; }
+<?php
+if (file_exists('includes/inquiry-form.php')) {
+    include 'includes/inquiry-form.php';
+}
+if (file_exists('includes/footer.php')) {
+    include 'includes/footer.php';
+} else {
+    include 'inc/footer.php';
+}
 ?>

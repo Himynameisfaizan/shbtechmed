@@ -5,22 +5,35 @@ $pageTitle = "Shipping and Delivery Policy | SHB Technologies";
 $meta_description = "Learn about domestic and international shipping options for premium medical equipment, MGPS, and infrastructure products by SHB Technologies.";
 $meta_key = "shipping policy, delivery policy, SHB Technologies, medical equipment export, hospital infrastructure";
 
-if (file_exists('includes/header.php')) { include 'includes/header.php'; } else { include 'inc/header.php'; }
-if (file_exists('includes/breadcrumb.php')) { include 'includes/breadcrumb.php'; }
+$contactQuery = mysqli_query($conn, "SELECT phone, email, address FROM contacts LIMIT 1");
+$contactInfo = $contactQuery ? mysqli_fetch_assoc($contactQuery) : [];
+$d_phone = !empty($contactInfo['phone']) ? $contactInfo['phone'] : '+91-8178037626';
+$d_email = !empty($contactInfo['email']) ? $contactInfo['email'] : 'technoshb@gmail.com';
+$d_address = !empty($contactInfo['address']) ? $contactInfo['address'] : 'B-96, 1st Floor G.D. Colony, Mayur Vihar Phase -3, Delhi - 110096';
+
+
+if (file_exists('includes/header.php')) {
+    include 'includes/header.php';
+} else {
+    include 'inc/header.php';
+}
+if (file_exists('includes/breadcrumb.php')) {
+    include 'includes/breadcrumb.php';
+}
 ?>
 
 <section class="py-5" style="background-color: #f8fafc;">
     <div class="container">
         <div class="row g-5">
-            
+
             <!-- LEFT COLUMN: Content -->
             <div class="col-lg-8">
                 <div class="bg-white p-4 p-md-5 rounded-4 shadow-sm border" style="border-color: #e2e8f0 !important;">
                     <h1 class="mb-4" style="color: #0f172a; font-weight: 800;">Shipping and Delivery Policy</h1>
                     <p class="text-muted mb-5"><strong>Last Updated:</strong> <?= date('F d, Y'); ?></p>
-                    
+
                     <h3 class="mt-5 mb-3" style="color: #e30613; font-size: 1.35rem; font-weight: 700;">Shipping Policy</h3>
-                    
+
                     <h4 class="mt-4" style="font-size: 1.1rem; color: #0f172a; font-weight: 700;">1. Order Processing & Dispatch</h4>
                     <p style="color: #334155; line-height: 1.8;">Standard retail orders of medical equipment (e.g., Gas Outlets, Flow Meters) are processed and dispatched within <strong>3 to 5 business days</strong>. Turnkey projects, modular OT setups, and international container exports follow custom schedules based on manufacturing, documentation, and site readiness.</p>
 
@@ -33,7 +46,7 @@ if (file_exists('includes/breadcrumb.php')) { include 'includes/breadcrumb.php';
                     <hr class="my-5" style="border-color: #e2e8f0;">
 
                     <h3 class="mb-3" style="color: #e30613; font-size: 1.35rem; font-weight: 700;">Returns Policy</h3>
-                    
+
                     <h4 class="mt-4" style="font-size: 1.1rem; color: #0f172a; font-weight: 700;">1. Non-Returnable Goods</h4>
                     <p style="color: #334155; line-height: 1.8;">Due to stringent healthcare standards, hygiene protocols, and the logistics involved in moving heavy medical infrastructure, <strong>we do not accept standard returns</strong> on equipment once shipped.</p>
 
@@ -59,14 +72,14 @@ if (file_exists('includes/breadcrumb.php')) { include 'includes/breadcrumb.php';
                             <?php
                             $catQuery = mysqli_query($conn, "SELECT * FROM categories WHERE status = 1");
                             if ($catQuery && mysqli_num_rows($catQuery) > 0) {
-                                while($catRow = mysqli_fetch_assoc($catQuery)) {
+                                while ($catRow = mysqli_fetch_assoc($catQuery)) {
                             ?>
-                            <li class="mb-2 pb-2 border-bottom">
-                                <a href="category/<?= urlencode(trim($catRow['slug_url'])) ?>" class="text-decoration-none d-flex justify-content-between align-items-center text-secondary" style="font-size: 0.95rem; transition: 0.3s;">
-                                    <span><i class="fa-solid fa-angle-right me-2 text-danger" style="font-size: 0.75rem;"></i> <?= htmlspecialchars($catRow['categories']) ?></span>
-                                </a>
-                            </li>
-                            <?php 
+                                    <li class="mb-2 pb-2 border-bottom">
+                                        <a href="category/<?= urlencode(trim($catRow['slug_url'])) ?>" class="text-decoration-none d-flex justify-content-between align-items-center text-secondary" style="font-size: 0.95rem; transition: 0.3s;">
+                                            <span><i class="fa-solid fa-angle-right me-2 text-danger" style="font-size: 0.75rem;"></i> <?= htmlspecialchars($catRow['categories']) ?></span>
+                                        </a>
+                                    </li>
+                            <?php
                                 }
                             }
                             ?>
@@ -78,7 +91,9 @@ if (file_exists('includes/breadcrumb.php')) { include 'includes/breadcrumb.php';
                         <h4 class="fw-bold mb-2 text-white">Bulk Export Inquiry?</h4>
                         <p class="small mb-4 opacity-75 text-light">Get reliable global shipping for wholesale medical equipment.</p>
                         <a href="contact" class="btn w-100 fw-bold shadow-sm mb-3" style="background: #e30613; color: #fff;">Request Quote</a>
-                        <a href="tel:+918178037626" class="text-white text-decoration-none small fw-bold"><i class="fa-solid fa-phone me-1 text-danger"></i> +91-8178037626</a>
+                        <a href="tel:<?= preg_replace('/[^0-9+]/', '', $d_phone); ?>" class="text-white text-decoration-none small fw-bold">
+                            <i class="fa-solid fa-phone me-1 text-danger"></i> <?= htmlspecialchars($d_phone); ?>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -87,7 +102,13 @@ if (file_exists('includes/breadcrumb.php')) { include 'includes/breadcrumb.php';
     </div>
 </section>
 
-<?php 
-if (file_exists('includes/inquiry-form.php')) { include 'includes/inquiry-form.php'; }
-if (file_exists('includes/footer.php')) { include 'includes/footer.php'; } else { include 'inc/footer.php'; }
+<?php
+if (file_exists('includes/inquiry-form.php')) {
+    include 'includes/inquiry-form.php';
+}
+if (file_exists('includes/footer.php')) {
+    include 'includes/footer.php';
+} else {
+    include 'inc/footer.php';
+}
 ?>
