@@ -1,5 +1,5 @@
-<?php 
-require_once('config/connect.php'); 
+<?php
+require_once('config/connect.php');
 
 // 1. Dynamic Base URL ($site) - Localhost aur Live Server dono ke liye automatic
 if (!isset($site) || empty($site)) {
@@ -78,8 +78,12 @@ $canonical_url = $protocol . $canonical_domain . $clean_uri;
     <!-- Canonical Tag with www -->
     <link rel="canonical" href="<?php echo htmlspecialchars($canonical_url); ?>" />
 
-    <?php if (!empty($schema_markup)) { echo $schema_markup; } ?>
-    <?php if (!empty($page_schema)) { echo $page_schema; } ?>
+    <?php if (!empty($schema_markup)) {
+        echo $schema_markup;
+    } ?>
+    <?php if (!empty($page_schema)) {
+        echo $page_schema;
+    } ?>
 
     <!-- ALL CSS LINKS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -105,9 +109,31 @@ $canonical_url = $protocol . $canonical_domain . $clean_uri;
     <link rel="apple-touch-icon" href="<?php echo $site; ?>apple-touch-icon.png">
     <link rel="manifest" href="<?php echo $site; ?>site.webmanifest">
 
+    <script>
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-W9QQQB28');
+    </script>
+
 </head>
 
 <body>
+
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W9QQQB28"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
 
     <nav class="navbar navbar-expand-lg sticky-top shb-premium-navbar" id="mainNavbar">
         <div class="container">
@@ -154,29 +180,29 @@ $canonical_url = $protocol . $canonical_domain . $clean_uri;
 
                                     if ($pro_result && mysqli_num_rows($pro_result) > 0) {
                             ?>
-                            <li class="dropdown-submenu-left shb-hover-dropdown">
-                                <a class="dropdown-item dropdown-toggle"
-                                    href="<?php echo $site; ?>category/<?php echo urlencode($cat_slug); ?>">
-                                    <?php echo htmlspecialchars(strtoupper($cat_name)); ?>
-                                </a>
-                                <ul class="dropdown-menu child-left-menu shadow border-0">
-                                    <?php while ($pro_row = mysqli_fetch_assoc($pro_result)) { ?>
-                                    <li>
-                                        <a class="dropdown-item"
-                                            href="<?php echo $site; ?>product/<?php echo urlencode(trim($pro_row['slug_url'])); ?>">
-                                            <?php echo htmlspecialchars($pro_row['pro_name']); ?>
-                                        </a>
-                                    </li>
-                                    <?php } ?>
-                                </ul>
-                            </li>
-                            <?php } else { ?>
-                            <li>
-                                <a class="dropdown-item"
-                                    href="<?php echo $site; ?>category/<?php echo urlencode($cat_slug); ?>">
-                                    <?php echo htmlspecialchars(strtoupper($cat_name)); ?>
-                                </a>
-                            </li>
+                                        <li class="dropdown-submenu-left shb-hover-dropdown">
+                                            <a class="dropdown-item dropdown-toggle"
+                                                href="<?php echo $site; ?>category/<?php echo urlencode($cat_slug); ?>">
+                                                <?php echo htmlspecialchars(strtoupper($cat_name)); ?>
+                                            </a>
+                                            <ul class="dropdown-menu child-left-menu shadow border-0">
+                                                <?php while ($pro_row = mysqli_fetch_assoc($pro_result)) { ?>
+                                                    <li>
+                                                        <a class="dropdown-item"
+                                                            href="<?php echo $site; ?>product/<?php echo urlencode(trim($pro_row['slug_url'])); ?>">
+                                                            <?php echo htmlspecialchars($pro_row['pro_name']); ?>
+                                                        </a>
+                                                    </li>
+                                                <?php } ?>
+                                            </ul>
+                                        </li>
+                                    <?php } else { ?>
+                                        <li>
+                                            <a class="dropdown-item"
+                                                href="<?php echo $site; ?>category/<?php echo urlencode($cat_slug); ?>">
+                                                <?php echo htmlspecialchars(strtoupper($cat_name)); ?>
+                                            </a>
+                                        </li>
                             <?php
                                     }
                                 }
@@ -216,35 +242,35 @@ $canonical_url = $protocol . $canonical_domain . $clean_uri;
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        let currentPath = window.location.pathname.replace(/\/$/, "");
-        let currentSegment = currentPath.split("/").pop();
+        document.addEventListener("DOMContentLoaded", function() {
+            let currentPath = window.location.pathname.replace(/\/$/, "");
+            let currentSegment = currentPath.split("/").pop();
 
-        const navLinks = document.querySelectorAll('.navbar-nav .nav-link:not(.dropdown-toggle)');
-        const productsDropdownToggle = document.getElementById('productsDropdown');
+            const navLinks = document.querySelectorAll('.navbar-nav .nav-link:not(.dropdown-toggle)');
+            const productsDropdownToggle = document.getElementById('productsDropdown');
 
-        navLinks.forEach(link => link.classList.remove('active'));
-        if (productsDropdownToggle) productsDropdownToggle.classList.remove('active');
+            navLinks.forEach(link => link.classList.remove('active'));
+            if (productsDropdownToggle) productsDropdownToggle.classList.remove('active');
 
-        navLinks.forEach(link => {
-            let linkHref = (link.getAttribute('href') || '').replace(/\/$/, "");
-            let linkSegment = linkHref.split("/").pop();
+            navLinks.forEach(link => {
+                let linkHref = (link.getAttribute('href') || '').replace(/\/$/, "");
+                let linkSegment = linkHref.split("/").pop();
 
-            if ((currentSegment === "" || currentSegment === "shbtechmed" || currentSegment === "index.php") && (linkSegment === "" || linkSegment === "shbtechmed")) {
-                link.classList.add('active');
-            } else if (linkSegment !== "" && linkSegment !== "shbtechmed" && currentSegment === linkSegment) {
-                link.classList.add('active');
+                if ((currentSegment === "" || currentSegment === "shbtechmed" || currentSegment === "index.php") && (linkSegment === "" || linkSegment === "shbtechmed")) {
+                    link.classList.add('active');
+                } else if (linkSegment !== "" && linkSegment !== "shbtechmed" && currentSegment === linkSegment) {
+                    link.classList.add('active');
+                }
+            });
+
+            if (
+                currentPath.includes("/products") ||
+                currentPath.includes("/category/") ||
+                currentPath.includes("/product/")
+            ) {
+                if (productsDropdownToggle) {
+                    productsDropdownToggle.classList.add('active');
+                }
             }
         });
-
-        if (
-            currentPath.includes("/products") ||
-            currentPath.includes("/category/") ||
-            currentPath.includes("/product/")
-        ) {
-            if (productsDropdownToggle) {
-                productsDropdownToggle.classList.add('active');
-            }
-        }
-    });
     </script>
