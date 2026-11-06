@@ -398,7 +398,7 @@ if (file_exists('includes/header.php')) {
 
                     $slug = trim((string)($customPage['slug_url'] ?? ''));
                     // Matches page.php $_GET['slug_url'] and $_GET['slug']
-                    $pageUrl = 'page.php?slug_url=' . rawurlencode($slug);
+                    $pageUrl = 'page/' . rawurlencode($slug);
                     $iconClass = $icons[$index % count($icons)];
                     $index++;
                 ?>

@@ -22,11 +22,11 @@ if (isset($_GET['slug'])) {
         $meta_desc    = !empty($blog['meta_desc']) ? $blog['meta_desc'] : substr(strip_tags($blog_desc), 0, 160);
         $meta_key     =$blog['meta_key'];
     } else {
-        header("Location: " . $site . "blog.php");
+        header("Location: " . $site . "404");
         exit();
     }
 } else {
-    header("Location: " . $site . "blog.php");
+    header("Location: " . $site . "404");
     exit();
 }
 

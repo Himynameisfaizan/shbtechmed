@@ -494,7 +494,7 @@ echo $page_schema;
                                     $label = !empty($otherPage['breadcrumb_title']) ? $otherPage['breadcrumb_title'] : $otherPage['page_title'];
                             ?>
                             <li>
-                                <a href="page.php?slug_url=<?= rawurlencode($otherPage['slug_url']); ?>" class="<?= $isCurrent; ?>">
+                                <a href="page/<?= rawurlencode($otherPage['slug_url']); ?>" class="<?= $isCurrent; ?>">
                                     <span><i class="fa-solid fa-location-dot me-2 text-danger" style="font-size: 0.8rem;"></i><?= htmlspecialchars($label); ?></span>
                                     <i class="fa-solid fa-angle-right" style="font-size: 0.75rem;"></i>
                                 </a>
