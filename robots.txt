@@ -5,9 +5,10 @@ User-agent: *
 Disallow: /admin/
 Disallow: /config/
 Disallow: /inc/
+Disallow: /includes/
 
 # Allow everything else
 Allow: /
 
-# Dynamic Sitemap link
-Sitemap: https://shbtechmed.com/sitemap.php
+# Dynamic Sitemap link (Updated to .xml)
+Sitemap: https://shbtechmed.com/sitemap.xml
