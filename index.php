@@ -164,7 +164,7 @@ include ('config/connect.php');
           : 'images/no-image.png';
 
         // Product Link
-        $product_link = $site . 'product-detail.php?slug=' . $row['slug_url'];
+        $product_link = $site . 'product/' . $row['slug_url'];
       ?>
 
         <div class="col-lg-4 col-md-6 mb-4">
@@ -208,7 +208,7 @@ include ('config/connect.php');
 
     <div class="row mt-5 pt-3">
       <div class="col-md-12 text-center">
-        <a href="<?php echo $site; ?>products.php" class="shb-btn-primary">
+        <a href="<?php echo $site; ?>products" class="shb-btn-primary">
           View Entire Catalog
         </a>
       </div>
@@ -416,7 +416,7 @@ include ('config/connect.php');
           </li>
         </ul>
 
-        <a href="<?php echo $site; ?>It-services.php" class="shb-btn-primary">
+        <a href="<?php echo $site; ?>It-services" class="shb-btn-primary">
           Explore IT Services
         </a>
       </div>
@@ -482,7 +482,7 @@ include ('config/connect.php');
           $it_image = !empty($it_row['pro_img'])
             ? $site . 'admin/assets/img/uploads/' . $it_row['pro_img']
             : 'images/no-image.png';
-          $it_link = $site . 'product-detail.php?slug=' . $it_row['slug_url'];
+          $it_link = $site . 'product/' . $it_row['slug_url'];
         ?>
           <!-- IT Product Card -->
           <div class="col-lg-4 col-md-6">
@@ -698,7 +698,7 @@ include ('config/connect.php');
                 </h2>
             </div>
             <div class="col-lg-4 text-center text-lg-end">
-                <a href="<?php echo $site; ?>blog.php" class="btn btn-outline-dark px-4 py-2 fw-bold">
+                <a href="<?php echo $site; ?>blog" class="btn btn-outline-dark px-4 py-2 fw-bold">
                     View All Articles <i class="bi bi-arrow-right ms-2"></i>
                 </a>
             </div>
@@ -719,7 +719,7 @@ include ('config/connect.php');
                         : $site . 'assets/images/no-image.png';
 
                     // Link
-                    $h_blog_link = $site . 'blog-detail.php?slug=' . htmlspecialchars($h_blog['slug']);
+                    $h_blog_link = $site . 'blog/' . htmlspecialchars($h_blog['slug']);
                     
                     // Date Format
                     $h_blog_date = !empty($h_blog['created_at']) ? date("M j, Y", strtotime($h_blog['created_at'])) : date("M j, Y");

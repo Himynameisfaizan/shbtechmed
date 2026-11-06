@@ -51,7 +51,7 @@ include('inc/breadcrumb.php');
                         ? $site . 'admin/assets/img/uploads/blogs/' . htmlspecialchars($row['image']) 
                         : $site . 'assets/images/no-image.png';
 
-                    $blog_link = $site . 'blog-detail.php?slug=' . htmlspecialchars($row['slug']);
+                    $blog_link = $site . 'blog/' . htmlspecialchars($row['slug']);
                     $date = !empty($row['created_at']) ? date("F j, Y", strtotime($row['created_at'])) : date("F j, Y");
             ?>
 

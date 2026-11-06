@@ -84,8 +84,8 @@ $result = $conn->query("SELECT * FROM custom_pages ORDER BY id DESC");
                                                         <td><strong><?= htmlspecialchars($page['page_title']); ?></strong></td>
                                                         <td>
                                                             <!-- Frontend Link -->
-                                                            <a href="../page.php?slug=<?= htmlspecialchars($page['slug_url']); ?>" target="_blank" class="text-primary text-decoration-none">
-                                                                /page.php?slug=<?= htmlspecialchars($page['slug_url']); ?> <i class="fa-solid fa-external-link-alt ms-1" style="font-size: 12px;"></i>
+                                                            <a href="../page/<?= htmlspecialchars($page['slug_url']); ?>" target="_blank" class="text-primary text-decoration-none">
+                                                                /page/<?= htmlspecialchars($page['slug_url']); ?> <i class="fa-solid fa-external-link-alt ms-1" style="font-size: 12px;"></i>
                                                             </a>
                                                         </td>
                                                         <td>

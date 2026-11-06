@@ -399,7 +399,7 @@ echo $page_schema;
         <nav class="shb-breadcrumb" aria-label="breadcrumb">
             <a href="index.php"><i class="fa-solid fa-house me-1"></i> Home</a>
             <span>/</span>
-            <a href="location.php">Locations & Pages</a>
+            <a href="location">Locations & Pages</a>
             <span>/</span>
             <span class="active-crumb"><?= htmlspecialchars($breadcrumb_name); ?></span>
         </nav>
@@ -449,7 +449,7 @@ echo $page_schema;
                                 <p class="text-muted small mb-0">Speak directly with our Biomedical & MGPS Engineering team at Mayur Vihar Phase-3, Delhi HQ.</p>
                             </div>
                             <div class="col-md-4 text-md-end">
-                                <a href="contact.php" class="btn btn-danger fw-semibold px-4 py-2" style="background:#e30613;">Get Free Quote</a>
+                                <a href="contact" class="btn btn-danger fw-semibold px-4 py-2" style="background:#e30613;">Get Free Quote</a>
                             </div>
                         </div>
                     </div>
@@ -505,7 +505,7 @@ echo $page_schema;
                             ?>
                         </ul>
                         <div class="mt-3 pt-2 border-top text-center">
-                            <a href="location.php" class="text-danger fw-bold small text-decoration-none">View All Pages <i class="fa-solid fa-arrow-right ms-1"></i></a>
+                            <a href="location" class="text-danger fw-bold small text-decoration-none">View All Pages <i class="fa-solid fa-arrow-right ms-1"></i></a>
                         </div>
                     </div>
 
@@ -562,7 +562,7 @@ echo $page_schema;
                         </div>
                         <h4 class="fw-bold mb-2 text-white">Need Technical Consultation?</h4>
                         <p class="small text-light opacity-75 mb-4">Connect with our biomedical & MGPS specialists for hospital layout planning, BOQ, and wholesale pricing.</p>
-                        <a href="contact.php" class="shb-consult-btn mb-3">Request a Callback</a>
+                        <a href="contact" class="shb-consult-btn mb-3">Request a Callback</a>
                         <div class="small text-light">
                             <div class="mb-1"><i class="fa-solid fa-phone text-danger me-2"></i><a href="tel:<?= htmlspecialchars($sitePhone); ?>" class="text-white text-decoration-none fw-bold"><?= htmlspecialchars($sitePhone); ?></a></div>
                             <div><i class="fa-solid fa-envelope text-danger me-2"></i><a href="mailto:<?= htmlspecialchars($siteEmail); ?>" class="text-white text-decoration-none"><?= htmlspecialchars($siteEmail); ?></a></div>

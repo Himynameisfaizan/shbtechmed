@@ -137,7 +137,8 @@ $recent_blogs = mysqli_query($conn, "SELECT title, slug, image, created_at FROM 
                             <?php if ($recent_blogs && mysqli_num_rows($recent_blogs) > 0) { ?>
                                 <div class="shb-recent-post-list">
                                     <?php while($rb = mysqli_fetch_assoc($recent_blogs)) { 
-                                        $rb_img = !empty($rb['image']) ? $site . 'admin/assets/img/uploads/' . htmlspecialchars($rb['image']) : $site . 'assets/images/no-image.png';$rb_link = $site . 'blog-detail.php?slug=' . htmlspecialchars($rb['slug']);
+                                        $rb_img = !empty($rb['image']) ? $site . 'admin/assets/img/uploads/' . htmlspecialchars($rb['image']) : $site . 'assets/images/no-image.png';
+                                        $rb_link = $site . 'blog/' . htmlspecialchars($rb['slug']);
                                         $rb_date = !empty($rb['created_at']) ? date("M j, Y", strtotime($rb['created_at'])) : '';
                                     ?>
                                     

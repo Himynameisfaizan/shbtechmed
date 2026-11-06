@@ -103,7 +103,7 @@ if (isset($_GET['slug'])) {
                                 <i class="bi bi-telephone-outbound me-2"></i> Request a Call
                             </a>
                             <!-- Inquiry Button -->
-                            <a href="<?php echo $site; ?>contact.php" class="btn shb-btn-inquiry">
+                            <a href="<?php echo $site; ?>contact" class="btn shb-btn-inquiry">
                                 <i class="bi bi-envelope-paper me-2"></i> Send Inquiry
                             </a>
                         </div>
@@ -196,7 +196,7 @@ if (isset($_GET['slug'])) {
                     $rel_img = !empty($rel['pro_img']) ? $site . 'admin/assets/img/uploads/' . $rel['pro_img'] : $site . 'assets/images/no-image.png';
                     
                     // FIX: Direct PHP file link with GET parameter for related products too
-                    $rel_link = $site . 'product-detail.php?slug=' . $rel['slug_url'];
+                    $rel_link = $site . 'product/' . $rel['slug_url'];
                 ?>
             <div class="col-lg-4 col-md-6">
                 <div class="shb-pro-card-modern d-flex flex-column h-100">

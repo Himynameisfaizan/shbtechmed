@@ -63,7 +63,7 @@ $total_pages = ceil($total_records / $limit);
                         ? $site . 'admin/assets/img/uploads/' . $row['pro_img']
                         : $site . 'assets/images/no-image.png';
 
-                    $product_link = $site . 'product-detail.php?slug=' . $row['slug_url'];
+                    $product_link = $site . 'product/' . $row['slug_url'];
             ?>
 
             <!-- Individual Product Card -->

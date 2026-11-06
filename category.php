@@ -146,7 +146,7 @@ include('inc/breadcrumb.php');
                         : $site . 'assets/images/no-image.png';
 
                     // Direct PHP file link with GET parameter
-                    $product_link = $site . 'product-detail.php?slug=' . $row['slug_url'];
+                    $product_link = $site . 'product/' . $row['slug_url'];
                 ?>
 
                 <!-- Individual Product Card -->

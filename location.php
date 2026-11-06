@@ -432,7 +432,7 @@ if (file_exists('includes/header.php')) {
                 <i class="fa-solid fa-folder-open fs-1 text-danger mb-3"></i>
                 <h3 class="fw-bold">No Custom Pages Published Yet</h3>
                 <p class="text-muted mb-4">You can create new location and service pages directly from the Admin Panel.</p>
-                <a href="contact.php" class="shb-btn-red">Contact Our Team</a>
+                <a href="contact" class="shb-btn-red">Contact Our Team</a>
             </div>
             <?php endif; ?>
 
@@ -445,7 +445,7 @@ if (file_exists('includes/header.php')) {
                         <p class="mb-0 text-light opacity-75">With 120+ hospitals served and 350+ installations across India, our biomedical engineers provide custom BOQs and on-site consultation.</p>
                     </div>
                     <div class="col-lg-4 text-lg-end">
-                        <a href="contact.php" class="shb-btn-red me-2 mb-2">Get In Touch <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="contact" class="shb-btn-red me-2 mb-2">Get In Touch <i class="fa-solid fa-arrow-right"></i></a>
                         <a href="tel:<?= shbCleanText($sitePhone); ?>" class="btn btn-outline-light px-3 py-2 mb-2 fw-semibold">
                             <i class="fa-solid fa-phone me-1"></i> <?= shbCleanText($sitePhone); ?>
                         </a>
